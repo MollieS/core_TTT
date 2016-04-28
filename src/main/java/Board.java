@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Board {
 
     public String[] grid = new String[9];
@@ -20,27 +24,44 @@ public class Board {
         grid[location] = symbol;
     }
 
-    public String[][] horizontalRows() {
-        String[] topRow = row(0, 1, 2);
-        String[] middleRow = row(3, 4, 5);
-        String[] bottomRow = row(6, 7, 8);
-        String[][] rows = {topRow, middleRow, bottomRow};
-        return rows;
+    public List<List<String>> winningPositions() {
+        List<List<String>> positions = new ArrayList<>();
+        positions.addAll(getRows());
+        positions.addAll(getColumns());
+        positions.addAll(getDiagonals());
+        return positions;
     }
 
-    public String[][] verticalRows() {
-        String[] leftRow = row(0, 3, 6);
-        String[] middleRow = row(1, 4, 7);
-        String[] rightRow = row(2, 5, 8);
-        String[][] rows = {leftRow, middleRow, rightRow};
-        return rows;
+    public List<List<String>> rows() {
+        return getRows();
     }
 
-    public String[][] diagonals() {
-        String[] leftDiagonal = row(0, 4, 8);
-        String[] rightDiagonal = row(2, 4, 6);
-        String[][] diagonals = {leftDiagonal, rightDiagonal};
-        return diagonals;
+    public List<List<String>> columns() {
+        return getColumns();
+    }
+
+    public List<List<String>> diagonals() {
+        return getDiagonals();
+    }
+
+    private List<List<String>> getDiagonals() {
+        List<String> left = row(0, 4, 8);
+        List<String> right = row(2, 4, 6);
+        return Arrays.asList(left, right);
+    }
+
+    private List<List<String>> getRows() {
+        List<String> top = row(0, 1, 2);
+        List<String> middle = row(3, 4, 5);
+        List<String> bottom = row(6, 7, 8);
+        return Arrays.asList(top, middle, bottom);
+    }
+
+    private List<List<String>> getColumns() {
+        List<String> left = row(0, 3, 6);
+        List<String> middle = row(1, 4, 7);
+        List<String> right = row(2, 5, 8);
+        return Arrays.asList(left, middle, right);
     }
 
     private String getCells(String rows) {
@@ -65,8 +86,16 @@ public class Board {
         return "-------------\n";
     }
 
-    private String[] row(int first, int middle, int last) {
-        return new String[]{grid[first], grid[middle], grid[last]};
+    private List<String> row(int first, int middle, int last) {
+        return Arrays.asList(grid[first], grid[middle], grid[last]);
     }
 
+    public boolean full() {
+        for (int cell = 0; cell < grid.length; cell ++) {
+            if (grid[cell] == " ") {
+                return false;
+            }
+        }
+        return true;
+    }
 }

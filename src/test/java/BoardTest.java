@@ -1,6 +1,11 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 public class BoardTest {
@@ -35,32 +40,37 @@ public class BoardTest {
     }
 
     @Test
-    public void returnsHorizontalRows() {
+    public void returnsRows() {
         fillBoard();
-        String[] topRow = {"0", "1", "2"};
-        String[] middleRow = {"3", "4", "5"};
-        String[] bottomRow = {"6", "7", "8"};
-        String[][] rows = {topRow, middleRow, bottomRow};
-        assertEquals(rows, board.horizontalRows());
+        assertEquals(getRows(), board.rows());
     }
 
     @Test
-    public void returnsVerticalRows() {
+    public void returnsColumns() {
         fillBoard();
-        String[] leftRow = {"0", "3", "6"};
-        String[] middleRow = {"1", "4", "7"};
-        String[] rightRow = {"2", "5", "8"};
-        String[][] rows = {leftRow, middleRow, rightRow};
-        assertEquals(rows, board.verticalRows());
+        assertEquals(getColumns(), board.columns());
     }
 
     @Test
     public void returnsDiagonals() {
         fillBoard();
-        String[] leftDiagonal = {"0", "4", "8"};
-        String[] rightDiagonal = {"2", "4", "6"};
-        String[][] diagonals = {leftDiagonal, rightDiagonal};
-        assertEquals(diagonals, board.diagonals());
+        assertEquals(getDiagonals(), board.diagonals());
+    }
+
+    @Test
+    public void returnsWinningPositions() {
+        fillBoard();
+        List<List<String>> expectedWinningPositions = new ArrayList<>();
+        expectedWinningPositions.addAll(getRows());
+        expectedWinningPositions.addAll(getColumns());
+        expectedWinningPositions.addAll(getDiagonals());
+        assertEquals(expectedWinningPositions, board.winningPositions());
+    }
+
+    @Test
+    public void knowsWhenFull() {
+        fillBoard();
+        assertTrue(board.full());
     }
 
     private String emptyBoard() {
@@ -87,6 +97,31 @@ public class BoardTest {
         for (int cell = 0; cell < 9; cell++) {
             board.placeMark(String.valueOf(cell), cell);
         }
+    }
+
+    private List<List<String>> getRows() {
+        List<String> topRow = getCells("0", "1", "2");
+        List<String> middleRow = getCells("3", "4", "5");
+        List<String> bottomRow = getCells("6", "7", "8");
+        return Arrays.asList(topRow, middleRow, bottomRow);
+    }
+
+
+    private List<String> getCells(String s, String s2, String s3) {
+        return Arrays.asList(s, s2, s3);
+    }
+
+    private List<List<String>> getColumns() {
+        List<String> left = getCells("0", "3", "6");
+        List<String> middle = getCells("1", "4", "7");
+        List<String> right = getCells("2", "5", "8");
+        return Arrays.asList(left, middle, right);
+    }
+
+    private List<List<String>> getDiagonals() {
+        List<String> left = getCells("0", "4", "8");
+        List<String> right = getCells("2", "4", "6");
+        return Arrays.asList(left, right);
     }
 }
 
