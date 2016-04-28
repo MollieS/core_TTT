@@ -1,10 +1,8 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Game {
 
-    private Player winner;
     private Board board;
     private Player currentPlayer;
     private Player player1;
@@ -15,10 +13,6 @@ public class Game {
         this.currentPlayer = player1;
         this.player1 = player1;
         this.player2 = player2;
-    }
-
-    public String showBoard() {
-        return board.display();
     }
 
     public void play(int location) {
@@ -33,8 +27,6 @@ public class Game {
     public boolean won() {
         for (int position = 0; position < board.winningPositions().size(); position++) {
             if (winFor("X", position) || winFor("O", position)) {
-                switchTurn();
-                winner = currentPlayer;
                 return true;
             }
         }
@@ -50,8 +42,18 @@ public class Game {
     }
 
     public Player winner() {
-        if (won()) return currentPlayer;
+        if (won()) {
+            return getWinner();
+        }
         return null;
+    }
+
+    private Player getWinner() {
+        if (currentPlayer == player1) {
+            return player2;
+        } else {
+            return player1;
+        }
     }
 
     private boolean winFor(String symbol, int position) {

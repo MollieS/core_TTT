@@ -3,6 +3,7 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class GameTest {
 
@@ -50,6 +51,11 @@ public class GameTest {
     }
 
     @Test
+    public void gameNotOver() {
+        assertFalse(game.over());
+    }
+
+    @Test
     public void gameOverIfWon() {
         horizontalWinForPlayerOne();
         assertTrue(game.over());
@@ -65,6 +71,18 @@ public class GameTest {
     public void playerOneWinner() {
         horizontalWinForPlayerOne();
         assertEquals(player1, game.winner());
+    }
+
+    @Test
+    public void playerTwoWinner() {
+        diagonalWinForPlayer2();
+        assertEquals(player2, game.winner());
+    }
+
+    @Test
+    public void returnsNullWhenNoWinner() {
+        drawGame();
+        assertEquals(null, game.winner());
     }
 
     private void horizontalWinForPlayerOne() {
