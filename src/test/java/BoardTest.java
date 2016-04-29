@@ -23,20 +23,9 @@ public class BoardTest {
     }
 
     @Test
-    public void displaysTheGrid() {
-        assertEquals(emptyBoard(), board.display());
-    }
-
-    @Test
     public void placesAMark() {
         board.placeMark("X", 0);
         assertEquals("X", board.grid[0]);
-    }
-
-    @Test
-    public void updatesDisplay() {
-        board.placeMark("X", 1);
-        assertEquals(board(), board.display());
     }
 
     @Test
@@ -71,26 +60,6 @@ public class BoardTest {
     public void knowsWhenFull() {
         fillBoard();
         assertTrue(board.full());
-    }
-
-    private String emptyBoard() {
-        return "-------------" + "\n" +
-                "|   |   |   |" + "\n" +
-                "-------------" + "\n" +
-                "|   |   |   |" + "\n" +
-                "-------------" + "\n" +
-                "|   |   |   |" + "\n" +
-                "-------------";
-    }
-
-    private String board() {
-        return "-------------" + "\n" +
-                "|   | X |   |" + "\n" +
-                "-------------" + "\n" +
-                "|   |   |   |" + "\n" +
-                "-------------" + "\n" +
-                "|   |   |   |" + "\n" +
-                "-------------";
     }
 
     private void fillBoard() {

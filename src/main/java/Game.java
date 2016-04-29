@@ -4,7 +4,7 @@ import java.util.List;
 public class Game {
 
     private Board board;
-    private Player currentPlayer;
+    public Player currentPlayer;
     private Player player1;
     private Player player2;
 
@@ -16,7 +16,7 @@ public class Game {
     }
 
     public void play(int location) {
-        board.placeMark(currentPlayer.getSymbol(), location);
+        makeMark(location);
         switchTurn();
     }
 
@@ -25,35 +25,24 @@ public class Game {
     }
 
     public boolean won() {
-        for (int position = 0; position < board.winningPositions().size(); position++) {
-            if (winFor("X", position) || winFor("O", position)) {
-                return true;
-            }
-        }
-        return false;
+        return isWon();
     }
 
     public boolean draw() {
-        return board.full() && !won();
+        return isADraw();
     }
 
     public boolean over() {
-        return won() || draw();
+        return isOver();
     }
 
+
     public Player winner() {
-        if (won()) {
-            return getWinner();
-        }
-        return null;
+        return won() ? getWinner() : null;
     }
 
     private Player getWinner() {
-        if (currentPlayer == player1) {
-            return player2;
-        } else {
-            return player1;
-        }
+        return currentPlayer == player1 ? player2 : player1;
     }
 
     private boolean winFor(String symbol, int position) {
@@ -69,4 +58,24 @@ public class Game {
         }
     }
 
+    private void makeMark(int location) {
+        board.placeMark(currentPlayer.getSymbol(), location);
+    }
+
+    private boolean isWon() {
+        for (int position = 0; position < board.winningPositions().size(); position++) {
+            if (winFor("X", position) || winFor("O", position)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isADraw() {
+        return board.full() && !won();
+    }
+
+    private boolean isOver() {
+        return (won() || draw());
+    }
 }

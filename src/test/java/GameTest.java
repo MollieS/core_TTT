@@ -51,7 +51,7 @@ public class GameTest {
     }
 
     @Test
-    public void gameNotOver() {
+    public void gameNotOverWhenStarts() {
         assertFalse(game.over());
     }
 
@@ -68,13 +68,13 @@ public class GameTest {
     }
 
     @Test
-    public void playerOneWinner() {
+    public void knowsWinnerIfPlayerOne() {
         horizontalWinForPlayerOne();
         assertEquals(player1, game.winner());
     }
 
     @Test
-    public void playerTwoWinner() {
+    public void knowsWinnerIfPlayerTwo() {
         diagonalWinForPlayer2();
         assertEquals(player2, game.winner());
     }

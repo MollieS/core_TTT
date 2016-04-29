@@ -2,10 +2,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertFalse;
 
-public class GameInterfaceTest {
+public class GameSetupTest {
 
-    private GameInterface runner;
+    private GameSetup runner;
     private Input testInput;
     private Outputter testOutput;
 
@@ -13,7 +14,7 @@ public class GameInterfaceTest {
     public void setUp() {
         this.testInput = new TestInput();
         this.testOutput = new TestOutput();
-        this.runner = new GameInterface(testInput, testOutput);
+        this.runner = new GameSetup(testInput, testOutput);
     }
 
     @Test
@@ -23,7 +24,7 @@ public class GameInterfaceTest {
     }
 
     @Test
-    public void promptsPlayerOnetoChooseSymbol() {
+    public void promptsUserToChooseSymbol() {
         testInput.set("X");
         runner.createPlayer();
         assertTrue((testOutput.read()).contains("Player One please choose a symbol"));
@@ -33,14 +34,14 @@ public class GameInterfaceTest {
     public void promptsForValidInput() {
         testInput.set("Hello", "X");
         runner.createPlayer();
-        assertTrue((testOutput.read()).contains("Please choose X or 0"));
+        assertTrue((testOutput.read()).contains("Please choose X or O"));
     }
 
     @Test
     public void loopsUntilValidInput() {
         testInput.set("Hello", "hello", "X");
         runner.createPlayer();
-        assertTrue((testOutput.read().contains("Player One symbol is X")));
+        assertTrue((testOutput.read().contains("Player One's symbol is X")));
     }
 
     @Test
@@ -52,28 +53,46 @@ public class GameInterfaceTest {
 
     @Test
     public void createsSecondPlayer() {
-        testInput.set("0");
+        testInput.set("X");
         runner.createPlayer();
-        assertTrue(runner.playerTwo.getSymbol() == "X");
+        assertTrue(runner.playerTwo.getSymbol() == "O");
     }
 
     @Test
-    public void whichPlayerGoesFirst() {
-        testInput.set("X", "1");
-        runner.createPlayer();
-        runner.setFirstPlayer();
-        assertTrue(testOutput.read().contains("Player One goes first"));
-    }
-
-    @Test
-    public void playerTwoGoesFirst() {
-        testInput.set("0", "2");
+    public void playerXGoesFirst() {
+        testInput.set("X", "X");
         runner.createPlayer();
         runner.setFirstPlayer();
-        assertTrue(testOutput.read().contains("Player Two goes first"));
+        assertTrue(testOutput.read().contains("X goes first"));
     }
 
     @Test
-    public void promptsForALocation() {
+    public void playerOGoesFirst() {
+        testInput.set("O", "O");
+        runner.createPlayer();
+        runner.setFirstPlayer();
+        assertTrue(testOutput.read().contains("O goes first"));
+    }
+
+    @Test
+    public void playerOGoesSecond() {
+        testInput.set("O", "X");
+        runner.createPlayer();
+        runner.setFirstPlayer();;
+        assertTrue(testOutput.read().contains("X goes first"));
+    }
+
+    @Test
+     public void playerXGoesSecond() {
+        testInput.set("X", "O");
+        runner.createPlayer();
+        runner.setFirstPlayer();
+        assertTrue(testOutput.read().contains("O goes first"));
+    }
+
+    @Test
+    public void setsUpGame() {
+        testInput.set("X", "X");
+        assertFalse(runner.setUpGame().over());
     }
 }

@@ -1,6 +1,6 @@
 public class TestOutput implements Outputter {
 
-    private String stream;
+    private String stream = "";
 
     public void write(String message) {
         stream += message;
