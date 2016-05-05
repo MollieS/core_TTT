@@ -1,8 +1,10 @@
 public class Main {
 
     public static void main(String[] args) {
-        GameSetup setupgame = new GameSetup(new ActualInput(), new ActualOutput());
-        GamePlay gameplay = new GamePlay(setupgame.setUpGame(), new ActualInput(), new ActualOutput());
+        SystemDisplay display = new SystemDisplay();
+        Input input = new Input();
+        GameSetup gameSetup = new GameSetup(input, display);
+        GamePlay gameplay = new GamePlay(gameSetup.setUpGame(), input, display);
         gameplay.start();
     }
 }

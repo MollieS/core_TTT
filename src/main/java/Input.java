@@ -1,6 +1,11 @@
-public interface Input {
+import java.util.Scanner;
 
-    String get();
+public class Input implements InputFeed {
 
-    void set(String... words);
+    public String get() {
+        Scanner scanner = new Scanner(System.in);
+        String stream = scanner.next();
+        return stream;
+    }
+
 }

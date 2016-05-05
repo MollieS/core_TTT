@@ -7,6 +7,7 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class BoardTest {
 
@@ -19,13 +20,27 @@ public class BoardTest {
 
     @Test
     public void hasNineSpaces() {
-        assertEquals(9, board.grid.length);
+        assertEquals(9, board.size());
     }
 
     @Test
     public void placesAMark() {
         board.placeMark("X", 0);
-        assertEquals("X", board.grid[0]);
+        assertEquals("X", board.get(0));
+    }
+
+    @Test
+    public void doesNotPlaceANumberLargerThanTheBoard() {
+        board.placeMark("X", 10);
+        assertEquals("invalid location", board.placeMark("X", 10));
+        assertTrue(board.empty());
+    }
+
+    @Test
+    public void doesNotPlaceANumberSmaller() {
+        board.placeMark("X", 10);
+        assertEquals("invalid location", board.placeMark("X", -1));
+        assertTrue(board.empty());
     }
 
     @Test
@@ -62,6 +77,29 @@ public class BoardTest {
         assertTrue(board.full());
     }
 
+    @Test
+    public void knowsWhenEmpty() {
+        assertTrue(board.empty());
+    }
+
+    @Test
+    public void knowsWhenNotEmptyForX() {
+        board.placeMark("X", 4);
+        assertFalse(board.empty());
+    }
+
+    @Test
+    public void knowsWhenNotEmptyForO() {
+        board.placeMark("O", 6);
+        assertFalse(board.empty());
+    }
+
+    @Test
+    public void knowsIfCellIsTaken() {
+        board.placeMark("X", 4);
+        assertEquals("taken", board.placeMark("O", 4));
+    }
+
     private void fillBoard() {
         for (int cell = 0; cell < 9; cell++) {
             board.placeMark(String.valueOf(cell), cell);
@@ -93,4 +131,3 @@ public class BoardTest {
         return Arrays.asList(left, right);
     }
 }
-

@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -68,6 +69,18 @@ public class GameTest {
     }
 
     @Test
+    public void drawnGame() {
+        drawGame();
+        assertTrue(game.draw());
+    }
+
+    @Test
+    public void gameIsNotDrawnIfWon() {
+        fullBoardWin();
+        assertFalse(game.draw());
+    }
+
+    @Test
     public void knowsWinnerIfPlayerOne() {
         horizontalWinForPlayerOne();
         assertEquals(player1, game.winner());
@@ -112,5 +125,17 @@ public class GameTest {
         game.play(7);
         game.play(8);
         game.play(4);
+    }
+
+    private void fullBoardWin() {
+        game.play(0);
+        game.play(3);
+        game.play(1);
+        game.play(4);
+        game.play(5);
+        game.play(6);
+        game.play(7);
+        game.play(8);
+        game.play(2);
     }
 }

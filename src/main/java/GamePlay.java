@@ -1,97 +1,59 @@
 public class GamePlay {
     private Game game;
-    private Outputter output;
-    private Input input;
+    private Display display;
+    private InputFeed input;
 
-    public GamePlay(Game game, Input input, Outputter output) {
+    public GamePlay(Game game, InputFeed input, Display output) {
         this.game = game;
-        this.output = output;
+        this.display = output;
         this.input = input;
     }
 
     public void start() {
-        write(displayBoard());
+        display.board(game);
         playGame();
         getGameResult();
     }
 
     private void getGameResult() {
         if (game.draw()) {
-            write("It's a draw!");
+            display.draw();
         } else {
-            write(game.winner().getSymbol() + " wins!");
+            write(game.winner().getMark() + " wins!");
         }
     }
 
     private void playGame() {
         while (!game.over()) {
-            write(game.currentPlayer.getSymbol() + "'s turn: choose a location");
-            write("Please choose from 1 to 9");
-            String choice = read();
-            int location = Integer.parseInt(loopForValidInput(choice));
-            game.play(location - 1);
-            write(displayBoard());
-        }
-    }
-
-    private String loopForValidInput(String choice) {
-        while (!validLocation(choice)) {
-            write("Please choose a number from 1 to 9");
-            choice = read();
-        }
-        return choice;
-    }
-
-    private boolean validLocation(String choice) {
-        for (int location = 1; location < 10; location++) {
-            if ((Integer.toString(location)).contains(choice) && !cellIsTaken(choice)) {
-                return true;
+            String choice = getLocation();
+            try {
+                int location = Integer.parseInt(choice);
+                String message = game.play(location - 1);
+                getStatus(message);
+            } catch (NumberFormatException e) {
+                display.invalidInput();
             }
         }
-        return false;
     }
 
-    private boolean cellIsTaken(String choice) {
-        if (!game.board((Integer.valueOf(choice) - 1)).equals(" ")) {
-            write("Already taken");
-            return true;
+    private void getStatus(String message) {
+        if (message.equals("taken")) {
+            display.takenCell();
+        } else if (message.equals("invalid location")) {
+            display.invalidLocation();
+        } else {
+            display.board(game);
         }
-        return false;
     }
 
-    public String displayBoard() {
-        String rows = "";
-        rows += firstRow();
-        rows = drawBoard(rows);
-        rows += lastRow();
-        return rows;
-    }
-
-
-    private String firstRow() {
-        return "-------------\n";
-    }
-
-    private String lastRow() {
-        return "|\n-------------";
-    }
-
-    private String drawBoard(String rows) {
-        for (int cell = 0; cell < 9; cell++) {
-            if (isEndOfRow(cell)) {
-                rows += "|\n-------------\n";
-            }
-            rows += "| " + game.board(cell) + " ";
-        }
-        return rows;
-    }
-
-    private boolean isEndOfRow(int cell) {
-        return cell % 3 == 0 && cell != 0;
+    private String getLocation() {
+        display.displayTurn(game);
+        display.promptForLocation();
+        return read();
     }
 
     private void write(String message) {
-        output.write(message);
+        display.write(message);
     }
 
     private String read() {

@@ -6,7 +6,7 @@ public class InputTest {
 
     @Test
     public void returnsInput() {
-        TestInput input = new TestInput();
+        InputFake input = new InputFake();
         input.set("Hello");
         assertEquals("Hello", input.get());
     }

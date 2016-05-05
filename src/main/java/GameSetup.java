@@ -1,14 +1,14 @@
 public class GameSetup {
 
-    private Input input;
-    private Outputter output;
+    private InputFeed input;
+    private Display display;
     public Player playerOne;
     public Player playerTwo;
     private Game game;
 
-    public GameSetup(Input testInput, Outputter testOutput) {
-        this.input = testInput;
-        this.output = testOutput;
+    public GameSetup(InputFeed input, Display display) {
+        this.input = input;
+        this.display = display;
     }
 
     public Game setUpGame() {
@@ -19,7 +19,7 @@ public class GameSetup {
     }
 
     public void greet() {
-        write("Welcome to Tic Tac Toe");
+        display.greet();
     }
 
     public void createPlayer() {
@@ -33,7 +33,7 @@ public class GameSetup {
     private String loopForValidSymbol() {
         String choice = input.get();
         while (!choice.equalsIgnoreCase("X") && !choice.equalsIgnoreCase("O")) {
-            output.write("Please choose X or O");
+            display.promptForMark();
             choice = input.get();
         }
         return choice.toUpperCase();
@@ -49,29 +49,22 @@ public class GameSetup {
     }
 
     private void findFirstPlayer() {
-        write("Who goes first?  Please choose X or O");
+        display.promptForFirstGo();
         String choice = loopForValidSymbol();
         Board board = new Board();
-        if (choice.equalsIgnoreCase("O") && playerTwo.getSymbol().equals("O")) {
+        if (choice.equalsIgnoreCase("O") && playerTwo.getMark().equals("O")) {
             game = new Game(playerTwo, playerOne, board);
-        } else if (choice.equalsIgnoreCase("X") && playerTwo.getSymbol().equals("X")) {
+        } else if (choice.equalsIgnoreCase("X") && playerTwo.getMark().equals("X")) {
             game = new Game(playerTwo, playerOne, board);
         } else {
             game = new Game(playerOne, playerTwo, board);
         }
-        write(game.currentPlayer.getSymbol() + " goes first");
-    }
-
-    private void write(String message) {
-        output.write(message);
     }
 
     private void getPlayerSymbol() {
-        write("Player One please choose a symbol");
-        write("X or O");
+        display.promptForMark();
         String choice = loopForValidSymbol();
         setPlayerTwo(choice);
-        write("Player One's symbol is " + choice);
-        write("Player Two's symbol is " + playerTwo.getSymbol());
+        display.displayMarks(choice, playerTwo.getMark());
     }
 }

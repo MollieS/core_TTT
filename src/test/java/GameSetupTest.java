@@ -6,93 +6,69 @@ import static org.junit.Assert.assertFalse;
 
 public class GameSetupTest {
 
-    private GameSetup runner;
-    private Input testInput;
-    private Outputter testOutput;
+    private GameSetup gameSetup;
+    private InputFake input;
+    private DisplayFake display;
 
     @Before
     public void setUp() {
-        this.testInput = new TestInput();
-        this.testOutput = new TestOutput();
-        this.runner = new GameSetup(testInput, testOutput);
-    }
-
-    @Test
-    public void greetsUser() {
-        runner.greet();
-        assertTrue((testOutput.read()).contains("Welcome to Tic Tac Toe"));
-    }
-
-    @Test
-    public void promptsUserToChooseSymbol() {
-        testInput.set("X");
-        runner.createPlayer();
-        assertTrue((testOutput.read()).contains("Player One please choose a symbol"));
+        this.input = new InputFake();
+        this.display = new DisplayFake();
+        this.gameSetup = new GameSetup(input, display);
     }
 
     @Test
     public void promptsForValidInput() {
-        testInput.set("Hello", "X");
-        runner.createPlayer();
-        assertTrue((testOutput.read()).contains("Please choose X or O"));
-    }
-
-    @Test
-    public void loopsUntilValidInput() {
-        testInput.set("Hello", "hello", "X");
-        runner.createPlayer();
-        assertTrue((testOutput.read().contains("Player One's symbol is X")));
+        input.set("Hello", "X");
+        gameSetup.createPlayer();
+        assertTrue((display.read()).contains("X or O"));
     }
 
     @Test
     public void createsPlayer() {
-        testInput.set("X");
-        runner.createPlayer();
-        assertTrue(runner.playerOne.getSymbol() == "X");
+        input.set("X");
+        gameSetup.createPlayer();
+        assertTrue(gameSetup.playerOne.getMark() == "X");
     }
 
     @Test
     public void createsSecondPlayer() {
-        testInput.set("X");
-        runner.createPlayer();
-        assertTrue(runner.playerTwo.getSymbol() == "O");
+        input.set("X");
+        gameSetup.createPlayer();
+        assertTrue(gameSetup.playerTwo.getMark() == "O");
     }
 
     @Test
     public void playerXGoesFirst() {
-        testInput.set("X", "X");
-        runner.createPlayer();
-        runner.setFirstPlayer();
-        assertTrue(testOutput.read().contains("X goes first"));
+        input.set("X", "X");
+        Game game = gameSetup.setUpGame();
+        assertTrue(game.currentPlayer.getMark() == "X");
     }
 
     @Test
     public void playerOGoesFirst() {
-        testInput.set("O", "O");
-        runner.createPlayer();
-        runner.setFirstPlayer();
-        assertTrue(testOutput.read().contains("O goes first"));
+        input.set("O", "O");
+        Game game = gameSetup.setUpGame();
+        assertTrue(game.currentPlayer.getMark() == "O");
     }
 
     @Test
     public void playerOGoesSecond() {
-        testInput.set("O", "X");
-        runner.createPlayer();
-        runner.setFirstPlayer();;
-        assertTrue(testOutput.read().contains("X goes first"));
+        input.set("O", "X");
+        Game game = gameSetup.setUpGame();
+        assertTrue(game.currentPlayer.getMark() == "X");
     }
 
     @Test
      public void playerXGoesSecond() {
-        testInput.set("X", "O");
-        runner.createPlayer();
-        runner.setFirstPlayer();
-        assertTrue(testOutput.read().contains("O goes first"));
+        input.set("X", "O");
+        Game game = gameSetup.setUpGame();
+        assertTrue(game.currentPlayer.getMark() == "O");
     }
 
     @Test
     public void setsUpGame() {
-        testInput.set("X", "X");
-        assertFalse(runner.setUpGame().over());
+        input.set("X", "X");
+        assertFalse(gameSetup.setUpGame().over());
     }
 }
