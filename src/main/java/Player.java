@@ -1,12 +1,6 @@
-public class Player {
+public interface Player {
 
-    private String mark;
+    String getMark();
 
-    public Player(String mark) {
-        this.mark = mark;
-    }
-
-    public String getMark() {
-        return mark;
-    }
+    String getLocation(InputFeed inputFeed, Board board);
 }

@@ -49,14 +49,10 @@ public class GamePlay {
     private String getLocation() {
         display.displayTurn(game);
         display.promptForLocation();
-        return read();
+        return game.currentPlayer.getLocation(input, game.board);
     }
 
     private void write(String message) {
         display.write(message);
-    }
-
-    private String read() {
-        return input.get();
     }
 }

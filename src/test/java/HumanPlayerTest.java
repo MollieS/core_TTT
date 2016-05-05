@@ -2,11 +2,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class PlayerTest {
+public class HumanPlayerTest {
 
     @Test
     public void hasASymbol() {
-        Player player = new Player("X");
+        Player player = new HumanPlayer("X");
         assertEquals("X", player.getMark());
     }
 }

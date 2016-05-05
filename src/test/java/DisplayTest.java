@@ -11,7 +11,7 @@ public class DisplayTest {
     @Before
     public void setUp() {
         Board board = new Board();
-        this.game = new Game(new Player("X"), new Player("O"), board);
+        this.game = new Game(new HumanPlayer("X"), new HumanPlayer("O"), board);
         this.display = new DisplayFake();
     }
 

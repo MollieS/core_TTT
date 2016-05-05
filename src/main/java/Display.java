@@ -55,4 +55,6 @@ public interface Display {
     String currentMark(Game game);
 
     void promptForFirstGo();
+
+    void gameOptions();
 }

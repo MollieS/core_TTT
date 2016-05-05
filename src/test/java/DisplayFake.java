@@ -54,4 +54,10 @@ public class DisplayFake implements Display {
     public void promptForFirstGo() {
         write("Who goes first? X or O");
     }
+
+    public void gameOptions() {
+        write("Please choose your opponent:");
+        write("1. Human");
+        write("2. Computer");
+    }
 }

@@ -1,5 +1,11 @@
 public class SystemDisplay implements Display {
 
+    public void gameOptions() {
+        write("Please choose your opponent:");
+        write("1. Human");
+        write("2. Computer");
+    }
+
     public void write(String message) {
         System.out.println(message);
     }

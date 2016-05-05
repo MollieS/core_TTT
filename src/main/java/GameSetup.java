@@ -40,11 +40,11 @@ public class GameSetup {
     }
 
     private void setPlayerTwo(String choice) {
-        playerOne = new Player(choice);
+        playerOne = new HumanPlayer(choice);
         if (choice.equalsIgnoreCase("X")) {
-            playerTwo = new Player("O");
+            playerTwo = new HumanPlayer("O");
         } else {
-            playerTwo = new Player("X");
+            playerTwo = new HumanPlayer("X");
         }
     }
 

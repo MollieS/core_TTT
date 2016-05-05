@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Game {
 
-    private Board board;
+    public Board board;
     public Player currentPlayer;
     private Player player1;
     private Player player2;
