@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class TestInput implements Input {
+public class InputFake implements InputFeed {
 
     private ArrayList<String> stream = new ArrayList();
 

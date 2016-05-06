@@ -1,12 +1,12 @@
 public class Player {
 
-    private String symbol;
+    private String mark;
 
-    public Player(String symbol) {
-        this.symbol = symbol;
+    public Player(String mark) {
+        this.mark = mark;
     }
 
-    public String getSymbol() {
-        return symbol;
+    public String getMark() {
+        return mark;
     }
 }

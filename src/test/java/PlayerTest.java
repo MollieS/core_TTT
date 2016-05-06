@@ -7,6 +7,6 @@ public class PlayerTest {
     @Test
     public void hasASymbol() {
         Player player = new Player("X");
-        assertEquals("X", player.getSymbol());
+        assertEquals("X", player.getMark());
     }
 }

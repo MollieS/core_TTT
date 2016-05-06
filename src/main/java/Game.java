@@ -15,25 +15,33 @@ public class Game {
         this.player2 = player2;
     }
 
-    public void play(int location) {
-        makeMark(location);
-        switchTurn();
+    public String play(int location) {
+        String moveStatus = makeMark(location);
+        if (moveStatus.equals("mark placed")) {
+            switchTurn();
+        }
+            return moveStatus;
     }
 
     public String board(int cell) {
-        return board.grid[cell];
+        return board.get(cell);
     }
 
     public boolean won() {
-        return isWon();
+        for (int position = 0; position < board.winningPositions().size(); position++) {
+            if (winFor("X", position) || winFor("O", position)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean draw() {
-        return isADraw();
+        return board.full() && !won();
     }
 
     public boolean over() {
-        return isOver();
+        return (won() || draw());
     }
 
 
@@ -45,8 +53,8 @@ public class Game {
         return currentPlayer == player1 ? player2 : player1;
     }
 
-    private boolean winFor(String symbol, int position) {
-        List<String> win = Arrays.asList(symbol, symbol, symbol);
+    private boolean winFor(String mark, int position) {
+        List<String> win = Arrays.asList(mark, mark, mark);
         return board.winningPositions().get(position).equals(win);
     }
 
@@ -58,24 +66,7 @@ public class Game {
         }
     }
 
-    private void makeMark(int location) {
-        board.placeMark(currentPlayer.getSymbol(), location);
-    }
-
-    private boolean isWon() {
-        for (int position = 0; position < board.winningPositions().size(); position++) {
-            if (winFor("X", position) || winFor("O", position)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean isADraw() {
-        return board.full() && !won();
-    }
-
-    private boolean isOver() {
-        return (won() || draw());
+    private String makeMark(int location) {
+        return board.placeMark(currentPlayer.getMark(), location);
     }
 }
