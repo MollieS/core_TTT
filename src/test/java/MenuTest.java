@@ -5,9 +5,9 @@ import static junit.framework.TestCase.assertTrue;
 
 public class MenuTest {
 
-    Display display = new DisplayFake();
-    InputFake input = new InputFake();
-    GameMenu menu;
+    private DisplayFake display = new DisplayFake();
+    private InputFake input = new InputFake();
+    private GameMenu menu;
 
     @Before
     public void setUp() {
@@ -34,5 +34,12 @@ public class MenuTest {
     public void createsAGame() {
         input.set("2");
         assertTrue(menu.createGame().getClass() == Game.class);
+    }
+
+    @Test
+    public void loopsForValidInput() {
+        input.set("hello", "2");
+        menu.createGame();
+        assertTrue(display.read().contains("Please choose a valid option"));
     }
 }

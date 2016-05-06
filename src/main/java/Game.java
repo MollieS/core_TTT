@@ -5,8 +5,8 @@ public class Game {
 
     public Board board;
     public Player currentPlayer;
-    private Player player1;
-    private Player player2;
+    public Player player1;
+    public Player player2;
 
     public Game(Player player1, Player player2, Board board) {
         this.board = board;

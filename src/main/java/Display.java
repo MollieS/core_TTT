@@ -2,8 +2,6 @@ public interface Display {
 
     void write(String output);
 
-    String read();
-
     default void board(Game game) {
         String rows = "";
         rows += firstRow();
@@ -48,13 +46,9 @@ public interface Display {
 
     void greet();
 
-    void promptForMark();
-
     void displayMarks(String mark1, String mark2);
 
     String currentMark(Game game);
-
-    void promptForFirstGo();
 
     void gameOptions();
 }

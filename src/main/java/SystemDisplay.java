@@ -1,17 +1,13 @@
 public class SystemDisplay implements Display {
 
     public void gameOptions() {
-        write("Please choose your opponent:");
+        write("Please choose your opponent(1 or 2):");
         write("1. Human");
         write("2. Computer");
     }
 
     public void write(String message) {
         System.out.println(message);
-    }
-
-    public String read() {
-        return null;
     }
 
     public void takenCell() {
@@ -23,7 +19,7 @@ public class SystemDisplay implements Display {
     }
 
     public void invalidInput() {
-        write("Numbers only");
+        write("Please choose a valid option");
     }
 
     public void displayTurn(Game game) {
@@ -46,17 +42,8 @@ public class SystemDisplay implements Display {
         write("Welcome to Tic Tac Toe");
     }
 
-    public void promptForMark() {
-        write("Player One please choose a mark");
-        write("X or O");
-    }
-
     public void displayMarks(String mark1, String mark2) {
         write("Player One's mark is " + mark1);
         write("Player Two's mark is " + mark2);
-    }
-
-    public void promptForFirstGo() {
-        write("Who goes first? X or O");
     }
 }

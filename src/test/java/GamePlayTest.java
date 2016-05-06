@@ -31,7 +31,7 @@ public class GamePlayTest {
     public void onlyAcceptsNumbers() {
         input.set("Hello", "5", "1", "4", "2", "6");
         gameplay.start();
-        assertTrue(displayContains("Numbers only"));
+        assertTrue(displayContains("Please choose a valid option"));
     }
 
     @Test

@@ -31,7 +31,7 @@ public class DisplayFake implements Display {
     }
 
     public void invalidInput() {
-        write("Numbers only");
+        write("Please choose a valid option");
     }
     public void draw() {
         write("It's a draw!");
@@ -41,18 +41,9 @@ public class DisplayFake implements Display {
         write("Welcome to Tic Tac Toe");
     }
 
-    public void promptForMark() {
-        write("Player One please choose a mark");
-        write("X or O");
-    }
-
     public void displayMarks(String mark1, String mark2) {
         write("Player One's mark is " + mark1);
         write("Player Two's mark is " + mark2);
-    }
-
-    public void promptForFirstGo() {
-        write("Who goes first? X or O");
     }
 
     public void gameOptions() {

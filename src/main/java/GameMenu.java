@@ -1,5 +1,3 @@
-import com.sun.tools.javac.util.Names;
-
 public class GameMenu {
 
     private InputFeed inputFeed;
@@ -26,6 +24,19 @@ public class GameMenu {
         display.greet();
         display.gameOptions();
         Board board = new Board();
-        return new Game(new HumanPlayer("X"), createOpponent(inputFeed.get()), board);
+        Game game = new Game(new HumanPlayer("X"), createOpponent(loopForValidInput(inputFeed.get())), board);
+        display.displayMarks(game.player1.getMark(), game.player2.getMark());
+        return game;
+    }
+
+    private String loopForValidInput(String input) {
+        while (!validInput(input)) {
+            display.invalidInput();
+            input = inputFeed.get();
+        }
+        return input;
+    }
+    private boolean validInput(String input) {
+        return (input.equals("1") || input.equals("2"));
     }
 }
