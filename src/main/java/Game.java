@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Game {
 
-    private Board board;
+    public Board board;
     public Player currentPlayer;
     private Player player1;
     private Player player2;
@@ -47,6 +47,14 @@ public class Game {
 
     public Player winner() {
         return won() ? getWinner() : null;
+    }
+
+    public String firstPlayer() {
+        return player1.getMark();
+    }
+
+    public String secondPlayer() {
+        return player2.getMark();
     }
 
     private Player getWinner() {

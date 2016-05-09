@@ -12,8 +12,8 @@ public class GamePlayTest {
     @Before
     public void setUp() {
         Board board = new Board();
-        Player player1 = new Player("X");
-        Player player2 = new Player("0");
+        Player player1 = new HumanPlayer("X");
+        Player player2 = new HumanPlayer("0");
         Game game = new Game(player1, player2, board);
         this.input = new InputFake();
         this.display = new DisplayFake();
@@ -31,7 +31,7 @@ public class GamePlayTest {
     public void onlyAcceptsNumbers() {
         input.set("Hello", "5", "1", "4", "2", "6");
         gameplay.start();
-        assertTrue(displayContains("Numbers only"));
+        assertTrue(displayContains("Please choose a valid option"));
     }
 
     @Test

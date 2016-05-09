@@ -6,12 +6,12 @@ import static junit.framework.TestCase.assertTrue;
 public class DisplayTest {
 
     private Game game;
-    private Display display;
+    private DisplayFake display;
 
     @Before
     public void setUp() {
         Board board = new Board();
-        this.game = new Game(new Player("X"), new Player("O"), board);
+        this.game = new Game(new HumanPlayer("X"), new HumanPlayer("O"), board);
         this.display = new DisplayFake();
     }
 
@@ -22,21 +22,9 @@ public class DisplayTest {
     }
 
     @Test
-    public void promptsMarkChoice() {
-        display.promptForMark();
-        assertTrue(displayContains("please choose a mark"));
-    }
-
-    @Test
     public void displaysPlayerMarks() {
         display.displayMarks("X", "O");
         assertTrue(displayContains("Player Two's mark is O"));
-    }
-
-    @Test
-    public void promptsForFirstGo() {
-        display.promptForFirstGo();
-        assertTrue(displayContains("Who goes first?"));
     }
 
     @Test
@@ -66,7 +54,7 @@ public class DisplayTest {
     @Test
     public void displaysInvalidInputError() {
         display.invalidInput();
-        assertTrue(displayContains("Numbers only"));
+        assertTrue(displayContains("Please choose a valid option"));
     }
 
     private boolean displayContains(String s) {

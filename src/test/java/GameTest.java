@@ -14,8 +14,8 @@ public class GameTest {
 
     @Before
     public void setUp() throws Exception {
-        this.player1 = new Player("X");
-        this.player2 = new Player("O");
+        this.player1 = new HumanPlayer("X");
+        this.player2 = new HumanPlayer("O");
         Board board = new Board();
         this.game = new Game(player1, player2, board);
     }
