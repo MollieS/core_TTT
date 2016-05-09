@@ -5,8 +5,8 @@ public class Game {
 
     public Board board;
     public Player currentPlayer;
-    public Player player1;
-    public Player player2;
+    private Player player1;
+    private Player player2;
 
     public Game(Player player1, Player player2, Board board) {
         this.board = board;
@@ -47,6 +47,14 @@ public class Game {
 
     public Player winner() {
         return won() ? getWinner() : null;
+    }
+
+    public String firstPlayer() {
+        return player1.getMark();
+    }
+
+    public String secondPlayer() {
+        return player2.getMark();
     }
 
     private Player getWinner() {

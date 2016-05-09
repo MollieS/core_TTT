@@ -25,7 +25,7 @@ public class GameMenu {
         display.gameOptions();
         Board board = new Board();
         Game game = new Game(new HumanPlayer("X"), createOpponent(loopForValidInput(inputFeed.get())), board);
-        display.displayMarks(game.player1.getMark(), game.player2.getMark());
+        display.displayMarks(game.firstPlayer(), game.secondPlayer());
         return game;
     }
 
