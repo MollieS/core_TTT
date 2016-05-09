@@ -1,3 +1,5 @@
+package main;
+
 public class SystemDisplay implements Display {
 
     public void gameOptions() {
@@ -43,7 +45,7 @@ public class SystemDisplay implements Display {
     }
 
     public void displayMarks(String mark1, String mark2) {
-        write("Player One's mark is " + mark1);
-        write("Player Two's mark is " + mark2);
+        write("main.Player One's mark is " + mark1);
+        write("main.Player Two's mark is " + mark2);
     }
 }

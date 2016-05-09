@@ -1,3 +1,6 @@
+package test;
+
+import main.Board;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,32 +36,14 @@ public class BoardTest {
     public void doesNotPlaceANumberLargerThanTheBoard() {
         board.placeMark("X", 10);
         assertEquals("invalid location", board.placeMark("X", 10));
-        assertTrue(board.empty());
+        assertTrue(board.isEmpty());
     }
 
     @Test
     public void doesNotPlaceANumberSmaller() {
         board.placeMark("X", 10);
         assertEquals("invalid location", board.placeMark("X", -1));
-        assertTrue(board.empty());
-    }
-
-    @Test
-    public void returnsRows() {
-        fillBoard();
-        assertEquals(getRows(), board.rows());
-    }
-
-    @Test
-    public void returnsColumns() {
-        fillBoard();
-        assertEquals(getColumns(), board.columns());
-    }
-
-    @Test
-    public void returnsDiagonals() {
-        fillBoard();
-        assertEquals(getDiagonals(), board.diagonals());
+        assertTrue(board.isEmpty());
     }
 
     @Test
@@ -74,24 +59,24 @@ public class BoardTest {
     @Test
     public void knowsWhenFull() {
         fillBoard();
-        assertTrue(board.full());
+        assertTrue(board.isFull());
     }
 
     @Test
     public void knowsWhenEmpty() {
-        assertTrue(board.empty());
+        assertTrue(board.isEmpty());
     }
 
     @Test
     public void knowsWhenNotEmptyForX() {
         board.placeMark("X", 4);
-        assertFalse(board.empty());
+        assertFalse(board.isEmpty());
     }
 
     @Test
     public void knowsWhenNotEmptyForO() {
         board.placeMark("O", 6);
-        assertFalse(board.empty());
+        assertFalse(board.isEmpty());
     }
 
     @Test
@@ -100,17 +85,17 @@ public class BoardTest {
         assertEquals("taken", board.placeMark("O", 4));
     }
 
-    private void fillBoard() {
-        for (int cell = 0; cell < 9; cell++) {
-            board.placeMark(String.valueOf(cell), cell);
-        }
-    }
-
     private List<List<String>> getRows() {
         List<String> topRow = getCells("0", "1", "2");
         List<String> middleRow = getCells("3", "4", "5");
         List<String> bottomRow = getCells("6", "7", "8");
         return Arrays.asList(topRow, middleRow, bottomRow);
+    }
+
+    private void fillBoard() {
+        for (int i = 0; i < 9; i++) {
+            board.placeMark(String.valueOf(i), i);
+        }
     }
 
 

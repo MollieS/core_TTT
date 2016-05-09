@@ -1,3 +1,5 @@
+package main;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,7 +39,7 @@ public class Game {
     }
 
     public boolean draw() {
-        return board.full() && !won();
+        return board.isFull() && !won();
     }
 
     public boolean over() {
@@ -67,7 +69,7 @@ public class Game {
     }
 
     private void switchTurn() {
-        if (currentPlayer == player1) {
+        if (currentPlayer.equals(player1)) {
             currentPlayer = player2;
         } else {
             currentPlayer = player1;

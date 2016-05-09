@@ -1,3 +1,5 @@
+package main;
+
 public class HumanPlayer implements Player {
 
     private String mark;
@@ -10,7 +12,8 @@ public class HumanPlayer implements Player {
         return mark;
     }
 
-    public String getLocation(InputFeed inputFeed, Board board) {
-        return inputFeed.get();
+    public int getLocation(InputFeed inputFeed, Board board) {
+        String location = inputFeed.get();
+        return (Integer.parseInt(location) - 1);
     }
 }

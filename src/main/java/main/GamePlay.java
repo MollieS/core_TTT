@@ -1,3 +1,5 @@
+package main;
+
 public class GamePlay {
     private Game game;
     private Display display;
@@ -25,10 +27,9 @@ public class GamePlay {
 
     private void playGame() {
         while (!game.over()) {
-            String choice = getLocation();
             try {
-                int location = Integer.parseInt(choice);
-                String message = game.play(location - 1);
+                Integer choice = getLocation();
+                String message = game.play(choice);
                 getStatus(message);
             } catch (NumberFormatException e) {
                 display.invalidInput();
@@ -46,7 +47,7 @@ public class GamePlay {
         }
     }
 
-    private String getLocation() {
+    private int getLocation() {
         display.displayTurn(game);
         display.promptForLocation();
         return game.currentPlayer.getLocation(input, game.board);

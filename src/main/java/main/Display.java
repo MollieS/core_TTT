@@ -1,3 +1,5 @@
+package main;
+
 public interface Display {
 
     void write(String output);
@@ -18,12 +20,21 @@ public interface Display {
         return "|\n-------------";
     }
 
+    default String cellContents(Game game, int cell) {
+        if (game.board(cell).equals(" ")) {
+            return String.valueOf((cell + 1));
+        } else {
+            return game.board(cell);
+        }
+
+    }
+
     default String drawBoard(String rows, Game game) {
         for (int cell = 0; cell < 9; cell++) {
             if (isEndOfRow(cell)) {
                 rows += "|\n-------------\n";
             }
-            rows += "| " + game.board(cell) + " ";
+            rows += "| " + cellContents(game, cell) + " ";
         }
         return rows;
     }

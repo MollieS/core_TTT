@@ -1,3 +1,9 @@
+package test;
+
+import main.ComputerPlayer;
+import main.Game;
+import main.GameMenu;
+import main.HumanPlayer;
 import org.junit.Before;
 import org.junit.Test;
 

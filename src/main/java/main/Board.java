@@ -1,3 +1,5 @@
+package main;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,31 +41,31 @@ public class Board {
         return positions;
     }
 
-    public List<List<String>> rows() {
+    private List<List<String>> rows() {
         List<String> top = getCollection(0, 1, 2);
         List<String> middle = getCollection(3, 4, 5);
         List<String> bottom = getCollection(6, 7, 8);
         return Arrays.asList(top, middle, bottom);
     }
 
-    public List<List<String>> columns() {
+    private List<List<String>> columns() {
         List<String> left = getCollection(0, 3, 6);
         List<String> middle = getCollection(1, 4, 7);
         List<String> right = getCollection(2, 5, 8);
         return Arrays.asList(left, middle, right);
     }
 
-    public List<List<String>> diagonals() {
+    private List<List<String>> diagonals() {
         List<String> left = getCollection(0, 4, 8);
         List<String> right = getCollection(2, 4, 6);
         return Arrays.asList(left, right);
     }
 
-    public boolean full() {
+    public boolean isFull() {
         return checkEveryCell(" ");
     }
 
-    public boolean empty() {
+    public boolean isEmpty() {
         return (checkEveryCell("X") && checkEveryCell("O"));
     }
 

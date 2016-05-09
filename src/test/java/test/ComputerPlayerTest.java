@@ -1,3 +1,8 @@
+package test;
+
+import main.Board;
+import main.ComputerPlayer;
+import main.InputFeed;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -12,7 +17,7 @@ public class ComputerPlayerTest {
         InputFeed input = new InputFake();
         Board board = new Board();
         ComputerPlayer computer = new ComputerPlayer(new FakeRandomizer(), "X");
-        assertEquals("1", computer.getLocation(input, board));
+        assertEquals(1, computer.getLocation(input, board));
     }
 
     @Test
@@ -20,20 +25,20 @@ public class ComputerPlayerTest {
         ComputerPlayer computerPlayer = new ComputerPlayer(new FakeRandomizer(), "X");
         Board board = new Board();
         board.placeMark("X", 1);
-        assertFalse(computerPlayer.availableLocations(board).contains("2"));
+        assertFalse(computerPlayer.availableLocations(board).contains(1));
     }
 
     @Test
     public void doesNotRegisterAnyTakenCells() {
         ComputerPlayer computerPlayer = new ComputerPlayer(new FakeRandomizer(), "X");
         Board board = new Board();
-        assertEquals(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9"), computerPlayer.availableLocations(board));
+        assertEquals(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8), computerPlayer.availableLocations(board));
         board.placeMark("X", 1);
-        assertEquals(Arrays.asList("1", "3", "4", "5", "6", "7", "8", "9"), computerPlayer.availableLocations(board));
+        assertEquals(Arrays.asList(0, 2, 3, 4, 5, 6, 7, 8), computerPlayer.availableLocations(board));
         board.placeMark("O", 0);
-        assertEquals(Arrays.asList("3", "4", "5", "6", "7", "8", "9"), computerPlayer.availableLocations(board));
+        assertEquals(Arrays.asList(2, 3, 4, 5, 6, 7, 8), computerPlayer.availableLocations(board));
         board.placeMark("X", 8);
-        assertEquals(Arrays.asList("3", "4", "5", "6", "7", "8"), computerPlayer.availableLocations(board));
+        assertEquals(Arrays.asList(2, 3, 4, 5, 6, 7), computerPlayer.availableLocations(board));
     }
 
     @Test

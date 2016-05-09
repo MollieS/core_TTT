@@ -1,3 +1,8 @@
+package test;
+
+import main.Board;
+import main.Game;
+import main.HumanPlayer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,7 +29,7 @@ public class DisplayTest {
     @Test
     public void displaysPlayerMarks() {
         display.displayMarks("X", "O");
-        assertTrue(displayContains("Player Two's mark is O"));
+        assertTrue(displayContains("main.Player Two's mark is O"));
     }
 
     @Test
@@ -93,21 +98,21 @@ public class DisplayTest {
 
     private String board() {
         return "-------------" + "\n" +
-                "|   | X |   |" + "\n" +
+                "| 1 | X | 3 |" + "\n" +
                 "-------------" + "\n" +
-                "|   |   |   |" + "\n" +
+                "| 4 | 5 | 6 |" + "\n" +
                 "-------------" + "\n" +
-                "|   |   |   |" + "\n" +
+                "| 7 | 8 | 9 |" + "\n" +
                 "-------------";
     }
 
     private String emptyBoard() {
         return "-------------" + "\n" +
-                "|   |   |   |" + "\n" +
+                "| 1 | 2 | 3 |" + "\n" +
                 "-------------" + "\n" +
-                "|   |   |   |" + "\n" +
+                "| 4 | 5 | 6 |" + "\n" +
                 "-------------" + "\n" +
-                "|   |   |   |" + "\n" +
+                "| 7 | 8 | 9 |" + "\n" +
                 "-------------";
     }
 }

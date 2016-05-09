@@ -1,27 +1,30 @@
+package main;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ComputerPlayer implements Player{
 
     private Randomizer randomizer;
-    private List<String> locations = new ArrayList();
+    private List<Integer> locations = new ArrayList();
     private String mark;
 
     public ComputerPlayer(Randomizer randomizer, String mark) {
         this.randomizer = randomizer;
-        for (int cells = 1; cells < 10; cells++) {
-            locations.add(String.valueOf(cells));
+        for (int cells = 0; cells < 9; cells++) {
+            locations.add(cells);
         }
         this.mark = mark;
     }
 
-    public String getLocation(InputFeed inputFeed, Board board) {
+    public int getLocation(InputFeed inputFeed, Board board) {
         return randomizer.location(availableLocations(board));
     }
 
-    public List<String> availableLocations(Board board) {
+    public List<Integer> availableLocations(Board board) {
         for (int option = 0; option < locations.size(); option++) {
-            if(board.get((Integer.parseInt(locations.get(option))) - 1 ) != " ") {
+            if(!Objects.equals(board.get(locations.get(option)), " ")) {
                 locations.remove(option);
             }
         }

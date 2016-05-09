@@ -1,4 +1,11 @@
+package test;
+
+import main.Display;
+import main.Game;
+
 public class DisplayFake implements Display {
+
+    private String stream = "";
 
     public String currentMark(Game game) {
         return game.currentPlayer.getMark();
@@ -11,8 +18,6 @@ public class DisplayFake implements Display {
     public void displayTurn(Game game) {
         write(currentMark(game) + "'s turn: choose a location");
     }
-
-    private String stream = "";
 
     public void write(String message) {
         stream += message;
@@ -33,6 +38,7 @@ public class DisplayFake implements Display {
     public void invalidInput() {
         write("Please choose a valid option");
     }
+
     public void draw() {
         write("It's a draw!");
     }
@@ -42,8 +48,8 @@ public class DisplayFake implements Display {
     }
 
     public void displayMarks(String mark1, String mark2) {
-        write("Player One's mark is " + mark1);
-        write("Player Two's mark is " + mark2);
+        write("main.Player One's mark is " + mark1);
+        write("main.Player Two's mark is " + mark2);
     }
 
     public void gameOptions() {

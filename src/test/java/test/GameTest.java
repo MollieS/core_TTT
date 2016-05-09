@@ -1,4 +1,9 @@
-import org.junit.Assert;
+package test;
+
+import main.Board;
+import main.Game;
+import main.HumanPlayer;
+import main.Player;
 import org.junit.Before;
 import org.junit.Test;
 

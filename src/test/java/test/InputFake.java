@@ -1,3 +1,7 @@
+package test;
+
+import main.InputFeed;
+
 import java.util.ArrayList;
 
 public class InputFake implements InputFeed {
