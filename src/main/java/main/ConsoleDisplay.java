@@ -1,6 +1,6 @@
 package main;
 
-public class SystemDisplay implements Display {
+public class ConsoleDisplay implements Display {
 
     public void gameOptions() {
         write("Please choose your opponent(1 or 2):");
@@ -24,8 +24,8 @@ public class SystemDisplay implements Display {
         write("Please choose a valid option");
     }
 
-    public void displayTurn(Game game) {
-        write(currentMark(game) + "'s turn: choose a location");
+    public void displayTurn(String mark) {
+        write(mark + "'s turn: choose a location");
     }
 
     public void promptForLocation() {
@@ -36,8 +36,8 @@ public class SystemDisplay implements Display {
         write("It's a draw!");
     }
 
-    public String currentMark(Game game) {
-        return game.currentPlayer.getMark();
+    public String currentMark(String mark) {
+        return mark;
     }
 
     public void greet() {
@@ -45,7 +45,7 @@ public class SystemDisplay implements Display {
     }
 
     public void displayMarks(String mark1, String mark2) {
-        write("main.Player One's mark is " + mark1);
-        write("main.Player Two's mark is " + mark2);
+        write("Player One's mark is " + mark1);
+        write("Player Two's mark is " + mark2);
     }
 }

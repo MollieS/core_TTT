@@ -3,16 +3,18 @@ package main;
 import java.util.Arrays;
 import java.util.List;
 
-public class Game {
+public class GameEngine {
 
     public Board board;
     public Player currentPlayer;
+    public Player nextPlayer;
     private Player player1;
     private Player player2;
 
-    public Game(Player player1, Player player2, Board board) {
+    public GameEngine(Player player1, Player player2, Board board) {
         this.board = board;
         this.currentPlayer = player1;
+        this.nextPlayer = player2;
         this.player1 = player1;
         this.player2 = player2;
     }
@@ -29,34 +31,26 @@ public class Game {
         return board.get(cell);
     }
 
-    public boolean won() {
+    public boolean isWon() {
         for (int position = 0; position < board.winningPositions().size(); position++) {
-            if (winFor("X", position) || winFor("O", position)) {
+            if (winFor(player1.getMark(), position) || winFor(player2.getMark(), position)) {
                 return true;
             }
         }
         return false;
     }
 
-    public boolean draw() {
-        return board.isFull() && !won();
+    public boolean isDraw() {
+        return board.isFull() && !isWon();
     }
 
-    public boolean over() {
-        return (won() || draw());
+    public boolean isOver() {
+        return (isWon() || isDraw());
     }
 
 
     public Player winner() {
-        return won() ? getWinner() : null;
-    }
-
-    public String firstPlayer() {
-        return player1.getMark();
-    }
-
-    public String secondPlayer() {
-        return player2.getMark();
+        return isWon() ? getWinner() : null;
     }
 
     private Player getWinner() {
@@ -71,8 +65,10 @@ public class Game {
     private void switchTurn() {
         if (currentPlayer.equals(player1)) {
             currentPlayer = player2;
+            nextPlayer = player1;
         } else {
             currentPlayer = player1;
+            nextPlayer = player2;
         }
     }
 

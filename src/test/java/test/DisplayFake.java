@@ -1,22 +1,21 @@
 package test;
 
 import main.Display;
-import main.Game;
 
 public class DisplayFake implements Display {
 
     private String stream = "";
 
-    public String currentMark(Game game) {
-        return game.currentPlayer.getMark();
+    public String currentMark(String mark) {
+        return mark;
     }
 
     public void takenCell() {
         write("Already taken");
     }
 
-    public void displayTurn(Game game) {
-        write(currentMark(game) + "'s turn: choose a location");
+    public void displayTurn(String mark) {
+        write(mark + "'s turn: choose a location");
     }
 
     public void write(String message) {
@@ -48,8 +47,8 @@ public class DisplayFake implements Display {
     }
 
     public void displayMarks(String mark1, String mark2) {
-        write("main.Player One's mark is " + mark1);
-        write("main.Player Two's mark is " + mark2);
+        write("Player One's mark is " + mark1);
+        write("Player Two's mark is " + mark2);
     }
 
     public void gameOptions() {

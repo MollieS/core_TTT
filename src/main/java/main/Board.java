@@ -62,16 +62,21 @@ public class Board {
     }
 
     public boolean isFull() {
-        return checkEveryCell(" ");
+        return checkEveryCell();
     }
 
     public boolean isEmpty() {
-        return (checkEveryCell("X") && checkEveryCell("O"));
+        for (int cell = 0; cell < grid.length; cell++) {
+            if (!grid[cell].contains(" ")) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    private boolean checkEveryCell(String str) {
+    private boolean checkEveryCell() {
         for (int cell = 0; cell < grid.length; cell++) {
-            if (grid[cell].contains(str)) {
+            if (grid[cell].contains(" ")) {
                 return false;
             }
         }

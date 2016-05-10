@@ -98,7 +98,6 @@ public class BoardTest {
         }
     }
 
-
     private List<String> getCells(String s, String s2, String s3) {
         return Arrays.asList(s, s2, s3);
     }

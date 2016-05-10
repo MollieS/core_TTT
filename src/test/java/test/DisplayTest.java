@@ -1,7 +1,7 @@
 package test;
 
 import main.Board;
-import main.Game;
+import main.GameEngine;
 import main.HumanPlayer;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,13 +10,13 @@ import static junit.framework.TestCase.assertTrue;
 
 public class DisplayTest {
 
-    private Game game;
+    private GameEngine gameEngine;
     private DisplayFake display;
 
     @Before
     public void setUp() {
         Board board = new Board();
-        this.game = new Game(new HumanPlayer("X"), new HumanPlayer("O"), board);
+        this.gameEngine = new GameEngine(new HumanPlayer("X"), new HumanPlayer("O"), board);
         this.display = new DisplayFake();
     }
 
@@ -29,7 +29,7 @@ public class DisplayTest {
     @Test
     public void displaysPlayerMarks() {
         display.displayMarks("X", "O");
-        assertTrue(displayContains("main.Player Two's mark is O"));
+        assertTrue(displayContains("Player Two's mark is O"));
     }
 
     @Test
@@ -38,11 +38,7 @@ public class DisplayTest {
         assertTrue((display.read()).contains("Hello"));
     }
 
-    @Test
-    public void displaysBoard() {
-        display.board(game);
-        assertTrue(displayContains(emptyBoard()));
-    }
+
 
     @Test
     public void promptsForLocation() {
@@ -67,13 +63,6 @@ public class DisplayTest {
     }
 
     @Test
-    public void updatesBoard() {
-        game.play(1);
-        display.board(game);
-        assertTrue(displayContains(board()));
-    }
-
-    @Test
     public void displaysDraw() {
         display.draw();
         assertTrue(displayContains("It's a draw!"));
@@ -81,12 +70,12 @@ public class DisplayTest {
 
     @Test
     public void displaysCurrentPlayerMark() {
-        assertTrue(display.currentMark(game).contains("X"));
+        assertTrue(display.currentMark("X").contains("X"));
     }
 
     @Test
     public void displaysTurn() {
-        display.displayTurn(game);
+        display.displayTurn("X");
         assertTrue(displayContains("X's turn"));
     }
 
@@ -96,23 +85,4 @@ public class DisplayTest {
         assertTrue(displayContains("Already taken"));
     }
 
-    private String board() {
-        return "-------------" + "\n" +
-                "| 1 | X | 3 |" + "\n" +
-                "-------------" + "\n" +
-                "| 4 | 5 | 6 |" + "\n" +
-                "-------------" + "\n" +
-                "| 7 | 8 | 9 |" + "\n" +
-                "-------------";
-    }
-
-    private String emptyBoard() {
-        return "-------------" + "\n" +
-                "| 1 | 2 | 3 |" + "\n" +
-                "-------------" + "\n" +
-                "| 4 | 5 | 6 |" + "\n" +
-                "-------------" + "\n" +
-                "| 7 | 8 | 9 |" + "\n" +
-                "-------------";
-    }
 }

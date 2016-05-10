@@ -2,7 +2,7 @@ package test;
 
 import main.Board;
 import main.ComputerPlayer;
-import main.InputFeed;
+import main.Input;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -14,7 +14,7 @@ public class ComputerPlayerTest {
 
     @Test
     public void returnsARandomStringInteger() {
-        InputFeed input = new InputFake();
+        Input input = new InputFake();
         Board board = new Board();
         ComputerPlayer computer = new ComputerPlayer(new FakeRandomizer(), "X");
         assertEquals(1, computer.getLocation(input, board));

@@ -1,13 +1,9 @@
 package main;
 
-import java.util.Scanner;
+public interface Input {
+    String get();
 
-public class Input implements InputFeed {
-
-    public String get() {
-        Scanner scanner = new Scanner(System.in);
-        String stream = scanner.next();
-        return stream;
-    }
-
+    String markOne();
+    String markTwo();
 }
+

@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class GamePlayTest {
 
@@ -15,12 +16,13 @@ public class GamePlayTest {
     @Before
     public void setUp() {
         Board board = new Board();
+        ConsoleBoard consoleBoard = new ConsoleBoard();
         Player player1 = new HumanPlayer("X");
-        Player player2 = new HumanPlayer("0");
-        Game game = new Game(player1, player2, board);
+        Player player2 = new HumanPlayer("O");
+        GameEngine gameEngine = new GameEngine(player1, player2, board);
         this.input = new InputFake();
         this.display = new DisplayFake();
-        this.gameplay = new GamePlay(game, input, display);
+        this.gameplay = new GamePlay(gameEngine, input, display, consoleBoard);
     }
 
     @Test
@@ -72,11 +74,11 @@ public class GamePlayTest {
 
     private String drawBoard() {
         return "-------------" + "\n" +
-                "| X | 0 | X |" + "\n" +
+                "| X | O | X |" + "\n" +
                 "-------------" + "\n" +
-                "| 0 | X | X |" + "\n" +
+                "| O | X | X |" + "\n" +
                 "-------------" + "\n" +
-                "| 0 | X | 0 |" + "\n" +
+                "| O | X | O |" + "\n" +
                 "-------------";
     }
 }

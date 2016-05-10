@@ -1,36 +1,39 @@
 package main;
 
 public class GamePlay {
-    private Game game;
+    private GameEngine gameEngine;
     private Display display;
-    private InputFeed input;
+    private Input input;
+    private ConsoleBoard consoleBoard;
 
-    public GamePlay(Game game, InputFeed input, Display output) {
-        this.game = game;
+    public GamePlay(GameEngine gameEngine, Input input, Display output, ConsoleBoard consoleBoard) {
+        this.gameEngine = gameEngine;
         this.display = output;
         this.input = input;
+        this.consoleBoard = consoleBoard;
     }
 
     public void start() {
-        display.board(game);
+        write(consoleBoard.show());
         playGame();
         getGameResult();
     }
 
     private void getGameResult() {
-        if (game.draw()) {
+        if (gameEngine.isDraw()) {
             display.draw();
         } else {
-            write(game.winner().getMark() + " wins!");
+            write(gameEngine.winner().getMark() + " wins!");
         }
     }
 
     private void playGame() {
-        while (!game.over()) {
+        while (!gameEngine.isOver()) {
             try {
                 Integer choice = getLocation();
-                String message = game.play(choice);
+                String message = gameEngine.play(choice);
                 getStatus(message);
+                write(consoleBoard.update(gameEngine.nextPlayer.getMark(), choice));
             } catch (NumberFormatException e) {
                 display.invalidInput();
             }
@@ -42,15 +45,13 @@ public class GamePlay {
             display.takenCell();
         } else if (message.equals("invalid location")) {
             display.invalidLocation();
-        } else {
-            display.board(game);
         }
     }
 
     private int getLocation() {
-        display.displayTurn(game);
+        display.displayTurn(gameEngine.currentPlayer.getMark());
         display.promptForLocation();
-        return game.currentPlayer.getLocation(input, game.board);
+        return gameEngine.currentPlayer.getLocation(input, gameEngine.board);
     }
 
     private void write(String message) {

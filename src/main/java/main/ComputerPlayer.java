@@ -18,7 +18,7 @@ public class ComputerPlayer implements Player{
         this.mark = mark;
     }
 
-    public int getLocation(InputFeed inputFeed, Board board) {
+    public int getLocation(Input inputFeed, Board board) {
         return randomizer.location(availableLocations(board));
     }
 

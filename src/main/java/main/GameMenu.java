@@ -2,11 +2,11 @@ package main;
 
 public class GameMenu {
 
-    private InputFeed inputFeed;
+    private Input input;
     private Display display;
 
-    public GameMenu(InputFeed inputFeed, Display display) {
-        this.inputFeed = inputFeed;
+    public GameMenu(Input input, Display display) {
+        this.input = input;
         this.display = display;
     }
 
@@ -16,27 +16,27 @@ public class GameMenu {
 
     public Player createOpponent(String gameChoice) {
         if (gameChoice.equals("1")) {
-            return new HumanPlayer("O");
+            return new HumanPlayer(input.markTwo());
         } else {
-            return new ComputerPlayer(new RandomLocationGenerator(), "O");
+            return new ComputerPlayer(new RandomLocationGenerator(), input.markTwo());
         }
     }
 
-    public Game createGame() {
+    public GameEngine createGame() {
         display.greet();
         display.gameOptions();
         Board board = new Board();
-        Game game = new Game(new HumanPlayer("X"), createOpponent(loopForValidInput(inputFeed.get())), board);
-        display.displayMarks(game.firstPlayer(), game.secondPlayer());
-        return game;
+        GameEngine gameEngine = new GameEngine(new HumanPlayer(input.markOne()), createOpponent(loopForValidInput(input.get())), board);
+        display.displayMarks(gameEngine.currentPlayer.getMark(), gameEngine.nextPlayer.getMark());
+        return gameEngine;
     }
 
-    private String loopForValidInput(String input) {
-        while (!validInput(input)) {
+    private String loopForValidInput(String userInput) {
+        while (!validInput(userInput)) {
             display.invalidInput();
-            input = inputFeed.get();
+            userInput = input.get();
         }
-        return input;
+        return userInput;
     }
     private boolean validInput(String input) {
         return (input.equals("1") || input.equals("2"));

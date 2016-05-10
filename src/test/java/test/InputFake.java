@@ -1,10 +1,10 @@
 package test;
 
-import main.InputFeed;
+import main.Input;
 
 import java.util.ArrayList;
 
-public class InputFake implements InputFeed {
+public class InputFake implements Input {
 
     private ArrayList<String> stream = new ArrayList();
 
@@ -12,6 +12,14 @@ public class InputFake implements InputFeed {
         for (int word = 0; word < words.length; word ++){
            stream.add(words[word]);
         }
+    }
+
+    public String markOne() {
+        return "O";
+    }
+
+    public String markTwo() {
+        return "X";
     }
 
     public String get() {

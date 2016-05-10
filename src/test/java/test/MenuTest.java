@@ -1,7 +1,7 @@
 package test;
 
 import main.ComputerPlayer;
-import main.Game;
+import main.GameEngine;
 import main.GameMenu;
 import main.HumanPlayer;
 import org.junit.Before;
@@ -39,7 +39,7 @@ public class MenuTest {
     @Test
     public void createsAGame() {
         input.set("2");
-        assertTrue(menu.createGame().getClass() == Game.class);
+        assertTrue(menu.createGame().getClass() == GameEngine.class);
     }
 
     @Test
