@@ -7,6 +7,7 @@ import java.util.List;
 public class Board {
 
     private String[] grid = new String[9];
+    public String status;
 
     public Board() {
         for (int cell = 0; cell < 9; cell++) {
@@ -22,14 +23,14 @@ public class Board {
         return grid.length;
     }
 
-    public String placeMark(String symbol, int location) {
+    public void placeMark(String symbol, int location) {
         if (!validLocation(location)) {
-            return "invalid location";
+            this.status = "invalid location";
         } else if (cellTaken(location)) {
-            return "taken";
+            this.status = "taken";
         } else {
             grid[location] = symbol;
-            return "mark placed";
+            status = "mark placed";
         }
     }
 
