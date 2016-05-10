@@ -35,14 +35,14 @@ public class BoardTest {
     @Test
     public void doesNotPlaceANumberLargerThanTheBoard() {
         board.placeMark("X", 10);
-        assertEquals("invalid location", board.placeMark("X", 10));
+        assertEquals("invalid location", board.status);
         assertTrue(board.isEmpty());
     }
 
     @Test
     public void doesNotPlaceANumberSmaller() {
-        board.placeMark("X", 10);
-        assertEquals("invalid location", board.placeMark("X", -1));
+        board.placeMark("X", -1);
+        assertEquals("invalid location", board.status);
         assertTrue(board.isEmpty());
     }
 
@@ -82,7 +82,8 @@ public class BoardTest {
     @Test
     public void knowsIfCellIsTaken() {
         board.placeMark("X", 4);
-        assertEquals("taken", board.placeMark("O", 4));
+        board.placeMark("O", 4);
+        assertEquals("taken", board.status);
     }
 
     private List<List<String>> getRows() {

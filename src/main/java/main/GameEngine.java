@@ -73,6 +73,7 @@ public class GameEngine {
     }
 
     private String makeMark(int location) {
-        return board.placeMark(currentPlayer.getMark(), location);
+        board.placeMark(currentPlayer.getMark(), location);
+        return board.status;
     }
 }
