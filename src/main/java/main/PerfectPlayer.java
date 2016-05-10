@@ -28,27 +28,34 @@ public class PerfectPlayer implements Player {
     }
 
     public List<Integer> availableLocations(Board board) {
+        List<Integer> availableLocations = new ArrayList<>();
         for (int option = 0; option < locations.size(); option++) {
-            if (!Objects.equals(board.get(locations.get(option)), " ")) {
-                locations.remove(option);
+            if (!board.get(option).contains("X") && !board.get(option).contains("O")) {
+                availableLocations.add(locations.get(option));
             }
         }
-        return locations;
+        return availableLocations;
     }
 
     private int bestMove(GameEngine game) {
         for (int location : availableLocations(game.board)) {
             game.board.placeMark(game.currentPlayer.getMark(), location);
             game.switchTurn();
-            scores.put(location, bestMove(game));
+            scores.put(location, score(game));
         }
         return bestScore(scores);
     }
 
     private int score(GameEngine game) {
-        if (game.winner().getMark().equals(opponent)) return -10;
-        if (game.winner().getMark().equals(mark)) return 10;
-        return 0;
+        if (game.isDraw()) {
+            return 0;
+        } else if (game.winner().getMark().equals(opponent)) {
+            return -10;
+        } else if (game.winner().getMark().equals(mark)) {
+            return 10;
+        } else {
+            return 0;
+        }
     }
 
     private int bestScore(HashMap<Integer, Integer> scores) {
