@@ -22,14 +22,13 @@ public class Board {
         return grid.length;
     }
 
-    public String placeMark(String symbol, int location) {
+    public void placeMark(String symbol, int location) {
         if (!validLocation(location)) {
-            return "invalid location";
+            System.out.println("invalid");
         } else if (cellTaken(location)) {
-            return "taken";
+            System.out.println("taken");
         } else {
             grid[location] = symbol;
-            return "mark placed";
         }
     }
 

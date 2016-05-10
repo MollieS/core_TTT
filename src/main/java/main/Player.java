@@ -4,5 +4,5 @@ public interface Player {
 
     String getMark();
 
-    int getLocation(Input inputFeed, Board board);
+    int getLocation(Input input, GameEngine game);
 }

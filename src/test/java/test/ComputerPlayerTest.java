@@ -2,6 +2,7 @@ package test;
 
 import main.Board;
 import main.ComputerPlayer;
+import main.GameEngine;
 import main.Input;
 import org.junit.Test;
 
@@ -17,7 +18,8 @@ public class ComputerPlayerTest {
         Input input = new InputFake();
         Board board = new Board();
         ComputerPlayer computer = new ComputerPlayer(new FakeRandomizer(), "X");
-        assertEquals(1, computer.getLocation(input, board));
+        GameEngine game = new GameEngine(computer, computer, board);
+        assertEquals(1, computer.getLocation(input, game));
     }
 
     @Test

@@ -1,6 +1,7 @@
 package test;
 
 import main.Board;
+import main.GameEngine;
 import main.HumanPlayer;
 import main.Player;
 import org.junit.Test;
@@ -21,6 +22,7 @@ public class HumanPlayerTest {
         Player player = new HumanPlayer("X");
         input.set("1");
         Board board = new Board();
-        assertEquals(0, player.getLocation(input, board));
+        GameEngine game = new GameEngine(player, player, board);
+        assertEquals(0, player.getLocation(input, game));
     }
 }

@@ -51,7 +51,7 @@ public class GamePlay {
     private int getLocation() {
         display.displayTurn(gameEngine.currentPlayer.getMark());
         display.promptForLocation();
-        return gameEngine.currentPlayer.getLocation(input, gameEngine.board);
+        return gameEngine.currentPlayer.getLocation(input, gameEngine);
     }
 
     private void write(String message) {

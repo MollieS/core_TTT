@@ -12,7 +12,7 @@ public class HumanPlayer implements Player {
         return mark;
     }
 
-    public int getLocation(Input inputFeed, Board board) {
+    public int getLocation(Input inputFeed, GameEngine game) {
         String location = inputFeed.get();
         return (Integer.parseInt(location) - 1);
     }

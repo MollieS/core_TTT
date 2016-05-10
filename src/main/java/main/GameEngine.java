@@ -62,7 +62,7 @@ public class GameEngine {
         return board.winningPositions().get(position).equals(win);
     }
 
-    private void switchTurn() {
+    public void switchTurn() {
         if (currentPlayer.equals(player1)) {
             currentPlayer = player2;
             nextPlayer = player1;

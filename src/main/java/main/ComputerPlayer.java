@@ -18,8 +18,8 @@ public class ComputerPlayer implements Player{
         this.mark = mark;
     }
 
-    public int getLocation(Input inputFeed, Board board) {
-        return randomizer.location(availableLocations(board));
+    public int getLocation(Input inputFeed, GameEngine game) {
+        return randomizer.location(availableLocations(game.board));
     }
 
     public List<Integer> availableLocations(Board board) {
