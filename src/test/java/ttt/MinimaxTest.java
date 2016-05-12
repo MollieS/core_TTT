@@ -55,5 +55,4 @@ public class MinimaxTest {
         Minimax minimax = new Minimax("X", "O", board);
         assertEquals(1, minimax.bestMove());
     }
-
 }

@@ -7,8 +7,8 @@ public class PerfectPlayer implements Player {
 
     private String mark;
     private String opponent;
-    private HashMap<Integer, Integer> scores;
-    private Map.Entry<Integer, Integer> bestMove;
+    private HashMap<Integer, Integer> scores = new HashMap<>();
+    private Map.Entry<Integer, Integer> bestMove = null;
 
     public PerfectPlayer(String mark) {
         this.mark = mark;
@@ -16,8 +16,11 @@ public class PerfectPlayer implements Player {
 
     public int getLocation(Input input, GameEngine game) {
         opponent = mark.equals("X") ? "O" : "X";
-        scores = new HashMap<>();
+        System.out.println(game.board.availableMoves());
+        scores = new HashMap<Integer, Integer>();
         nega(game.board, 0, 1);
+        System.out.println(bestMove);
+        bestMove = null;
         return bestMove();
     }
 
@@ -39,7 +42,6 @@ public class PerfectPlayer implements Player {
             bestValue = Math.max(value, bestValue);
             if (depth == 0) scores.put(move, bestValue);
         }
-        if (depth == 0) return bestMove();
         return bestValue;
     }
 
@@ -54,11 +56,16 @@ public class PerfectPlayer implements Player {
     }
 
     private int bestMove() {
+        bestMove = null;
         for (Map.Entry<Integer, Integer> entry : scores.entrySet()) {
             if (bestMove == null || entry.getValue().compareTo(bestMove.getValue()) > 0) {
                 bestMove = entry;
             }
         }
-        return bestMove.getKey();
+        System.out.println(scores);
+        System.out.println(bestMove.getKey());
+        int currentBestMove = bestMove.getKey();
+        bestMove = null;
+        return currentBestMove;
     }
 }

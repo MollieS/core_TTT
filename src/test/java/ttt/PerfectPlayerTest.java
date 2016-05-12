@@ -98,6 +98,10 @@ public class PerfectPlayerTest {
 
     @Test
     public void goesForCentreIfCornerTaken() {
+        perfectPlayer = new PerfectPlayer("X");
+        Player opponent = new HumanPlayer("O");
+        board = new Board();
+        game = new GameEngine(opponent, perfectPlayer, board);
         game.play(0);
         assertEquals(4, perfectPlayer.getLocation(input, game));
     }
@@ -111,6 +115,56 @@ public class PerfectPlayerTest {
         game.play(0);
         game.play(perfectPlayer.getLocation(input, game));
         game.play(2);
-        assertEquals(7, perfectPlayer.getLocation(input, game));
+        assertEquals(1, perfectPlayer.getLocation(input, game));
+    }
+
+    @Test
+    public void resetsBestMove() {
+        perfectPlayer = new PerfectPlayer("X");
+        Player opponent = new HumanPlayer("O");
+        board = new Board();
+        game = new GameEngine(opponent, perfectPlayer, board);
+        game.play(0);
+        int cpuChoice = perfectPlayer.getLocation(input, game);
+        assertEquals(4, cpuChoice);
+        game.play(cpuChoice);
+        game.play(8);
+        cpuChoice = perfectPlayer.getLocation(input, game);
+        assertEquals(1, cpuChoice);
+        game.play(cpuChoice);
+        game.play(7);
+        cpuChoice = perfectPlayer.getLocation(input, game);
+        assertEquals(6, cpuChoice);
+        game.play(cpuChoice);
+        game.play(2);
+        cpuChoice = perfectPlayer.getLocation(input, game);
+        assertEquals(5, cpuChoice);
+        game.play(cpuChoice);
+        game.play(3);
+    }
+
+    @Test
+    public void pt2() {
+        perfectPlayer = new PerfectPlayer("X");
+        Player opponent = new HumanPlayer("O");
+        board = new Board();
+        game = new GameEngine(opponent, perfectPlayer, board);
+        board.placeMark("O", 0);
+        int cpuChoice = perfectPlayer.getLocation(input, game);
+        assertEquals(4, cpuChoice);
+        board.placeMark("X", cpuChoice);
+        board.placeMark("O", 8);
+        cpuChoice = perfectPlayer.getLocation(input, game);
+        assertEquals(1, cpuChoice);
+        board.placeMark("X", cpuChoice);
+        board.placeMark("O", 7);
+        cpuChoice = perfectPlayer.getLocation(input, game);
+        assertEquals(6, cpuChoice);
+        board.placeMark("X", cpuChoice);
+        board.placeMark("O", 2);
+        cpuChoice = perfectPlayer.getLocation(input, game);
+        assertEquals(5, cpuChoice);
+        board.placeMark("X", cpuChoice);
+        board.placeMark("O", 3);
     }
 }

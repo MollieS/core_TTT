@@ -28,7 +28,7 @@ public class ComputerPlayer implements Player{
                 locations.remove(option);
             }
         }
-        return locations;
+        return board.availableMoves();
     }
 
     public String getMark() {

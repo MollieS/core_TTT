@@ -29,8 +29,11 @@ public class GamePlay {
 
     private void playGame() {
         while (!gameEngine.isOver()) {
+            write("available locations: " + gameEngine.board.availableMoves());
             Integer choice = getLocation();
             gameEngine.play(choice);
+            String message = gameEngine.board.getStatus();
+            getStatus(message);
             write(consoleBoard.update(gameEngine.nextPlayer.getMark(), choice));
         }
     }
