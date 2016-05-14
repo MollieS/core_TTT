@@ -13,12 +13,11 @@ public class HumanPlayerTest {
     }
 
     @Test
-    public void getsALocation() {
+    public void returnsALocation() {
         InputFake input = new InputFake();
         Player player = new HumanPlayer("X");
         input.set("1");
         Board board = new Board();
-        GameEngine game = new GameEngine(player, player, board);
-        assertEquals(0, player.getLocation(input, game));
+        assertEquals("0", player.getLocation(input, board));
     }
 }

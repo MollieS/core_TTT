@@ -1,8 +1,5 @@
 package ttt;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class GameEngine {
 
     public Board board;
@@ -22,43 +19,9 @@ public class GameEngine {
     public void play(int location) {
         board.placeMark(currentPlayer.getMark(), location);
         String status = board.getStatus();
-        if (status == "mark placed") {
+        if (status.equals("mark placed")) {
             switchTurn();
         }
-    }
-
-    public String board(int cell) {
-        return board.get(cell);
-    }
-
-    public boolean isWon() {
-        for (int position = 0; position < board.winningPositions().size(); position++) {
-            if (winFor(player1.getMark(), position) || winFor(player2.getMark(), position)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean isDraw() {
-        return board.isFull() && !isWon();
-    }
-
-    public boolean isOver() {
-        return (isWon() || isDraw());
-    }
-
-    public String winner() {
-        return isWon() ? getWinner() : "Nothing";
-    }
-
-    private String getWinner() {
-        return currentPlayer.equals(player1) ? player2.getMark() : player1.getMark();
-    }
-
-    private boolean winFor(String mark, int position) {
-        List<String> win = Arrays.asList(mark, mark, mark);
-        return board.winningPositions().get(position).equals(win);
     }
 
     public void switchTurn() {
@@ -71,11 +34,32 @@ public class GameEngine {
         }
     }
 
-    private void makeMark(int location) {
-        board.placeMark(currentPlayer.getMark(), location);
+    public String board(int cell) {
+        return board.get(cell);
+    }
+
+    public boolean isWon() {
+        return board.isWon();
+    }
+
+    public boolean isDraw() {
+        return board.isDraw();
+    }
+
+    public boolean isOver() {
+        return board.isFinished();
+    }
+
+    public String winner() {
+        return isWon() ? getWinner() : "Nothing";
     }
 
     public String getBoardStatus() {
         return board.getStatus();
     }
+
+    private String getWinner() {
+        return board.getWinningMark();
+    }
+
 }

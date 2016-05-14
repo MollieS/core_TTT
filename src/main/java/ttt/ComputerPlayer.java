@@ -18,17 +18,9 @@ public class ComputerPlayer implements Player{
         this.mark = mark;
     }
 
-    public int getLocation(Input inputFeed, GameEngine game) {
-        return randomizer.location(availableLocations(game.board));
-    }
-
-    public List<Integer> availableLocations(Board board) {
-        for (int option = 0; option < locations.size(); option++) {
-            if(!Objects.equals(board.get(locations.get(option)), " ")) {
-                locations.remove(option);
-            }
-        }
-        return board.availableMoves();
+    public String getLocation(Input inputFeed, Board board) {
+        int location = randomizer.location(board.availableMoves());
+        return String.valueOf(location);
     }
 
     public String getMark() {

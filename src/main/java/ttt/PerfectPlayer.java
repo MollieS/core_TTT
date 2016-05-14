@@ -13,10 +13,11 @@ public class PerfectPlayer implements Player {
         this.mark = mark;
     }
 
-    public int getLocation(Input input, GameEngine game) {
+    public String getLocation(Input input, Board board) {
         opponent = mark.equals("X") ? "O" : "X";
         resetMoveSelection();
-        return getBestMove(game);
+        int location = getBestMove(board);
+        return String.valueOf(location);
     }
 
 
@@ -64,8 +65,8 @@ public class PerfectPlayer implements Player {
         return bestMove.getKey();
     }
 
-    private int getBestMove(GameEngine game) {
-        negamax(game.board, 0, 1);
+    private int getBestMove(Board board) {
+        negamax(board, 0, 1);
         return bestMove();
     }
 

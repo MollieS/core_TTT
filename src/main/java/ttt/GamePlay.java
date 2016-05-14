@@ -29,17 +29,35 @@ public class GamePlay {
 
     private void playGame() {
         while (!gameEngine.isOver()) {
-            Integer choice = getLocation();
-                gameEngine.play(choice);
-            write(consoleBoard.update(gameEngine.nextPlayer.getMark(), choice));
+            String input = getLocation();
+            display.clearScreen();
+            if (isInvalidInput(input)) {
+                write("Please choose a valid option");
+            } else {
+                placeMark(input);
+            }
         }
     }
 
-    private boolean isValidInput(Integer choice) {
-        return true;
-   }
+    private void placeMark(String input) {
+        int choice = Integer.parseInt(input);
+        gameEngine.play(choice);
+        if (gameEngine.getBoardStatus() == "mark placed") {
+            write(consoleBoard.update(gameEngine.nextPlayer.getMark(), choice));
+        } else {
+            write(consoleBoard.show());
+            invalidInput(gameEngine.getBoardStatus());
+        }
+    }
 
-    private void getStatus(String message) {
+    private boolean isInvalidInput(String choice) {
+        if (choice.equals("invalid location")) {
+            return true;
+        }
+        return false;
+    }
+
+    private void invalidInput(String message) {
         if (message.equals("taken")) {
             display.takenCell();
         } else if (message.equals("invalid location")) {
@@ -47,10 +65,10 @@ public class GamePlay {
         }
     }
 
-    private int getLocation() {
+    private String getLocation() {
         display.displayTurn(gameEngine.currentPlayer.getMark());
         display.promptForLocation();
-        return gameEngine.currentPlayer.getLocation(input, gameEngine);
+        return gameEngine.currentPlayer.getLocation(input, gameEngine.board);
     }
 
     private void write(String message) {

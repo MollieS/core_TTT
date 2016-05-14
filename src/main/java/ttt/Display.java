@@ -24,4 +24,6 @@ public interface Display {
 
     void gameOptions();
 
+    void clearScreen();
+
 }

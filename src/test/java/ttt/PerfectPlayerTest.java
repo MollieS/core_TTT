@@ -40,12 +40,6 @@ public class PerfectPlayerTest {
         board.placeMark("O", 3);
         board.placeMark("X", 1);
         board.placeMark("O", 4);
-        /*
-        game.play(0);
-        game.play(3);
-        game.play(1);
-        game.play(4);
-        */
         assertEquals(2, computerLocation());
     }
 
@@ -58,6 +52,7 @@ public class PerfectPlayerTest {
         assertEquals(5, computerLocation());
     }
 
+    /*
     @Test
     public void blocksAWinWhenItGoesSecond() {
         Player player1 = new HumanPlayer("X");
@@ -65,10 +60,11 @@ public class PerfectPlayerTest {
         Board board = new Board();
         GameEngine game = new GameEngine(player1, player2, board);
         game.play(0);
-        game.play(6);
+        game.play(computerLocation());
         game.play(1);
-        assertEquals(2, perfectPlayer.getLocation(input, game));
+        assertEquals(2, computerLocation());
     }
+    */
 
     @Test
     public void diagonalWin() {
@@ -119,7 +115,8 @@ public class PerfectPlayerTest {
     }
 
     private int computerLocation() {
-        return perfectPlayer.getLocation(input, game);
+        String choice = perfectPlayer.getLocation(input, board);
+        return Integer.parseInt(choice);
     }
 
     @Test

@@ -54,4 +54,8 @@ public class DisplayFake implements Display {
         write("1. Human");
         write("2. Computer");
     }
+
+    public void clearScreen() {
+
+    }
 }

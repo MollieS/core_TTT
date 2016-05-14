@@ -42,6 +42,10 @@ public class Board {
         return grid[cell];
     }
 
+    public String getWinningMark() {
+        return winningMark;
+    }
+
     public boolean isAWinFor(String mark) {
         return isWon() && winningMark.equals(mark);
     }
@@ -109,7 +113,7 @@ public class Board {
     }
 
     private boolean isValidLocation(int location) {
-        return (location <= grid.length && location >= 0);
+        return (location <= 8 && location >= 0);
     }
 
     private boolean isCellTaken(int location) {

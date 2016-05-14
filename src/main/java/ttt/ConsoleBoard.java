@@ -4,7 +4,7 @@ public class ConsoleBoard {
 
     private String board;
 
-    public String show() {
+    public ConsoleBoard() {
         String rows = firstRow();
         for (int cell = 0; cell < 9; cell++) {
             if (isEndOfRow(cell)) {
@@ -14,7 +14,10 @@ public class ConsoleBoard {
         }
         rows += lastRow();
         this.board = rows;
-        return rows;
+    }
+
+    public String show() {
+        return board;
     }
 
     private String firstRow() {

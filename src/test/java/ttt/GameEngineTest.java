@@ -44,6 +44,14 @@ public class GameEngineTest {
     }
 
     @Test
+    public void switchesBack() {
+        gameEngine.play(0);
+        gameEngine.play(4);
+        gameEngine.play(7);
+        assertEquals("X", gameEngine.board(7));
+    }
+
+    @Test
     public void horizontalWinForX() {
         horizontalWinForPlayerOne();
         assertTrue(gameEngine.isWon());

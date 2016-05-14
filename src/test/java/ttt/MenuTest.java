@@ -24,12 +24,12 @@ public class MenuTest {
 
     @Test
     public void createsAHumanOpponent() {
-        assertTrue(menu.createOpponent("1").getClass() == HumanPlayer.class);
+        assertTrue(menu.createPlayers("1").get(1).getClass() == HumanPlayer.class);
     }
 
     @Test
     public void createsAComputerOpponent() {
-        assertTrue(menu.createOpponent("2").getClass() == ComputerPlayer.class);
+        assertTrue(menu.createPlayers("4").get(0).getClass() == ComputerPlayer.class);
     }
 
     @Test
