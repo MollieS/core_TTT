@@ -21,7 +21,10 @@ public class GameEngine {
 
     public void play(int location) {
         board.placeMark(currentPlayer.getMark(), location);
-        switchTurn();
+        String status = board.getStatus();
+        if (status == "mark placed") {
+            switchTurn();
+        }
     }
 
     public String board(int cell) {

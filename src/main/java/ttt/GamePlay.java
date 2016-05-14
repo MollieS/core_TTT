@@ -29,14 +29,15 @@ public class GamePlay {
 
     private void playGame() {
         while (!gameEngine.isOver()) {
-            write("available locations: " + gameEngine.board.availableMoves());
             Integer choice = getLocation();
-            gameEngine.play(choice);
-            String message = gameEngine.board.getStatus();
-            getStatus(message);
+                gameEngine.play(choice);
             write(consoleBoard.update(gameEngine.nextPlayer.getMark(), choice));
         }
     }
+
+    private boolean isValidInput(Integer choice) {
+        return true;
+   }
 
     private void getStatus(String message) {
         if (message.equals("taken")) {

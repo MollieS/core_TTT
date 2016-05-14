@@ -1,6 +1,5 @@
 package ttt;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,9 +50,9 @@ public class Minimax {
     }
 
     private int score(Board board, int depth) {
-        if (board.winFor(maximizingPlayer)) {
+        if (board.isAWinFor(maximizingPlayer)) {
             return 10;
-        } else if (board.winFor(minimizingPlayer)) {
+        } else if (board.isAWinFor(minimizingPlayer)) {
             return -10;
         } else {
             return 0;

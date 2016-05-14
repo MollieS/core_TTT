@@ -8,27 +8,26 @@ public class Board {
 
     private String[] grid = new String[9];
     private String status;
+    private String emptyCell;
+    private String winningMark;
 
     public Board() {
+        this.emptyCell = " ";
+        this.winningMark = null;
         for (int cell = 0; cell < 9; cell++) {
-            grid[cell] = " ";
+            grid[cell] = emptyCell;
         }
     }
 
-    public Board dummyBoard() {
-        Board dummy = new Board();
-        for (int cell = 0; cell < grid.length; cell++) {
-            dummy.grid[cell] = grid[cell];
+    public void placeMark(String symbol, int location) {
+        if (!isValidLocation(location)) {
+            this.status = "invalid location";
+        } else if (isCellTaken(location)) {
+            this.status = "taken";
+        } else {
+            grid[location] = symbol;
+            status = "mark placed";
         }
-        return dummy;
-    }
-
-    public void clear (int location) {
-        grid[location] = " ";
-    }
-
-    public String get(int cell) {
-        return grid[cell];
     }
 
     public String getStatus() {
@@ -39,33 +38,26 @@ public class Board {
         return grid.length;
     }
 
-    public boolean winFor(String mark) {
-        List<String> win = Arrays.asList(mark, mark, mark);
-        for (int position = 0; position < winningPositions().size(); position++) {
-            if(winningPositions().get(position).equals(win)) return true;
-        }
-        return false;
+    public String get(int cell) {
+        return grid[cell];
+    }
+
+    public boolean isAWinFor(String mark) {
+        return isWon() && winningMark.equals(mark);
+    }
+
+    public void clear (int location) {
+        grid[location] = emptyCell;
     }
 
     public List<Integer> availableMoves() {
         List<Integer> moves = new ArrayList<>();
         for (int cell = 0; cell < grid.length; cell ++) {
-            if (grid[cell].equals(" ")) {
+            if (grid[cell].equals(emptyCell)) {
                moves.add(cell);
             }
         }
         return moves;
-    }
-
-    public void placeMark(String symbol, int location) {
-        if (!validLocation(location)) {
-            this.status = "invalid location";
-        } else if (cellTaken(location)) {
-            this.status = "taken";
-        } else {
-            grid[location] = symbol;
-            status = "mark placed";
-        }
     }
 
     public List<List<String>> winningPositions() {
@@ -74,6 +66,62 @@ public class Board {
         positions.addAll(columns());
         positions.addAll(diagonals());
         return positions;
+    }
+
+
+    public boolean isFull() {
+        for (String cell : grid) {
+            if (cell.equals(emptyCell)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isEmpty() {
+        for (String cell : grid) {
+            if (!cell.equals(emptyCell)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isDraw() {
+        return (isFull() && !isWon());
+    }
+
+    public boolean isFinished() {
+        return (isDraw() || isWon());
+    }
+
+    public boolean isWon() {
+        for (List<String> selection : winningPositions()) {
+            if (isAWin(selection)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private List<String> getCollection(int first, int middle, int last) {
+        return Arrays.asList(grid[first], grid[middle], grid[last]);
+    }
+
+    private boolean isValidLocation(int location) {
+        return (location <= grid.length && location >= 0);
+    }
+
+    private boolean isCellTaken(int location) {
+        return (!grid[location].equals(emptyCell));
+    }
+
+    private boolean isAWin(List<String> selection) {
+        if (selection.get(0).equals(emptyCell)) return false;
+        if (!selection.get(0).equals(selection.get(1))) return false;
+        if (!selection.get(1).equals(selection.get(2))) return false;
+        winningMark = selection.get(0);
+        return true;
     }
 
     private List<List<String>> rows() {
@@ -94,47 +142,5 @@ public class Board {
         List<String> left = getCollection(0, 4, 8);
         List<String> right = getCollection(2, 4, 6);
         return Arrays.asList(left, right);
-    }
-
-    public boolean isFull() {
-        return checkEveryCell();
-    }
-
-    public boolean isEmpty() {
-        for (int cell = 0; cell < grid.length; cell++) {
-            if (!grid[cell].contains(" ")) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean checkEveryCell() {
-        for (int cell = 0; cell < grid.length; cell++) {
-            if (grid[cell].contains(" ")) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private List<String> getCollection(int first, int middle, int last) {
-        return Arrays.asList(grid[first], grid[middle], grid[last]);
-    }
-
-    private boolean validLocation(int location) {
-        return (location <= 8 && location >= 0);
-    }
-
-    private boolean cellTaken(int location) {
-        return (!grid[location].equals(" "));
-    }
-
-    public boolean isDraw() {
-        return (isFull() && !winFor("X") && !winFor("O"));
-    }
-
-    public boolean isFinished() {
-        return (isDraw() || winFor("X") || winFor("O"));
     }
 }

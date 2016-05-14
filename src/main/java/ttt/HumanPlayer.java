@@ -14,6 +14,6 @@ public class HumanPlayer implements Player {
 
     public int getLocation(Input inputFeed, GameEngine game) {
         String location = inputFeed.get();
-        return (Integer.parseInt(location) - 1);
+            return (Integer.parseInt(location) - 1);
     }
 }
