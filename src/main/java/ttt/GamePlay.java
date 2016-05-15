@@ -32,6 +32,7 @@ public class GamePlay {
             String input = getLocation();
             display.clearScreen();
             if (isInvalidInput(input)) {
+                write(consoleBoard.show());
                 write("Please choose a valid option");
             } else {
                 placeMark(input);

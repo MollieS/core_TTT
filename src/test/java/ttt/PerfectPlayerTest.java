@@ -22,6 +22,11 @@ public class PerfectPlayerTest {
     }
 
     @Test
+    public void knowsOpponentMark() {
+        assertEquals("O", perfectPlayer.opponentMark());
+    }
+
+    @Test
     public void choosesOnlyFreeSpaceOnFullBoard() {
         game.play(0);
         game.play(1);
@@ -163,4 +168,5 @@ public class PerfectPlayerTest {
         board.placeMark("X", cpuChoice);
         board.placeMark("O", 3);
     }
+
 }

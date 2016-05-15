@@ -63,13 +63,21 @@ public class BoardTest {
     }
 
     @Test
-    public void returnsWinningPositions() {
-        fillBoard();
-        List<List<String>> expectedWinningPositions = new ArrayList<>();
-        expectedWinningPositions.addAll(getRows());
-        expectedWinningPositions.addAll(getColumns());
-        expectedWinningPositions.addAll(getDiagonals());
-        assertEquals(expectedWinningPositions, board.winningPositions());
+    public void winningPositionsContainsDiagonalWin() {
+        diagonalWin();
+        assertTrue(board.winningPositions().contains(Arrays.asList(O, O, O)));
+    }
+
+    @Test
+    public void winningPositionsContainsHorizontalWin() {
+        horizontalWin();
+        assertTrue(board.winningPositions().contains(Arrays.asList(X, X, X)));
+    }
+
+    @Test
+    public void winningPostitionsContainsVerticalWin() {
+        verticalWin();
+        assertTrue(board.winningPositions().contains(Arrays.asList(X, X, X)));
     }
 
     @Test
@@ -112,7 +120,7 @@ public class BoardTest {
     @Test
     public void knowsIfDrawn() {
         drawnGame();
-        Assert.assertTrue(board.isDraw());
+        assertTrue(board.isDraw());
     }
 
     @Test
@@ -146,34 +154,10 @@ public class BoardTest {
         assertEquals("taken", board.getStatus());
     }
 
-    private List<List<String>> getRows() {
-        List<String> topRow = getCells("0", "1", "2");
-        List<String> middleRow = getCells("3", "4", "5");
-        List<String> bottomRow = getCells("6", "7", "8");
-        return Arrays.asList(topRow, middleRow, bottomRow);
-    }
-
     private void fillBoard() {
         for (int i = 0; i < 9; i++) {
             board.placeMark(String.valueOf(i), i);
         }
-    }
-
-    private List<String> getCells(String s, String s2, String s3) {
-        return Arrays.asList(s, s2, s3);
-    }
-
-    private List<List<String>> getColumns() {
-        List<String> left = Arrays.asList("0", "3", "6");
-        List<String> middle = Arrays.asList("1", "4", "7");
-        List<String> right = Arrays.asList("2", "5", "8");
-        return Arrays.asList(left, middle, right);
-    }
-
-    private List<List<String>> getDiagonals() {
-        List<String> left = getCells("0", "4", "8");
-        List<String> right = getCells("2", "4", "6");
-        return Arrays.asList(left, right);
     }
 
     private void horizontalWin() {
@@ -191,6 +175,14 @@ public class BoardTest {
         board.placeMark(O, 4);
         board.placeMark(X, 7);
         board.placeMark(O, 8);
+    }
+
+    private void verticalWin() {
+        board.placeMark(X, 0);
+        board.placeMark(O, 2);
+        board.placeMark(X, 3);
+        board.placeMark(O, 4);
+        board.placeMark(X, 6);
     }
 
     private void drawnGame() {

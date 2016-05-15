@@ -11,10 +11,10 @@ public class PerfectPlayer implements Player {
 
     public PerfectPlayer(String mark) {
         this.mark = mark;
+        this.opponent = mark.equals("X") ? "O" : "X";
     }
 
     public String getLocation(Input input, Board board) {
-        opponent = mark.equals("X") ? "O" : "X";
         resetMoveSelection();
         int location = getBestMove(board);
         return String.valueOf(location);
@@ -73,5 +73,9 @@ public class PerfectPlayer implements Player {
     private void resetMoveSelection() {
         scores = new HashMap();
         bestMove = null;
+    }
+
+    public String opponentMark() {
+        return opponent;
     }
 }
