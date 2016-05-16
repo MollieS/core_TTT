@@ -21,4 +21,4 @@ From the root of the project run `gradle test`
 
 Current UML is as follows: 
 
-[!(images/UML.png)]
+[![UML](/images/UML.png?raw=true "UML")]
