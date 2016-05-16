@@ -22,8 +22,8 @@ public class BoardTest {
     @Before
     public void setUp() {
         this.board = new Board();
-        this.X = "!";
-        this.O = "%";
+        this.X = "X";
+        this.O = "O";
 
     }
 

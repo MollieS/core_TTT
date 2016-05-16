@@ -11,7 +11,7 @@ public class PerfectPlayer implements Player {
 
     public PerfectPlayer(String mark) {
         this.mark = mark;
-        this.opponent = mark.equals("X") ? "O" : "X";
+        this.opponent = mark.equals(PlayerFactory.Marks.X.mark) ? PlayerFactory.Marks.O.mark : PlayerFactory.Marks.X.mark;
     }
 
     public String getLocation(Input input, Board board) {
