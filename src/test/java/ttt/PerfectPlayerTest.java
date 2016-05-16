@@ -57,20 +57,6 @@ public class PerfectPlayerTest {
         assertEquals(5, computerLocation());
     }
 
-    /*
-    @Test
-    public void blocksAWinWhenItGoesSecond() {
-        Player player1 = new HumanPlayer("X");
-        Player player2 = new PerfectPlayer("O");
-        Board board = new Board();
-        GameEngine game = new GameEngine(player1, player2, board);
-        game.play(0);
-        game.play(computerLocation());
-        game.play(1);
-        assertEquals(2, computerLocation());
-    }
-    */
-
     @Test
     public void diagonalWin() {
         game.play(0);
