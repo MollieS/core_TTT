@@ -1,3 +1,5 @@
+package ttt;
+
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -10,7 +12,7 @@ public class RandomizerTest {
     @Test
     public void returnsRandomNumberFromList() {
         Randomizer randomizer = new RandomLocationGenerator();
-        List<String> locations = Arrays.asList("1", "2", "3");
-        assertFalse(randomizer.location(locations).contains("4"));
+        List<Integer> locations = Arrays.asList(1, 2, 3);
+        assertFalse(randomizer.location(locations).equals(4));
     }
 }

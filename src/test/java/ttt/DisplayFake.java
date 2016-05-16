@@ -1,18 +1,19 @@
-public class DisplayFake implements Display {
+package ttt;
 
-    public String currentMark(Game game) {
-        return game.currentPlayer.getMark();
+public class DisplayFake implements Display {
+    private String stream = "";
+
+    public String currentMark(String mark) {
+        return mark;
     }
 
     public void takenCell() {
         write("Already taken");
     }
 
-    public void displayTurn(Game game) {
-        write(currentMark(game) + "'s turn: choose a location");
+    public void displayTurn(String mark) {
+        write(mark + "'s turn: choose a location");
     }
-
-    private String stream = "";
 
     public void write(String message) {
         stream += message;
@@ -33,6 +34,7 @@ public class DisplayFake implements Display {
     public void invalidInput() {
         write("Please choose a valid option");
     }
+
     public void draw() {
         write("It's a draw!");
     }
@@ -50,5 +52,9 @@ public class DisplayFake implements Display {
         write("Please choose your opponent:");
         write("1. Human");
         write("2. Computer");
+    }
+
+    public void clearScreen() {
+
     }
 }

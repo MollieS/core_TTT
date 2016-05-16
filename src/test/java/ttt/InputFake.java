@@ -1,6 +1,8 @@
+package ttt;
+
 import java.util.ArrayList;
 
-public class InputFake implements InputFeed {
+public class InputFake implements Input {
 
     private ArrayList<String> stream = new ArrayList();
 

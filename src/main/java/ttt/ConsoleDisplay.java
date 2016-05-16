@@ -1,9 +1,15 @@
-public class SystemDisplay implements Display {
+package ttt;
+
+public class ConsoleDisplay implements Display {
 
     public void gameOptions() {
-        write("Please choose your opponent(1 or 2):");
-        write("1. Human");
-        write("2. Computer");
+        write("How would you like to play?");
+        write("1. Human v Human - you go first");
+        write("2. Human v Human - your opponent goes first");
+        write("3. Human v Random Computer");
+        write("4. Random Computer v Human");
+        write("5. Human v Perfect Computer");
+        write("6. Perfect Computer v Human");
     }
 
     public void write(String message) {
@@ -22,8 +28,8 @@ public class SystemDisplay implements Display {
         write("Please choose a valid option");
     }
 
-    public void displayTurn(Game game) {
-        write(currentMark(game) + "'s turn: choose a location");
+    public void displayTurn(String mark) {
+        write(mark + "'s turn: choose a location");
     }
 
     public void promptForLocation() {
@@ -34,8 +40,8 @@ public class SystemDisplay implements Display {
         write("It's a draw!");
     }
 
-    public String currentMark(Game game) {
-        return game.currentPlayer.getMark();
+    public String currentMark(String mark) {
+        return mark;
     }
 
     public void greet() {
@@ -45,5 +51,9 @@ public class SystemDisplay implements Display {
     public void displayMarks(String mark1, String mark2) {
         write("Player One's mark is " + mark1);
         write("Player Two's mark is " + mark2);
+    }
+
+    public void clearScreen() {
+        for (int i = 0; i < 50; ++i) System.out.println();
     }
 }

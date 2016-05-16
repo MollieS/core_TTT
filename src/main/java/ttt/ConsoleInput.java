@@ -1,6 +1,8 @@
+package ttt;
+
 import java.util.Scanner;
 
-public class Input implements InputFeed {
+public class ConsoleInput implements Input {
 
     public String get() {
         Scanner scanner = new Scanner(System.in);
