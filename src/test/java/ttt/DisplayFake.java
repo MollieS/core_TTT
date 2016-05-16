@@ -1,7 +1,6 @@
 package ttt;
 
 public class DisplayFake implements Display {
-
     private String stream = "";
 
     public String currentMark(String mark) {

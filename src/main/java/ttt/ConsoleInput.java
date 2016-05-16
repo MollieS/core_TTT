@@ -10,11 +10,4 @@ public class ConsoleInput implements Input {
         return stream;
     }
 
-    public String markOne() {
-       return "X";
-    }
-
-    public String markTwo() {
-        return "O";
-    }
 }

@@ -12,14 +12,6 @@ public class InputFake implements Input {
         }
     }
 
-    public String markOne() {
-        return "O";
-    }
-
-    public String markTwo() {
-        return "X";
-    }
-
     public String get() {
         return stream.remove(0);
     }
