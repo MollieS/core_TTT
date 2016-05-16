@@ -53,13 +53,6 @@ public class BoardTest {
     }
 
     @Test
-    public void doesNotPlaceMarkIfInvalidLocation() {
-        board.placeMark(X, 10);
-        assertEquals("invalid location", board.getStatus());
-        assertTrue(board.isEmpty());
-    }
-
-    @Test
     public void winningPositionsContainsDiagonalWin() {
         diagonalWin();
         assertTrue(board.winningPositions().contains(Arrays.asList(O, O, O)));
@@ -142,13 +135,6 @@ public class BoardTest {
     public void knowsIfWon() {
         horizontalWin();
         assertTrue(board.isWon());
-    }
-
-    @Test
-    public void knowsIfCellIsTaken() {
-        board.placeMark(X, 4);
-        board.placeMark(O, 4);
-        assertEquals("taken", board.getStatus());
     }
 
     private void fillBoard() {

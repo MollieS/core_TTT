@@ -12,12 +12,12 @@ public class HumanPlayer implements Player {
         return mark;
     }
 
-    public String getLocation(Input inputFeed, Board board) {
-        String location = inputFeed.get();
+    public String getLocation(Input input, Board board) {
+        String location = input.get();
         try {
             return String.valueOf((Integer.parseInt(location) - 1));
         } catch (NumberFormatException e) {
-            return "invalid location";
+            return "-1";
         }
     }
 }

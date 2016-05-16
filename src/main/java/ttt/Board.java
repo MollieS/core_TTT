@@ -20,14 +20,7 @@ public class Board {
     }
 
     public void placeMark(String symbol, int location) {
-        if (!isValidLocation(location)) {
-            this.status = "invalid location";
-        } else if (isCellTaken(location)) {
-            this.status = "taken";
-        } else {
-            grid[location] = symbol;
-            status = "mark placed";
-        }
+        grid[location] = symbol;
     }
 
     public String getStatus() {
@@ -50,15 +43,15 @@ public class Board {
         return isWon() && winningMark.equals(mark);
     }
 
-    public void clear (int location) {
+    public void clear(int location) {
         grid[location] = emptyCell;
     }
 
     public List<Integer> availableMoves() {
         List<Integer> moves = new ArrayList<>();
-        for (int cell = 0; cell < grid.length; cell ++) {
+        for (int cell = 0; cell < grid.length; cell++) {
             if (grid[cell].equals(emptyCell)) {
-               moves.add(cell);
+                moves.add(cell);
             }
         }
         return moves;

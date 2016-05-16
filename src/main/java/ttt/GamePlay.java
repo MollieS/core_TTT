@@ -43,16 +43,14 @@ public class GamePlay {
     private void placeMark(String input) {
         int choice = Integer.parseInt(input);
         gameEngine.play(choice);
-        if (gameEngine.getBoardStatus() == "mark placed") {
-            write(consoleBoard.update(gameEngine.nextPlayer.getMark(), choice));
-        } else {
-            write(consoleBoard.show());
-            invalidInput(gameEngine.getBoardStatus());
-        }
+        write(consoleBoard.update(gameEngine.currentPlayer.getMark(), choice));
     }
 
     private boolean isInvalidInput(String choice) {
-        if (choice.equals("invalid location")) {
+        int location = Integer.parseInt(choice);
+        if (location < 0 || location > 8) {
+            return true;
+        } else if (gameEngine.board.get(location) != " ") {
             return true;
         }
         return false;

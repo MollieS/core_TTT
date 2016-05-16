@@ -18,10 +18,7 @@ public class GameEngine {
 
     public void play(int location) {
         board.placeMark(currentPlayer.getMark(), location);
-        String status = board.getStatus();
-        if (status.equals("mark placed")) {
-            switchTurn();
-        }
+        switchTurn();
     }
 
     public void switchTurn() {
