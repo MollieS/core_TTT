@@ -14,7 +14,7 @@ public class GamePlay {
     }
 
     public void start() {
-        write(consoleBoard.show());
+        write(consoleBoard.createBoard(gameEngine.board));
         playGame();
         getGameResult();
     }
@@ -32,7 +32,7 @@ public class GamePlay {
             String input = getLocation();
             display.clearScreen();
             if (isInvalidInput(input)) {
-                write(consoleBoard.show());
+                write(consoleBoard.createBoard(gameEngine.board));
                 write("Please choose a valid option");
             } else {
                 placeMark(input);
@@ -43,7 +43,7 @@ public class GamePlay {
     private void placeMark(String input) {
         int choice = Integer.parseInt(input);
         gameEngine.play(choice);
-        write(consoleBoard.update(gameEngine.currentPlayer.getMark(), choice));
+        write(consoleBoard.createBoard(gameEngine.board));
     }
 
     private boolean isInvalidInput(String choice) {

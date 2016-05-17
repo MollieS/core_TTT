@@ -45,15 +45,11 @@ public class GamePlayTest {
         assertTrue(displayContains("Please choose a location from 1 to 9"));
     }
 
-    private boolean displayContains(String s) {
-        return display.read().contains(s);
-    }
 
     @Test
     public void playsADraw() {
         input.set("1", "2", "3", "4", "6", "7", "8", "9", "5");
         gameplay.start();
-        assertTrue(displayContains(drawBoard()));
         assertTrue(displayContains("It's a draw!"));
     }
 
@@ -71,13 +67,7 @@ public class GamePlayTest {
         assertTrue(displayContains("Please choose a valid option"));
     }
 
-    private String drawBoard() {
-        return "-------------" + "\n" +
-                "| O | X | O |" + "\n" +
-                "-------------" + "\n" +
-                "| X | O | O |" + "\n" +
-                "-------------" + "\n" +
-                "| X | O | X |" + "\n" +
-                "-------------";
+    private boolean displayContains(String message) {
+        return display.read().contains(message);
     }
 }
