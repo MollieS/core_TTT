@@ -3,16 +3,16 @@ package ttt;
 public class DisplayFake implements Display {
     private String stream = "";
 
-    public String currentMark(String mark) {
-        return mark;
+    public String currentMark(Marks mark) {
+        return mark.toString();
     }
 
     public void takenCell() {
         write("Already taken");
     }
 
-    public void displayTurn(String mark) {
-        write(mark + "'s turn: choose a location");
+    public void displayTurn(Marks mark) {
+        write(mark.toString() + "'s turn: choose a location");
     }
 
     public void write(String message) {
@@ -43,9 +43,9 @@ public class DisplayFake implements Display {
         write("Welcome to Tic Tac Toe");
     }
 
-    public void displayMarks(String mark1, String mark2) {
-        write("Player One's mark is " + mark1);
-        write("Player Two's mark is " + mark2);
+    public void displayMarks(Marks mark1, Marks mark2) {
+        write("Player One's mark is " + mark1.toString());
+        write("Player Two's mark is " + mark2.toString());
     }
 
     public void gameOptions() {
@@ -55,6 +55,5 @@ public class DisplayFake implements Display {
     }
 
     public void clearScreen() {
-
     }
 }

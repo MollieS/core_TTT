@@ -13,13 +13,13 @@ public class ComputerPlayerTest {
     public void returnsARandomInteger() {
         Input input = new InputFake();
         Board board = new Board();
-        ComputerPlayer computer = new ComputerPlayer(new FakeRandomizer(), "X");
+        ComputerPlayer computer = new ComputerPlayer(new FakeRandomizer(), Marks.X);
         assertEquals("1", computer.getLocation(input, board));
     }
 
     @Test
     public void hasMark() {
-        ComputerPlayer computerPlayer = new ComputerPlayer(new FakeRandomizer(), "X");
-        assertEquals(computerPlayer.getMark(), "X");
+        ComputerPlayer computerPlayer = new ComputerPlayer(new FakeRandomizer(), Marks.X);
+        assertEquals(computerPlayer.getMark(), Marks.X);
     }
 }

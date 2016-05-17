@@ -31,8 +31,8 @@ public class GameEngine {
         }
     }
 
-    public String board(int cell) {
-        return board.get(cell);
+    public Marks board(int cell) {
+        return board.getAt(cell);
     }
 
     public boolean isWon() {
@@ -47,15 +47,11 @@ public class GameEngine {
         return board.isFinished();
     }
 
-    public String winner() {
-        return isWon() ? getWinner() : "Nothing";
+    public Marks winner() {
+        return isWon() ? getWinner() : null;
     }
 
-    public String getBoardStatus() {
-        return board.getStatus();
-    }
-
-    private String getWinner() {
+    private Marks getWinner() {
         return board.getWinningMark();
     }
 

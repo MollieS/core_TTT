@@ -6,6 +6,9 @@ import static org.junit.Assert.assertEquals;
 
 public class ConsoleBoardTest {
 
+    Marks X = Marks.X;
+    Marks O = Marks.O;
+
     @Test
     public void displaysBoard() {
         ConsoleBoard consoleBoard = new ConsoleBoard();
@@ -16,15 +19,15 @@ public class ConsoleBoardTest {
     public void updatesBoard() {
         ConsoleBoard consoleBoard = new ConsoleBoard();
         consoleBoard.show();
-        assertEquals(board(), consoleBoard.update("X", 1));
+        assertEquals(board(), consoleBoard.update(X, 1));
     }
 
     @Test
     public void maintainsChanged() {
         ConsoleBoard consoleBoard = new ConsoleBoard();
         consoleBoard.show();
-        consoleBoard.update("X", 1);
-        assertEquals(drawBoard(), consoleBoard.update("O", 0));
+        consoleBoard.update(X, 1);
+        assertEquals(drawBoard(), consoleBoard.update(O, 0));
     }
 
     private String drawBoard() {

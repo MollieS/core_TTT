@@ -2,13 +2,13 @@ package ttt;
 
 public class HumanPlayer implements Player {
 
-    private String mark;
+    private Marks mark;
 
-    public HumanPlayer(String mark) {
+    public HumanPlayer(Marks mark) {
         this.mark = mark;
     }
 
-    public String getMark() {
+    public Marks getMark() {
         return mark;
     }
 

@@ -50,7 +50,7 @@ public class GamePlay {
         int location = Integer.parseInt(choice);
         if (location < 0 || location > 8) {
             return true;
-        } else if (gameEngine.board.get(location) != " ") {
+        } else if (gameEngine.board.getAt(location) != Marks.CLEAR) {
             return true;
         }
         return false;

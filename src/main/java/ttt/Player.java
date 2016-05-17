@@ -2,7 +2,7 @@ package ttt;
 
 public interface Player {
 
-    String getMark();
+    Marks getMark();
 
     String getLocation(Input input, Board board);
 }

@@ -12,15 +12,15 @@ import static org.junit.Assert.assertFalse;
 public class BoardTest {
 
     private Board board;
-    private String X;
-    private String O;
+    private Marks X;
+    private Marks O;
 
 
     @Before
     public void setUp() {
         this.board = new Board();
-        this.X = "X";
-        this.O = "O";
+        this.X = Marks.X;
+        this.O = Marks.O;
 
     }
 
@@ -32,7 +32,7 @@ public class BoardTest {
     @Test
     public void placesAMark() {
         board.placeMark(X, 0);
-        assertEquals(X, board.get(0));
+        assertEquals(X, board.getAt(0));
     }
 
     @Test
@@ -139,7 +139,7 @@ public class BoardTest {
 
     private void fillBoard() {
         for (int i = 0; i < 9; i++) {
-            board.placeMark(String.valueOf(i), i);
+            board.placeMark(X, i);
         }
     }
 

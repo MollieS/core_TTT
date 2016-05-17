@@ -16,8 +16,8 @@ public class GamePlayTest {
     public void setUp() {
         Board board = new Board();
         ConsoleBoard consoleBoard = new ConsoleBoard();
-        Player player1 = new HumanPlayer("X");
-        Player player2 = new HumanPlayer("O");
+        Player player1 = new HumanPlayer(Marks.X);
+        Player player2 = new HumanPlayer(Marks.O);
         GameEngine gameEngine = new GameEngine(player1, player2, board);
         this.input = new InputFake();
         this.display = new DisplayFake();
