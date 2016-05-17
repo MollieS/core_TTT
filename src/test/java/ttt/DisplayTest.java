@@ -7,13 +7,10 @@ import static junit.framework.TestCase.assertTrue;
 
 public class DisplayTest {
 
-    private GameEngine gameEngine;
     private DisplayFake display;
 
     @Before
     public void setUp() {
-        Board board = new Board();
-        this.gameEngine = new GameEngine(new HumanPlayer(Marks.X), new HumanPlayer(Marks.O), board);
         this.display = new DisplayFake();
     }
 
@@ -34,8 +31,6 @@ public class DisplayTest {
         display.write("Hello");
         assertTrue((display.read()).contains("Hello"));
     }
-
-
 
     @Test
     public void promptsForLocation() {
@@ -82,4 +77,9 @@ public class DisplayTest {
         assertTrue(displayContains("Already taken"));
     }
 
+    @Test
+    public void displaysWinner() {
+        display.winner(Marks.X);
+        assertTrue(displayContains("X wins!"));
+    }
 }

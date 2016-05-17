@@ -25,7 +25,7 @@ public class Board {
         return board.length;
     }
 
-    public Marks getAt(int cell) {
+    public Marks getMarkAt(int cell) {
         return board[cell];
     }
 

@@ -8,7 +8,7 @@ public class ConsoleBoard {
             if (isEndOfRow(cell)) {
                 board += "|\n-------------\n";
             }
-            board += "| " + cellContents(gameBoard.getAt(cell), cell) + " ";
+            board += "| " + cellContents(gameBoard.getMarkAt(cell), cell) + " ";
         }
         board += lastRow();
         return board;

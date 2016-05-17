@@ -14,7 +14,7 @@ public class GameLoop {
     }
 
     public void start() {
-        write(consoleBoard.createBoard(gameEngine.board));
+        write(consoleBoard.createBoard(gameEngine.showBoard()));
         playGame();
         getGameResult();
     }
@@ -23,7 +23,7 @@ public class GameLoop {
         if (gameEngine.isDraw()) {
             display.draw();
         } else {
-            write(gameEngine.winningMark().toString() + " wins!");
+            display.winner(gameEngine.winningMark());
         }
     }
 
@@ -32,8 +32,8 @@ public class GameLoop {
             String input = getLocation();
             display.clearScreen();
             if (isInvalidInput(input)) {
-                write(consoleBoard.createBoard(gameEngine.board));
-                write("Please choose a valid option");
+                write(consoleBoard.createBoard(gameEngine.showBoard()));
+                display.invalidInput();
             } else {
                 placeMark(input);
             }
@@ -43,31 +43,25 @@ public class GameLoop {
     private void placeMark(String input) {
         int choice = Integer.parseInt(input);
         gameEngine.play(choice);
-        write(consoleBoard.createBoard(gameEngine.board));
+        write(consoleBoard.createBoard(gameEngine.showBoard()));
     }
 
     private boolean isInvalidInput(String choice) {
         int location = Integer.parseInt(choice);
         if (location < 0 || location > 8) {
+            display.invalidLocation();
             return true;
-        } else if (gameEngine.board.getAt(location) != Marks.CLEAR) {
+        } else if (gameEngine.showBoard().getMarkAt(location) != Marks.CLEAR) {
+            display.takenCell();
             return true;
         }
         return false;
     }
 
-    private void invalidInput(String message) {
-        if (message.equals("taken")) {
-            display.takenCell();
-        } else if (message.equals("invalid location")) {
-            display.invalidLocation();
-        }
-    }
-
     private String getLocation() {
-        display.displayTurn(gameEngine.currentPlayer.getMark());
+        display.displayTurn(gameEngine.currentMark());
         display.promptForLocation();
-        return gameEngine.currentPlayer.getLocation(input, gameEngine.board);
+        return gameEngine.getCurrentPlayer().getLocation(input, gameEngine.showBoard());
     }
 
     private void write(String message) {

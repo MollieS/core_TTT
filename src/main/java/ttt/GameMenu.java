@@ -31,7 +31,7 @@ public class GameMenu {
         List<Player> players = createPlayers(choice);
         Board board = new Board();
         GameEngine gameEngine = new GameEngine(players.get(0), players.get(1), board);
-        display.displayMarks(gameEngine.currentPlayer.getMark(), gameEngine.nextPlayer.getMark());
+        display.displayMarks(gameEngine.currentMark(), gameEngine.nextMark());
         return gameEngine;
     }
 

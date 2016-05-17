@@ -32,7 +32,7 @@ public class BoardTest {
     @Test
     public void placesAMark() {
         board.placeMark(X, 0);
-        assertEquals(X, board.getAt(0));
+        assertEquals(X, board.getMarkAt(0));
     }
 
     @Test
@@ -121,7 +121,7 @@ public class BoardTest {
     public void clearsCell() {
         board.placeMark(X, 4);
         board.clear(4);
-        assertEquals(Marks.CLEAR, board.getAt(4));
+        assertEquals(Marks.CLEAR, board.getMarkAt(4));
     }
 
     @Test
