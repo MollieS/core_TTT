@@ -5,10 +5,10 @@ public class ConsoleDisplay implements Display {
     public void gameOptions() {
         write("How would you like to play?");
         write("1. Human v Human");
-        write("3. Human v Random Computer");
-        write("4. Random Computer v Human");
-        write("5. Human v Perfect Computer");
-        write("6. Perfect Computer v Human");
+        write("2. Human v Random Computer");
+        write("3. Random Computer v Human");
+        write("4. Human v Perfect Computer");
+        write("5. Perfect Computer v Human");
     }
 
     public void write(String message) {

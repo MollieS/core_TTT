@@ -23,16 +23,6 @@ public class MenuTest {
     }
 
     @Test
-    public void createsAHumanOpponent() {
-        assertTrue(menu.createPlayers("1").get(1).getClass() == HumanPlayer.class);
-    }
-
-    @Test
-    public void createsAComputerOpponent() {
-        assertTrue(menu.createPlayers("4").get(0).getClass() == ComputerPlayer.class);
-    }
-
-    @Test
     public void createsAGame() {
         input.set("2");
         assertTrue(menu.createGame().getClass() == GameEngine.class);
