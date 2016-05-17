@@ -36,37 +36,77 @@ public class BoardTest {
     }
 
     @Test
-    public void knowsWhenEmpty() {
+    public void newBoardIsEmpty() {
         assertTrue(board.isEmpty());
     }
 
     @Test
-    public void knowsWhenNotEmptyForX() {
+    public void boardIsNotEmptyAfterMarkPlaced() {
         board.placeMark(X, 4);
         assertFalse(board.isEmpty());
     }
 
     @Test
-    public void knowsWhenNotEmptyForO() {
-        board.placeMark(X, 6);
+    public void boardIsNotEmptyForEitherMark() {
+        board.placeMark(O, 6);
         assertFalse(board.isEmpty());
     }
 
     @Test
-    public void winningPositionsContainsDiagonalWin() {
-        diagonalWin();
+    public void winningPositionsContainsLeftDiagonalWin() {
+        leftDiagonalWin();
         assertTrue(board.winningPositions().contains(Arrays.asList(O, O, O)));
     }
 
     @Test
-    public void winningPositionsContainsHorizontalWin() {
+    public void winningPositionsContainsRightDiagonalWin() {
+        rightDiagonalWin();
+        assertTrue(board.winningPositions().contains(Arrays.asList(O, O, O)));
+    }
+
+    @Test
+    public void winningPositionsContainsHorizontalWinOnTopRow() {
         horizontalWin();
         assertTrue(board.winningPositions().contains(Arrays.asList(X, X, X)));
     }
 
     @Test
-    public void winningPostitionsContainsVerticalWin() {
-        verticalWin();
+    public void winningPositionsContainsHorizontalWinOnMiddleRow() {
+        board.placeMark(X, 3);
+        board.placeMark(X, 4);
+        board.placeMark(X, 5);
+        assertTrue(board.winningPositions().contains(Arrays.asList(X, X, X)));
+    }
+
+    @Test
+    public void winningPositionsContainsHorizontalWinOnBottomRow() {
+        board.placeMark(O, 6);
+        board.placeMark(O, 7);
+        board.placeMark(O, 8);
+        assertTrue(board.winningPositions().contains(Arrays.asList(O, O, O)));
+    }
+
+    @Test
+    public void winningPositionsContainsLeftColumnWin() {
+        board.placeMark(O, 0);
+        board.placeMark(O, 3);
+        board.placeMark(O, 6);
+        assertTrue(board.winningPositions().contains(Arrays.asList(O, O, O)));
+    }
+
+    @Test
+    public void winningPositionsContainsMiddleColumnWin() {
+        board.placeMark(O, 1);
+        board.placeMark(O, 4);
+        board.placeMark(O, 7);
+        assertTrue(board.winningPositions().contains(Arrays.asList(O, O, O)));
+    }
+
+    @Test
+    public void winningPositionsContainsRightColumnWin() {
+        board.placeMark(X, 2);
+        board.placeMark(X, 5);
+        board.placeMark(X, 8);
         assertTrue(board.winningPositions().contains(Arrays.asList(X, X, X)));
     }
 
@@ -81,18 +121,22 @@ public class BoardTest {
     public void clearsCell() {
         board.placeMark(X, 4);
         board.clear(4);
-        assertTrue(board.isEmpty());
+        assertEquals(Marks.CLEAR, board.getAt(4));
     }
 
     @Test
-    public void knowsWinnerForHorizontalWin() {
-        horizontalWin();
+    public void knowsWinnerForFirstMark() {
+        board.placeMark(X, 0);
+        board.placeMark(X, 1);
+        board.placeMark(X, 2);
         assertTrue(board.isAWinFor(X));
     }
 
     @Test
-    public void knowsWinnerForDiagonalWin() {
-        diagonalWin();
+    public void knowsWinnerForSecondMark() {
+        board.placeMark(O, 3);
+        board.placeMark(O, 4);
+        board.placeMark(O, 5);
         assertTrue(board.isAWinFor(O));
     }
 
@@ -107,6 +151,7 @@ public class BoardTest {
         board.placeMark(X, 1);
         assertFalse(board.isFull());
     }
+
     @Test
     public void knowsIfDrawn() {
         drawnGame();
@@ -151,7 +196,7 @@ public class BoardTest {
         board.placeMark(X, 2);
     }
 
-    private void diagonalWin() {
+    private void leftDiagonalWin() {
         board.placeMark(X, 3);
         board.placeMark(O, 0);
         board.placeMark(X, 5);
@@ -160,12 +205,10 @@ public class BoardTest {
         board.placeMark(O, 8);
     }
 
-    private void verticalWin() {
-        board.placeMark(X, 0);
+    private void rightDiagonalWin() {
         board.placeMark(O, 2);
-        board.placeMark(X, 3);
         board.placeMark(O, 4);
-        board.placeMark(X, 6);
+        board.placeMark(O, 6);
     }
 
     private void drawnGame() {

@@ -23,7 +23,6 @@ public class GamePlay {
         if (gameEngine.isDraw()) {
             display.draw();
         } else {
-            write(gameEngine.winner() + " wins!");
         }
     }
 

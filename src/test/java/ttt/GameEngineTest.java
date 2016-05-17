@@ -101,19 +101,19 @@ public class GameEngineTest {
     @Test
     public void knowsWinnerIfPlayerOne() {
         horizontalWinForPlayerOne();
-        assertEquals(player1.getMark(), gameEngine.winner());
+        assertEquals(player1.getMark(), gameEngine.winningMark());
     }
 
     @Test
     public void knowsWinnerIfPlayerTwo() {
         diagonalWinForPlayer2();
-        assertEquals(player2.getMark(), gameEngine.winner());
+        assertEquals(player2.getMark(), gameEngine.winningMark());
     }
 
     @Test
     public void returnsNooneWhenNoWinner() {
         drawGame();
-        assertEquals(null, gameEngine.winner());
+        assertEquals(null, gameEngine.winningMark());
     }
 
     private void horizontalWinForPlayerOne() {

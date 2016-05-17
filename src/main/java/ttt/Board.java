@@ -2,17 +2,16 @@ package ttt;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Board {
 
     private Marks[] board = new Marks[9];
     private final Marks emptyCell;
-    private Marks winningMark;
 
     public Board() {
         this.emptyCell = Marks.CLEAR;
-        this.winningMark = null;
         for (int cell = 0; cell < 9; cell++) {
             board[cell] = emptyCell;
         }
@@ -30,14 +29,6 @@ public class Board {
         return board[cell];
     }
 
-    public Marks getWinningMark() {
-        return winningMark;
-    }
-
-    public boolean isAWinFor(Marks mark) {
-        return isWon() && winningMark.equals(mark);
-    }
-
     public void clear(int location) {
         board[location] = emptyCell;
     }
@@ -45,37 +36,18 @@ public class Board {
     public List<Integer> availableMoves() {
         List<Integer> moves = new ArrayList<>();
         for (int cell = 0; cell < board.length; cell++) {
-            if (board[cell].equals(emptyCell)) {
-                moves.add(cell);
-            }
+            if (board[cell].equals(emptyCell)) moves.add(cell);
         }
         return moves;
     }
 
-    public List<List<Marks>> winningPositions() {
-        List<List<Marks>> positions = new ArrayList<>();
-        positions.addAll(rows());
-        positions.addAll(columns());
-        positions.addAll(diagonals());
-        return positions;
-    }
-
-
     public boolean isFull() {
-        for (Marks cell : board) {
-            if (cell.equals(emptyCell)) {
-                return false;
-            }
-        }
+        for (Marks cell : board) if (cell.equals(emptyCell)) return false;
         return true;
     }
 
     public boolean isEmpty() {
-        for (Marks cell : board) {
-            if (!cell.equals(emptyCell)) {
-                return false;
-            }
-        }
+        for (Marks cell : board) if (!cell.equals(emptyCell)) return false;
         return true;
     }
 
@@ -87,44 +59,51 @@ public class Board {
         return (isDraw() || isWon());
     }
 
-    public boolean isWon() {
-        for (List<Marks> selection : winningPositions()) {
-            if (isAWin(selection)) {
-                return true;
-            }
+    public boolean isAWinFor(Marks mark) {
+        for (List<Marks> cells : winningPositions()) {
+            if (Collections.frequency(cells, mark) == 3) return true;
         }
         return false;
     }
 
-    private List<Marks> getSelection(int first, int middle, int last) {
-        return Arrays.asList(board[first], board[middle], board[last]);
+    public boolean isWon() {
+        for (List<Marks> cells : winningPositions()) {
+            if (Collections.frequency(cells, Marks.O) == 3) return true;
+            if (Collections.frequency(cells, Marks.X) == 3) return true;
+        }
+        return false;
     }
 
-    private boolean isAWin(List<Marks> selection) {
-        if (selection.get(0).equals(emptyCell)) return false;
-        if (!selection.get(0).equals(selection.get(1))) return false;
-        if (!selection.get(1).equals(selection.get(2))) return false;
-        winningMark = selection.get(0);
-        return true;
+    public List<List<Marks>> winningPositions() {
+        List<List<Marks>> positions = rows();
+        positions.addAll(columns());
+        positions.addAll(diagonals());
+        return positions;
     }
 
     private List<List<Marks>> rows() {
-        List<Marks> top = getSelection(0, 1, 2);
-        List<Marks> middle = getSelection(3, 4, 5);
-        List<Marks> bottom = getSelection(6, 7, 8);
-        return Arrays.asList(top, middle, bottom);
+        int rowStart = 0;
+        List<List<Marks>> rows = new ArrayList<>();
+        for (int i = 0; i < 3; i ++) {
+            rows.add(Arrays.asList(board[rowStart], board[rowStart + 1], board[rowStart + 2]));
+            rowStart += 3;
+        }
+        return rows;
     }
 
     private List<List<Marks>> columns() {
-        List<Marks> left = getSelection(0, 3, 6);
-        List<Marks> middle = getSelection(1, 4, 7);
-        List<Marks> right = getSelection(2, 5, 8);
-        return Arrays.asList(left, middle, right);
+        int columnStart = 0;
+        List<List<Marks>> columns = new ArrayList<>();
+        for (int cell = 0; cell < 3; cell ++) {
+            columns.add(Arrays.asList(board[columnStart], board[columnStart + 3], board[columnStart + 6]));
+            columnStart ++;
+        }
+        return columns;
     }
 
     private List<List<Marks>> diagonals() {
-        List<Marks> left = getSelection(0, 4, 8);
-        List<Marks> right = getSelection(2, 4, 6);
+        List<Marks> left = Arrays.asList(board[0], board[4], board[8]);
+        List<Marks> right = Arrays.asList(board[2], board[4], board[6]);
         return Arrays.asList(left, right);
     }
 }

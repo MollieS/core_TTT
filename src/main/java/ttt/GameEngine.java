@@ -47,12 +47,8 @@ public class GameEngine {
         return board.isFinished();
     }
 
-    public Marks winner() {
-        return isWon() ? getWinner() : null;
+    public Marks winningMark() {
+        if (board.isAWinFor(currentPlayer.getMark())) return currentPlayer.getMark();
+        return nextPlayer.getMark();
     }
-
-    private Marks getWinner() {
-        return board.getWinningMark();
-    }
-
 }

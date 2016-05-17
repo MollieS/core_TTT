@@ -126,15 +126,15 @@ public class PerfectPlayerTest {
         cpuChoice = computerLocation();
         assertEquals(1, cpuChoice);
         game.play(cpuChoice);
-        game.play(7);
+        game.play(5);
         cpuChoice = computerLocation();
-        assertEquals(6, cpuChoice);
+        assertEquals(7, cpuChoice);
         game.play(cpuChoice);
-        game.play(2);
+        game.play(6);
         cpuChoice = computerLocation();
-        assertEquals(5, cpuChoice);
+        assertEquals(7, cpuChoice);
         game.play(cpuChoice);
-        game.play(3);
+        game.play(1);
     }
 
     @Test
