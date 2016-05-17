@@ -111,7 +111,7 @@ public class GameEngineTest {
     }
 
     @Test
-    public void returnsNooneWhenNoWinner() {
+    public void returnsNullWhenThereIsNoWinner() {
         drawGame();
         assertEquals(null, gameEngine.winningMark());
     }

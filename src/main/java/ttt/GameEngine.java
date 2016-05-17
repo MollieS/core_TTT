@@ -48,6 +48,7 @@ public class GameEngine {
     }
 
     public Marks winningMark() {
+        if (!board.isWon()) return null;
         if (board.isAWinFor(currentPlayer.getMark())) return currentPlayer.getMark();
         return nextPlayer.getMark();
     }
