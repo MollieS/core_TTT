@@ -68,5 +68,4 @@ public class GameEngine {
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
-
 }

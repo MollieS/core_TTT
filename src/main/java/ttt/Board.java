@@ -42,21 +42,21 @@ public class Board {
     }
 
     public boolean isFull() {
-        for (Marks cell : board) if (cell.equals(emptyCell)) return false;
+        for (Marks cell : board) if (cell.equals(emptyCell)) { return false; }
         return true;
     }
 
     public boolean isEmpty() {
-        for (Marks cell : board) if (!cell.equals(emptyCell)) return false;
+        for (Marks cell : board) if (!cell.equals(emptyCell)) { return false; }
         return true;
     }
 
     public boolean isDraw() {
-        return (isFull() && !isWon());
+        return isFull() && !isWon();
     }
 
     public boolean isFinished() {
-        return (isDraw() || isWon());
+        return isDraw() || isWon();
     }
 
     public boolean isAWinFor(Marks mark) {

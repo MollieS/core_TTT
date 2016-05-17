@@ -1,9 +1,5 @@
 package ttt;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 public class ComputerPlayer implements Player{
 
     private Randomizer randomizer;

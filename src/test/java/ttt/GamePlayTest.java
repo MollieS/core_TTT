@@ -32,13 +32,6 @@ public class GamePlayTest {
     }
 
     @Test
-    public void onlyAcceptsNumbers() {
-        input.set("Hello", "5", "1", "4", "2", "6");
-        gameplay.start();
-        assertTrue(displayContains("Please choose a valid option"));
-    }
-
-    @Test
     public void loopsUntilValidLocation() {
         input.set("10", "5", "1", "4", "2", "6", "7", "9");
         gameplay.start();

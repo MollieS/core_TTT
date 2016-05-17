@@ -13,11 +13,11 @@ public class HumanPlayer implements Player {
     }
 
     public String getLocation(Input input, Board board) {
-        String location = input.get();
-        try {
-            return String.valueOf((Integer.parseInt(location) - 1));
-        } catch (NumberFormatException e) {
-            return "-1";
-        }
+        return formatLocation(input);
+    }
+
+    private String formatLocation(Input input) {
+        int location = Integer.parseInt((input.get()));
+        return String.valueOf(location - 1);
     }
 }

@@ -13,6 +13,12 @@ public class InputFake implements Input {
     }
 
     public String get() {
-        return stream.remove(0);
+        String input = stream.remove(0);
+        if (validInput(input)) return input;
+        return "-1";
+    }
+
+    public boolean validInput(String input) {
+        return input.matches("[0-9]+");
     }
 }

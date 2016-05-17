@@ -18,16 +18,16 @@ public class ConsoleBoard {
         return "-------------\n";
     }
 
-    private String cellContents(Marks cell, int location) {
-        if (cell.equals(Marks.CLEAR)) return String.valueOf((location + 1));
-        return cell.toString();
-    }
-
     private String lastRow() {
         return "|\n-------------";
     }
 
     private boolean isEndOfRow(int cell) {
         return cell % 3 == 0 && cell != 0;
+    }
+
+    private String cellContents(Marks cell, int location) {
+        if (cell.equals(Marks.CLEAR)) return String.valueOf((location + 1));
+        return cell.toString();
     }
 }

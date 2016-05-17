@@ -49,12 +49,7 @@ public class GameMenu {
     }
 
     private boolean validInput(String input) {
-        try {
-            int type = Integer.parseInt(input);
-            return gameOptions.contains(type);
-
-        } catch (NumberFormatException e) {
-            return false;
-        }
+        int type = Integer.parseInt(input);
+        return gameOptions.contains(type);
     }
 }
