@@ -7,18 +7,14 @@ import java.util.Objects;
 public class ComputerPlayer implements Player{
 
     private Randomizer randomizer;
-    private List<Integer> locations = new ArrayList();
     private Marks mark;
 
     public ComputerPlayer(Randomizer randomizer, Marks mark) {
         this.randomizer = randomizer;
-        for (int cells = 0; cells < 9; cells++) {
-            locations.add(cells);
-        }
         this.mark = mark;
     }
 
-    public String getLocation(Input inputFeed, Board board) {
+    public String getLocation(Input input, Board board) {
         int location = randomizer.location(board.availableMoves());
         return String.valueOf(location);
     }

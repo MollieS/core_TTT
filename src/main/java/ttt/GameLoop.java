@@ -1,12 +1,12 @@
 package ttt;
 
-public class GamePlay {
+public class GameLoop {
     private GameEngine gameEngine;
     private Display display;
     private Input input;
     private ConsoleBoard consoleBoard;
 
-    public GamePlay(GameEngine gameEngine, Input input, Display output, ConsoleBoard consoleBoard) {
+    public GameLoop(GameEngine gameEngine, Input input, Display output, ConsoleBoard consoleBoard) {
         this.gameEngine = gameEngine;
         this.display = output;
         this.input = input;

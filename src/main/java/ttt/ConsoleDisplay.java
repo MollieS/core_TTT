@@ -4,8 +4,7 @@ public class ConsoleDisplay implements Display {
 
     public void gameOptions() {
         write("How would you like to play?");
-        write("1. Human v Human - you go first");
-        write("2. Human v Human - your opponent goes first");
+        write("1. Human v Human");
         write("3. Human v Random Computer");
         write("4. Random Computer v Human");
         write("5. Human v Perfect Computer");

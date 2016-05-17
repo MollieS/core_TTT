@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 public class GamePlayTest {
 
-    private GamePlay gameplay;
+    private GameLoop gameplay;
     private DisplayFake display;
     private InputFake input;
 
@@ -21,7 +21,7 @@ public class GamePlayTest {
         GameEngine gameEngine = new GameEngine(player1, player2, board);
         this.input = new InputFake();
         this.display = new DisplayFake();
-        this.gameplay = new GamePlay(gameEngine, input, display, consoleBoard);
+        this.gameplay = new GameLoop(gameEngine, input, display, consoleBoard);
     }
 
     @Test

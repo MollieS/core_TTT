@@ -10,7 +10,7 @@ import static org.junit.Assert.assertFalse;
 public class ComputerPlayerTest {
 
     @Test
-    public void returnsARandomInteger() {
+    public void returnsARandomLocation() {
         Input input = new InputFake();
         Board board = new Board();
         ComputerPlayer computer = new ComputerPlayer(new FakeRandomizer(), Marks.X);

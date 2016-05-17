@@ -12,4 +12,9 @@ public class InputTest {
         input.set("Hello");
         assertEquals("Hello", input.get());
     }
+
+    @Test
+    public void onlyTakesNumbers() {
+
+    }
 }
