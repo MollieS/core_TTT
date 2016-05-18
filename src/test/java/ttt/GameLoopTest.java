@@ -14,7 +14,7 @@ public class GameLoopTest {
 
     @Before
     public void setUp() {
-        Board board = new Board();
+        Board board = new Board(3);
         ConsoleBoard consoleBoard = new ConsoleBoard();
         Player player1 = new HumanPlayer(Marks.X);
         Player player2 = new HumanPlayer(Marks.O);

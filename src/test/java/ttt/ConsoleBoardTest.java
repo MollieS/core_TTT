@@ -15,7 +15,7 @@ public class ConsoleBoardTest {
     @Before
     public void setUp() {
         this.consoleBoard = new ConsoleBoard();
-        this.board = new Board();
+        this.board = new Board(3);
     }
 
     @Test

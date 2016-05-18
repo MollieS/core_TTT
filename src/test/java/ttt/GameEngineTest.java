@@ -20,7 +20,7 @@ public class GameEngineTest {
     public void setUp() throws Exception {
         this.player1 = new HumanPlayer(Marks.X);
         this.player2 = new HumanPlayer(Marks.O);
-        this.board = new Board();
+        this.board = new Board(3);
         this.gameEngine = new GameEngine(player1, player2, board);
     }
 

@@ -18,7 +18,7 @@ public class PerfectPlayerTest {
     public void setUp() {
         this.perfectPlayer = new PerfectPlayer(X);
         Player opponent = new HumanPlayer(O);
-        this.board = new Board();
+        this.board = new Board(3);
         this.game = new GameEngine(perfectPlayer, opponent, board);
         this.input = new InputFake();
     }
@@ -87,20 +87,14 @@ public class PerfectPlayerTest {
 
     @Test
     public void goesForCentreIfCornerTaken() {
-        perfectPlayer = new PerfectPlayer(X);
-        Player opponent = new HumanPlayer(O);
-        board = new Board();
-        game = new GameEngine(opponent, perfectPlayer, board);
+        setUpGame();
         game.play(0);
         assertEquals(4, computerLocation());
     }
 
     @Test
     public void doesNotGoForCentreTwice() {
-        perfectPlayer = new PerfectPlayer(X);
-        Player opponent = new HumanPlayer(O);
-        board = new Board();
-        game = new GameEngine(opponent, perfectPlayer, board);
+        setUpGame();
         game.play(0);
         game.play((computerLocation()));
         game.play(2);
@@ -114,10 +108,7 @@ public class PerfectPlayerTest {
 
     @Test
     public void playsADrawWhenSecond() {
-        perfectPlayer = new PerfectPlayer(X);
-        Player opponent = new HumanPlayer(O);
-        board = new Board();
-        game = new GameEngine(opponent, perfectPlayer, board);
+        setUpGame();
         game.play(0);
         int computerLocation = computerLocation();
         assertEquals(4, computerLocation);
@@ -156,5 +147,13 @@ public class PerfectPlayerTest {
         board.placeMark(X, cpuChoice);
         board.placeMark(O, 3);
     }
+
+    private void setUpGame() {
+        perfectPlayer = new PerfectPlayer(X);
+        Player opponent = new HumanPlayer(O);
+        board = new Board(3);
+        game = new GameEngine(opponent, perfectPlayer, board);
+    }
+
 
 }
