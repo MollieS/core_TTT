@@ -26,7 +26,7 @@ public class GameLoopTest {
 
     @Test
     public void promptsUserForLocation() {
-        input.set("5", "1", "4", "2", "6");
+        input.set("5", "1", "4", "2", "6", "2");
         gameLoop.start();
         assertTrue(displayContains("choose a location"));
     }
@@ -40,23 +40,38 @@ public class GameLoopTest {
 
     @Test
     public void playsADraw() {
-        input.set("1", "2", "3", "4", "6", "7", "8", "9", "5");
+        input.set("1", "2", "3", "4", "6", "7", "8", "9", "5", "2");
         gameLoop.start();
         assertTrue(displayContains("It's a draw!"));
     }
 
     @Test
     public void returnsWinner() {
-        input.set("5", "1", "4", "2", "6");
+        input.set("5", "1", "4", "2", "6", "2");
         gameLoop.start();
         assertTrue(displayContains("X wins!"));
     }
 
     @Test
     public void cannotChooseTakenLocation() {
-        input.set("1", "4", "2", "5", "2", "3");
+        input.set("1", "4", "2", "5", "2", "3", "2");
         gameLoop.start();
-        assertTrue(displayContains("Please choose a valid option"));
+        assertTrue(displayContains("Already taken"));
+    }
+
+    @Test
+    public void canReplayTheGame() {
+        input.set("1", "4", "2", "5", "3", "1", "1", "1", "4", "2", "5", "3", "2");
+        gameLoop.start();
+        assertTrue(displayContains("Would you like to play again?"));
+        assertTrue(displayContains("Welcome to Tic Tac Toe"));
+    }
+
+    @Test
+    public void canChooseToNotReplayTheGame() {
+        input.set("1", "4", "2", "5", "2", "3", "2");
+        gameLoop.start();
+        assertTrue(displayContains("Thanks for playing!"));
     }
 
     private boolean displayContains(String message) {
