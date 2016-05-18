@@ -33,11 +33,10 @@ public class GameLoopTest {
 
     @Test
     public void loopsUntilValidLocation() {
-        input.set("10", "5", "1", "4", "2", "6", "7", "9");
+        input.set("10", "-1", "5", "1", "4", "2", "6", "7", "9");
         gameLoop.start();
         assertTrue(displayContains("Please choose a location from 1 to 9"));
     }
-
 
     @Test
     public void playsADraw() {
