@@ -13,7 +13,7 @@ public class DisplayTest {
     @Before
     public void setUp() {
         Board board = new Board();
-        this.gameEngine = new GameEngine(new HumanPlayer("X"), new HumanPlayer("O"), board);
+        this.gameEngine = new GameEngine(new HumanPlayer(Marks.X), new HumanPlayer(Marks.O), board);
         this.display = new DisplayFake();
     }
 
@@ -25,7 +25,7 @@ public class DisplayTest {
 
     @Test
     public void displaysPlayerMarks() {
-        display.displayMarks("X", "O");
+        display.displayMarks(Marks.X, Marks.O);
         assertTrue(displayContains("Player Two's mark is O"));
     }
 
@@ -67,12 +67,12 @@ public class DisplayTest {
 
     @Test
     public void displaysCurrentPlayerMark() {
-        assertTrue(display.currentMark("X").contains("X"));
+        assertTrue((display.currentMark(Marks.X)).contains(Marks.X.toString()));
     }
 
     @Test
     public void displaysTurn() {
-        display.displayTurn("X");
+        display.displayTurn(Marks.X);
         assertTrue(displayContains("X's turn"));
     }
 

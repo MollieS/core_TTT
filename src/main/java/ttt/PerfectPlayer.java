@@ -4,14 +4,14 @@ import java.util.*;
 
 public class PerfectPlayer implements Player {
 
-    private String mark;
-    private String opponent;
+    private Marks mark;
+    private Marks opponent;
     private HashMap<Integer, Integer> scores = new HashMap<>();
     private Map.Entry<Integer, Integer> bestMove;
 
-    public PerfectPlayer(String mark) {
+    public PerfectPlayer(Marks mark) {
         this.mark = mark;
-        this.opponent = mark.equals(PlayerFactory.Marks.X.mark) ? PlayerFactory.Marks.O.mark : PlayerFactory.Marks.X.mark;
+        this.opponent = mark.equals(Marks.X) ? Marks.O : Marks.X;
     }
 
     public String getLocation(Input input, Board board) {
@@ -21,7 +21,7 @@ public class PerfectPlayer implements Player {
     }
 
 
-    public String getMark() {
+    public Marks getMark() {
         return mark;
     }
 
@@ -75,7 +75,7 @@ public class PerfectPlayer implements Player {
         bestMove = null;
     }
 
-    public String opponentMark() {
+    public Marks opponentMark() {
         return opponent;
     }
 }

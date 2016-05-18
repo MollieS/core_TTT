@@ -6,8 +6,8 @@ import static junit.framework.TestCase.assertTrue;
 
 public class PlayerFactoryTest {
 
-    private String X = PlayerFactory.Marks.X.mark;
-    private String O = PlayerFactory.Marks.O.mark;
+    private Marks X = Marks.X;
+    private Marks O = Marks.O;
 
     @Test
     public void createsAHumanvHumanGameWhereXGoesFirst() {
@@ -44,14 +44,14 @@ public class PlayerFactoryTest {
     @Test
     public void createsAPerfectPlayer() {
         Player player = getPlayer(5, 1);
-        assertTrue(player.getClass().equals(new PerfectPlayer("O").getClass()));
+        assertTrue(player.getClass().equals(new PerfectPlayer(O).getClass()));
         assertTrue(player.getMark().equals(O));
     }
 
     @Test
     public void createsAPerfectPlayerThatGoesFirst() {
         Player player = getPlayer(6, 0);
-        assertTrue(player.getClass().equals(new PerfectPlayer("O").getClass()));
+        assertTrue(player.getClass().equals(new PerfectPlayer(O).getClass()));
         assertTrue(player.getMark().equals(X));
     }
 }

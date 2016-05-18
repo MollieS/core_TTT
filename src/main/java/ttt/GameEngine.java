@@ -18,10 +18,7 @@ public class GameEngine {
 
     public void play(int location) {
         board.placeMark(currentPlayer.getMark(), location);
-        String status = board.getStatus();
-        if (status.equals("mark placed")) {
-            switchTurn();
-        }
+        switchTurn();
     }
 
     public void switchTurn() {
@@ -34,8 +31,8 @@ public class GameEngine {
         }
     }
 
-    public String board(int cell) {
-        return board.get(cell);
+    public Marks board(int cell) {
+        return board.getAt(cell);
     }
 
     public boolean isWon() {
@@ -50,16 +47,9 @@ public class GameEngine {
         return board.isFinished();
     }
 
-    public String winner() {
-        return isWon() ? getWinner() : "Nothing";
+    public Marks winningMark() {
+        if (!board.isWon()) return null;
+        if (board.isAWinFor(currentPlayer.getMark())) return currentPlayer.getMark();
+        return nextPlayer.getMark();
     }
-
-    public String getBoardStatus() {
-        return board.getStatus();
-    }
-
-    private String getWinner() {
-        return board.getWinningMark();
-    }
-
 }

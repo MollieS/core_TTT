@@ -14,13 +14,13 @@ public interface Display {
 
     void takenCell();
 
-    void displayTurn(String mark);
+    void displayTurn(Marks mark);
 
     void greet();
 
-    void displayMarks(String mark1, String mark2);
+    void displayMarks(Marks mark1, Marks mark2);
 
-    String currentMark(String mark);
+    String currentMark(Marks mark);
 
     void gameOptions();
 

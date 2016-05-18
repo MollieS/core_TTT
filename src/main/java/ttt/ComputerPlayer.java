@@ -8,9 +8,9 @@ public class ComputerPlayer implements Player{
 
     private Randomizer randomizer;
     private List<Integer> locations = new ArrayList();
-    private String mark;
+    private Marks mark;
 
-    public ComputerPlayer(Randomizer randomizer, String mark) {
+    public ComputerPlayer(Randomizer randomizer, Marks mark) {
         this.randomizer = randomizer;
         for (int cells = 0; cells < 9; cells++) {
             locations.add(cells);
@@ -23,7 +23,7 @@ public class ComputerPlayer implements Player{
         return String.valueOf(location);
     }
 
-    public String getMark() {
+    public Marks getMark() {
         return mark;
     }
 }

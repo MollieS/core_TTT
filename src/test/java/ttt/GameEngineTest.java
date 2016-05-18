@@ -18,8 +18,8 @@ public class GameEngineTest {
 
     @Before
     public void setUp() throws Exception {
-        this.player1 = new HumanPlayer("X");
-        this.player2 = new HumanPlayer("O");
+        this.player1 = new HumanPlayer(Marks.X);
+        this.player2 = new HumanPlayer(Marks.O);
         this.board = new Board();
         this.gameEngine = new GameEngine(player1, player2, board);
     }
@@ -33,14 +33,14 @@ public class GameEngineTest {
     @Test
     public void playsAMove() {
         gameEngine.play(0);
-        assertEquals("X", gameEngine.board(0));
+        assertEquals(Marks.X, gameEngine.board(0));
     }
 
     @Test
     public void switchesTurns() {
         gameEngine.play(0);
         gameEngine.play(1);
-        assertEquals("O", gameEngine.board(1));
+        assertEquals(Marks.O, gameEngine.board(1));
     }
 
     @Test
@@ -48,7 +48,7 @@ public class GameEngineTest {
         gameEngine.play(0);
         gameEngine.play(4);
         gameEngine.play(7);
-        assertEquals("X", gameEngine.board(7));
+        assertEquals(Marks.X, gameEngine.board(7));
     }
 
     @Test
@@ -101,19 +101,19 @@ public class GameEngineTest {
     @Test
     public void knowsWinnerIfPlayerOne() {
         horizontalWinForPlayerOne();
-        assertEquals(player1.getMark(), gameEngine.winner());
+        assertEquals(player1.getMark(), gameEngine.winningMark());
     }
 
     @Test
     public void knowsWinnerIfPlayerTwo() {
         diagonalWinForPlayer2();
-        assertEquals(player2.getMark(), gameEngine.winner());
+        assertEquals(player2.getMark(), gameEngine.winningMark());
     }
 
     @Test
-    public void returnsNooneWhenNoWinner() {
+    public void returnsNullWhenThereIsNoWinner() {
         drawGame();
-        assertEquals("Nothing", gameEngine.winner());
+        assertEquals(null, gameEngine.winningMark());
     }
 
     private void horizontalWinForPlayerOne() {

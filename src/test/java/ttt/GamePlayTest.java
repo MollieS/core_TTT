@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class GamePlayTest {
 
@@ -15,8 +16,8 @@ public class GamePlayTest {
     public void setUp() {
         Board board = new Board();
         ConsoleBoard consoleBoard = new ConsoleBoard();
-        Player player1 = new HumanPlayer("X");
-        Player player2 = new HumanPlayer("O");
+        Player player1 = new HumanPlayer(Marks.X);
+        Player player2 = new HumanPlayer(Marks.O);
         GameEngine gameEngine = new GameEngine(player1, player2, board);
         this.input = new InputFake();
         this.display = new DisplayFake();
@@ -67,16 +68,16 @@ public class GamePlayTest {
     public void cannotChooseTakenLocation() {
         input.set("1", "4", "2", "5", "2", "3");
         gameplay.start();
-        assertTrue(displayContains("Already taken"));
+        assertTrue(displayContains("Please choose a valid option"));
     }
 
     private String drawBoard() {
         return "-------------" + "\n" +
-                "| X | O | X |" + "\n" +
-                "-------------" + "\n" +
-                "| O | X | X |" + "\n" +
-                "-------------" + "\n" +
                 "| O | X | O |" + "\n" +
+                "-------------" + "\n" +
+                "| X | O | O |" + "\n" +
+                "-------------" + "\n" +
+                "| X | O | X |" + "\n" +
                 "-------------";
     }
 }

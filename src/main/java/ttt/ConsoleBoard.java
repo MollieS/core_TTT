@@ -28,9 +28,9 @@ public class ConsoleBoard {
         return "|\n-------------";
     }
 
-    public String update(String mark, int location) {
+    public String update(Marks mark, int location) {
         String number = String.valueOf((location + 1));
-        this.board = board.replace(number, mark);
+        this.board = board.replace(number, mark.toString());
         return board;
     }
 

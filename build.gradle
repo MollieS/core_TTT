@@ -5,10 +5,21 @@ plugins {
 
 apply plugin: 'java'
 
+jar {
+  manifest {
+    attributes 'Main-Class': 'build.classes.main.ttt.Main'
+  }
+}
+
+task (run, dependsOn: 'classes', type: JavaExec) {
+  main = "ttt.Main" 
+  classpath = sourceSets.main.runtimeClasspath
+}
 // In this section you declare where to find the dependencies of your project
 repositories {
   jcenter()
 }
+
 
 // In this section you declare the dependencies for your production and ttt code
 dependencies {
@@ -38,3 +49,7 @@ jacocoTestReport {
         })
   }
 }
+
+run {
+  standardInput = System.in
+  }

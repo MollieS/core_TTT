@@ -2,22 +2,22 @@ package ttt;
 
 public class HumanPlayer implements Player {
 
-    private String mark;
+    private Marks mark;
 
-    public HumanPlayer(String mark) {
+    public HumanPlayer(Marks mark) {
         this.mark = mark;
     }
 
-    public String getMark() {
+    public Marks getMark() {
         return mark;
     }
 
-    public String getLocation(Input inputFeed, Board board) {
-        String location = inputFeed.get();
+    public String getLocation(Input input, Board board) {
+        String location = input.get();
         try {
             return String.valueOf((Integer.parseInt(location) - 1));
         } catch (NumberFormatException e) {
-            return "invalid location";
+            return "-1";
         }
     }
 }

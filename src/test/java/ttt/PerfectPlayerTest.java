@@ -11,11 +11,13 @@ public class PerfectPlayerTest {
     private Input input;
     private GameEngine game;
     private Board board;
+    private Marks X = Marks.X;
+    private Marks O = Marks.O;
 
     @Before
     public void setUp() {
-        this.perfectPlayer = new PerfectPlayer("X");
-        Player opponent = new HumanPlayer("O");
+        this.perfectPlayer = new PerfectPlayer(X);
+        Player opponent = new HumanPlayer(O);
         this.board = new Board();
         this.game = new GameEngine(perfectPlayer, opponent, board);
         this.input = new InputFake();
@@ -23,7 +25,7 @@ public class PerfectPlayerTest {
 
     @Test
     public void knowsOpponentMark() {
-        assertEquals("O", perfectPlayer.opponentMark());
+        assertEquals(O, perfectPlayer.opponentMark());
     }
 
     @Test
@@ -41,10 +43,10 @@ public class PerfectPlayerTest {
 
     @Test
     public void goesForWin() {
-        board.placeMark("X", 0);
-        board.placeMark("O", 3);
-        board.placeMark("X", 1);
-        board.placeMark("O", 4);
+        board.placeMark(X, 0);
+        board.placeMark(O, 3);
+        board.placeMark(X, 1);
+        board.placeMark(O, 4);
         assertEquals(2, computerLocation());
     }
 
@@ -85,8 +87,8 @@ public class PerfectPlayerTest {
 
     @Test
     public void goesForCentreIfCornerTaken() {
-        perfectPlayer = new PerfectPlayer("X");
-        Player opponent = new HumanPlayer("O");
+        perfectPlayer = new PerfectPlayer(X);
+        Player opponent = new HumanPlayer(O);
         board = new Board();
         game = new GameEngine(opponent, perfectPlayer, board);
         game.play(0);
@@ -95,8 +97,8 @@ public class PerfectPlayerTest {
 
     @Test
     public void doesNotGoForCentreTwice() {
-        perfectPlayer = new PerfectPlayer("X");
-        Player opponent = new HumanPlayer("O");
+        perfectPlayer = new PerfectPlayer(X);
+        Player opponent = new HumanPlayer(O);
         board = new Board();
         game = new GameEngine(opponent, perfectPlayer, board);
         game.play(0);
@@ -112,8 +114,8 @@ public class PerfectPlayerTest {
 
     @Test
     public void playsADrawWhenSecond() {
-        perfectPlayer = new PerfectPlayer("X");
-        Player opponent = new HumanPlayer("O");
+        perfectPlayer = new PerfectPlayer(X);
+        Player opponent = new HumanPlayer(O);
         board = new Board();
         game = new GameEngine(opponent, perfectPlayer, board);
         game.play(0);
@@ -139,20 +141,20 @@ public class PerfectPlayerTest {
     public void winsIfFirst() {
         int cpuChoice = computerLocation();
         assertEquals(0, cpuChoice);
-        board.placeMark("X", cpuChoice);
-        board.placeMark("O", 4);
+        board.placeMark(X, cpuChoice);
+        board.placeMark(O, 4);
         cpuChoice = computerLocation();
         assertEquals(1, cpuChoice);
-        board.placeMark("X", cpuChoice);
-        board.placeMark("O", 2);
+        board.placeMark(X, cpuChoice);
+        board.placeMark(O, 2);
         cpuChoice = computerLocation();
         assertEquals(6, cpuChoice);
-        board.placeMark("X", cpuChoice);
-        board.placeMark("O", 2);
+        board.placeMark(X, cpuChoice);
+        board.placeMark(O, 2);
         cpuChoice = computerLocation();
         assertEquals(3, cpuChoice);
-        board.placeMark("X", cpuChoice);
-        board.placeMark("O", 3);
+        board.placeMark(X, cpuChoice);
+        board.placeMark(O, 3);
     }
 
 }
