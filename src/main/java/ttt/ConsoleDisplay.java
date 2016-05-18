@@ -70,4 +70,10 @@ public class ConsoleDisplay implements Display {
         write("Thanks for playing!");
         write("Goodbye!");
     }
+
+    public void boardOptions() {
+        write("What size board would you like?");
+        write("1. 3 x 3");
+        write("2. 4 x 4");
+    }
 }

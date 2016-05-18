@@ -31,4 +31,6 @@ public interface Display {
     void replay();
 
     void goodbye();
+
+    void boardOptions();
 }

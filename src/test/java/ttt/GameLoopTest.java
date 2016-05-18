@@ -61,7 +61,7 @@ public class GameLoopTest {
 
     @Test
     public void canReplayTheGame() {
-        input.set("1", "4", "2", "5", "3", "1", "1", "1", "4", "2", "5", "3", "2");
+        input.set("1", "4", "2", "5", "3", "1", "1", "1", "1", "4", "2", "5", "3", "2");
         gameLoop.start();
         assertTrue(displayContains("Would you like to play again?"));
         assertTrue(displayContains("Welcome to Tic Tac Toe"));
