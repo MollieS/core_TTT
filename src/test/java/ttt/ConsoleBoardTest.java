@@ -36,6 +36,19 @@ public class ConsoleBoardTest {
         assertEquals(drawnBoard(), consoleBoard.createBoard(board));
     }
 
+    @Test
+    public void drawsBigBoard() {
+        Board bigBoard = new Board(4);
+        assertEquals(bigBoard(), consoleBoard.createBoard(bigBoard));
+    }
+
+    @Test
+    public void updatesBigBoard() {
+        Board bigBoard = new Board(4);
+        bigBoard.placeMark(X, 0);
+        assertEquals(markedbigBoard(), consoleBoard.createBoard(bigBoard));
+    }
+
     private String drawnBoard() {
         return "-------------" + "\n" +
                 "| O | X | 3 |" + "\n" +
@@ -66,4 +79,27 @@ public class ConsoleBoardTest {
                 "-------------";
     }
 
+    private String bigBoard() {
+        return "---------------------\n" +
+                "|  1 |  2 |  3 |  4 |\n" +
+                "---------------------\n" +
+                "|  5 |  6 |  7 |  8 |\n" +
+                "---------------------\n" +
+                "|  9 | 10 | 11 | 12 |\n" +
+                "---------------------\n" +
+                "| 13 | 14 | 15 | 16 |\n" +
+                "--------------------";
+    }
+
+    private String markedbigBoard() {
+        return "---------------------\n" +
+                "|  X |  2 |  3 |  4 |\n" +
+                "---------------------\n" +
+                "|  5 |  6 |  7 |  8 |\n" +
+                "---------------------\n" +
+                "|  9 | 10 | 11 | 12 |\n" +
+                "---------------------\n" +
+                "| 13 | 14 | 15 | 16 |\n" +
+                "--------------------";
+    }
 }
