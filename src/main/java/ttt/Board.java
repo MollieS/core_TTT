@@ -8,16 +8,14 @@ import java.util.List;
 public class Board {
 
     private Marks[] board;
-    private final Marks emptyCell;
     private int size;
 
     public Board(int size) {
         this.size = size;
         int boardSize = (size * size);
         this.board = new Marks[boardSize];
-        this.emptyCell = Marks.CLEAR;
         for (int cell = 0; cell < boardSize; cell++) {
-            board[cell] = emptyCell;
+            board[cell] = Marks.CLEAR;
         }
     }
 
@@ -34,24 +32,24 @@ public class Board {
     }
 
     public void clear(int location) {
-        board[location] = emptyCell;
+        board[location] = Marks.CLEAR;
     }
 
     public List<Integer> availableMoves() {
         List<Integer> moves = new ArrayList<>();
         for (int cell = 0; cell < board.length; cell++) {
-            if (board[cell].equals(emptyCell)) moves.add(cell);
+            if (board[cell] == Marks.CLEAR) moves.add(cell);
         }
         return moves;
     }
 
     public boolean isFull() {
-        for (Marks cell : board) if (cell.equals(emptyCell)) { return false; }
+        for (Marks cell : board) if (cell == Marks.CLEAR) { return false; }
         return true;
     }
 
     public boolean isEmpty() {
-        for (Marks cell : board) if (!cell.equals(emptyCell)) { return false; }
+        for (Marks cell : board) if (cell != Marks.CLEAR) { return false; }
         return true;
     }
 
@@ -65,15 +63,15 @@ public class Board {
 
     public boolean isAWinFor(Marks mark) {
         for (List<Marks> cells : winningPositions()) {
-            if (Collections.frequency(cells, mark) == size) return true;
+            if (isAllTheSame(mark, cells)) return true;
         }
         return false;
     }
 
     public boolean isWon() {
         for (List<Marks> cells : winningPositions()) {
-            if (Collections.frequency(cells, Marks.O) == size) return true;
-            if (Collections.frequency(cells, Marks.X) == size) return true;
+            if (isAllTheSame(Marks.O, cells)) return true;
+            if (isAllTheSame(Marks.X, cells)) return true;
         }
         return false;
     }
@@ -134,5 +132,13 @@ public class Board {
             right.add(board[i]);
         }
         return right;
+    }
+
+    private boolean isAllTheSame(Marks mark, List<Marks> cells) {
+        return Collections.frequency(cells, mark) == size;
+    }
+
+    public int dimensions() {
+        return size;
     }
 }

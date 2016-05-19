@@ -182,6 +182,11 @@ public class BoardTest {
         assertTrue(board.isWon());
     }
 
+    @Test
+    public void knowsItsDimensions() {
+        assertEquals(3, board.dimensions());
+    }
+
     private void fillBoard() {
         for (int i = 0; i < 9; i++) {
             board.placeMark(X, i);

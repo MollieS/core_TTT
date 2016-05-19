@@ -58,7 +58,7 @@ public class GameLoop {
 
     private boolean isInvalidInput(String choice) {
         int location = Integer.parseInt(choice);
-        if (location < 0 || location > 8) {
+        if (location < 0 || location > (gameEngine.showBoard().size() - 1)) {
             display.invalidLocation();
             return true;
         } else if (gameEngine.board(location) != Marks.CLEAR) {
