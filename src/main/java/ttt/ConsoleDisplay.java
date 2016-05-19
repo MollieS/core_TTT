@@ -4,12 +4,11 @@ public class ConsoleDisplay implements Display {
 
     public void gameOptions() {
         write("How would you like to play?");
-        write("1. Human v Human - you go first");
-        write("2. Human v Human - your opponent goes first");
-        write("3. Human v Random Computer");
-        write("4. Random Computer v Human");
-        write("5. Human v Perfect Computer");
-        write("6. Perfect Computer v Human");
+        write("1. Human v Human");
+        write("2. Human v Random Computer");
+        write("3. Random Computer v Human");
+        write("4. Human v Perfect Computer");
+        write("5. Perfect Computer v Human");
     }
 
     public void write(String message) {
@@ -56,5 +55,9 @@ public class ConsoleDisplay implements Display {
     public void clearScreen() {
         write("\033[H\033[2J");
         System.out.flush();
+    }
+
+    public void winner(Marks mark) {
+        write(mark + " wins!");
     }
 }

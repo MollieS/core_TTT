@@ -1,36 +1,42 @@
 package ttt;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class ConsoleBoardTest {
 
-    Marks X = Marks.X;
-    Marks O = Marks.O;
+    private Marks X = Marks.X;
+    private Marks O = Marks.O;
+    private ConsoleBoard consoleBoard;
+    private Board board;
+
+    @Before
+    public void setUp() {
+        this.consoleBoard = new ConsoleBoard();
+        this.board = new Board();
+    }
 
     @Test
     public void displaysBoard() {
-        ConsoleBoard consoleBoard = new ConsoleBoard();
-        assertEquals(emptyBoard(), consoleBoard.show());
+        assertEquals(emptyBoard(), consoleBoard.createBoard(board));
     }
 
     @Test
     public void updatesBoard() {
-        ConsoleBoard consoleBoard = new ConsoleBoard();
-        consoleBoard.show();
-        assertEquals(board(), consoleBoard.update(X, 1));
+        board.placeMark(X, 1);
+        assertEquals(board(), consoleBoard.createBoard(board));
     }
 
     @Test
-    public void maintainsChanged() {
-        ConsoleBoard consoleBoard = new ConsoleBoard();
-        consoleBoard.show();
-        consoleBoard.update(X, 1);
-        assertEquals(drawBoard(), consoleBoard.update(O, 0));
+    public void maintainsChange() {
+        board.placeMark(X, 1);
+        board.placeMark(O, 0);
+        assertEquals(drawnBoard(), consoleBoard.createBoard(board));
     }
 
-    private String drawBoard() {
+    private String drawnBoard() {
         return "-------------" + "\n" +
                 "| O | X | 3 |" + "\n" +
                 "-------------" + "\n" +

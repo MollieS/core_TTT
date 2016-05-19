@@ -2,21 +2,15 @@ package ttt;
 
 public class ConsoleBoard {
 
-    private String board;
-
-    public ConsoleBoard() {
-        String rows = firstRow();
+    public String createBoard(Board gameBoard) {
+        String board = firstRow();
         for (int cell = 0; cell < 9; cell++) {
             if (isEndOfRow(cell)) {
-                rows += "|\n-------------\n";
+                board += "|\n-------------\n";
             }
-            rows += "| " + String.valueOf((cell + 1)) + " ";
+            board += "| " + cellContents(gameBoard.getMarkAt(cell), cell) + " ";
         }
-        rows += lastRow();
-        this.board = rows;
-    }
-
-    public String show() {
+        board += lastRow();
         return board;
     }
 
@@ -28,13 +22,12 @@ public class ConsoleBoard {
         return "|\n-------------";
     }
 
-    public String update(Marks mark, int location) {
-        String number = String.valueOf((location + 1));
-        this.board = board.replace(number, mark.toString());
-        return board;
-    }
-
     private boolean isEndOfRow(int cell) {
         return cell % 3 == 0 && cell != 0;
+    }
+
+    private String cellContents(Marks cell, int location) {
+        if (cell.equals(Marks.CLEAR)) return String.valueOf((location + 1));
+        return cell.toString();
     }
 }

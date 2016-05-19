@@ -26,4 +26,5 @@ public interface Display {
 
     void clearScreen();
 
+    void winner(Marks x);
 }

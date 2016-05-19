@@ -7,7 +7,6 @@ public class PerfectPlayer implements Player {
     private Marks mark;
     private Marks opponent;
     private HashMap<Integer, Integer> scores = new HashMap<>();
-    private Map.Entry<Integer, Integer> bestMove;
 
     public PerfectPlayer(Marks mark) {
         this.mark = mark;
@@ -57,6 +56,7 @@ public class PerfectPlayer implements Player {
     }
 
     private int bestMove() {
+        Map.Entry<Integer, Integer> bestMove = null;
         for (Map.Entry<Integer, Integer> entry : scores.entrySet()) {
             if (bestMove == null || entry.getValue().compareTo(bestMove.getValue()) > 0) {
                 bestMove = entry;
@@ -72,7 +72,6 @@ public class PerfectPlayer implements Player {
 
     private void resetMoveSelection() {
         scores = new HashMap();
-        bestMove = null;
     }
 
     public Marks opponentMark() {

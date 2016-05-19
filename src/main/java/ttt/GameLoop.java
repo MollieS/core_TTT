@@ -1,12 +1,12 @@
 package ttt;
 
-public class GamePlay {
+public class GameLoop {
     private GameEngine gameEngine;
     private Display display;
     private Input input;
     private ConsoleBoard consoleBoard;
 
-    public GamePlay(GameEngine gameEngine, Input input, Display output, ConsoleBoard consoleBoard) {
+    public GameLoop(GameEngine gameEngine, Input input, Display output, ConsoleBoard consoleBoard) {
         this.gameEngine = gameEngine;
         this.display = output;
         this.input = input;
@@ -14,7 +14,7 @@ public class GamePlay {
     }
 
     public void start() {
-        write(consoleBoard.show());
+        write(consoleBoard.createBoard(gameEngine.showBoard()));
         playGame();
         getGameResult();
     }
@@ -23,7 +23,7 @@ public class GamePlay {
         if (gameEngine.isDraw()) {
             display.draw();
         } else {
-            write(gameEngine.winningMark().toString() + " wins!");
+            display.winner(gameEngine.winningMark());
         }
     }
 
@@ -32,8 +32,8 @@ public class GamePlay {
             String input = getLocation();
             display.clearScreen();
             if (isInvalidInput(input)) {
-                write(consoleBoard.show());
-                write("Please choose a valid option");
+                write(consoleBoard.createBoard(gameEngine.showBoard()));
+                display.invalidInput();
             } else {
                 placeMark(input);
             }
@@ -43,31 +43,25 @@ public class GamePlay {
     private void placeMark(String input) {
         int choice = Integer.parseInt(input);
         gameEngine.play(choice);
-        write(consoleBoard.update(gameEngine.currentPlayer.getMark(), choice));
+        write(consoleBoard.createBoard(gameEngine.showBoard()));
     }
 
     private boolean isInvalidInput(String choice) {
         int location = Integer.parseInt(choice);
         if (location < 0 || location > 8) {
+            display.invalidLocation();
             return true;
-        } else if (gameEngine.board.getAt(location) != Marks.CLEAR) {
+        } else if (gameEngine.showBoard().getMarkAt(location) != Marks.CLEAR) {
+            display.takenCell();
             return true;
         }
         return false;
     }
 
-    private void invalidInput(String message) {
-        if (message.equals("taken")) {
-            display.takenCell();
-        } else if (message.equals("invalid location")) {
-            display.invalidLocation();
-        }
-    }
-
     private String getLocation() {
-        display.displayTurn(gameEngine.currentPlayer.getMark());
+        display.displayTurn(gameEngine.currentMark());
         display.promptForLocation();
-        return gameEngine.currentPlayer.getLocation(input, gameEngine.board);
+        return gameEngine.getCurrentPlayer().getLocation(input, gameEngine.showBoard());
     }
 
     private void write(String message) {

@@ -56,4 +56,8 @@ public class DisplayFake implements Display {
 
     public void clearScreen() {
     }
+
+    public void winner(Marks mark) {
+        write(mark + " wins!");
+    }
 }

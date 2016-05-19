@@ -21,36 +21,29 @@ public class PlayerFactoryTest {
     }
 
     @Test
-    public void createsAHumanvHumanGameWhereOGoesFirst() {
-        Player player = getPlayer(2, 0);
-        assertTrue(player.getClass().equals(new HumanPlayer(O).getClass()));
-        assertTrue(player.getMark().equals(O));
-    }
-
-    @Test
     public void createsARandomComputerWhereHumanGoesFirst() {
-        Player player = getPlayer(3, 1);
+        Player player = getPlayer(2, 1);
         assertTrue(player.getClass().equals(new ComputerPlayer(new RandomLocationGenerator(), O).getClass()));
         assertTrue(player.getMark().equals(O));
     }
 
     @Test
     public void createsARandomComputerWhereComputerGoesFirst() {
-        Player player = getPlayer(4, 0);
+        Player player = getPlayer(3, 0);
         assertTrue(player.getClass().equals(new ComputerPlayer(new RandomLocationGenerator(), X).getClass()));
         assertTrue(player.getMark().equals(X));
     }
 
     @Test
     public void createsAPerfectPlayer() {
-        Player player = getPlayer(5, 1);
+        Player player = getPlayer(4, 1);
         assertTrue(player.getClass().equals(new PerfectPlayer(O).getClass()));
         assertTrue(player.getMark().equals(O));
     }
 
     @Test
     public void createsAPerfectPlayerThatGoesFirst() {
-        Player player = getPlayer(6, 0);
+        Player player = getPlayer(5, 0);
         assertTrue(player.getClass().equals(new PerfectPlayer(O).getClass()));
         assertTrue(player.getMark().equals(X));
     }

@@ -19,19 +19,12 @@ public class GameMenu {
         display.gameOptions();
     }
 
-    public List<Player> createPlayers(String gameChoice) {
-        int choice = (Integer.parseInt(gameChoice) - 1);
-        List<Player> players = PlayerFactory.create(gameOptions.get(choice));
-        return players;
-    }
-
     public GameEngine createGame() {
         openMenu();
         String choice = loopForValidInput(input.get());
-        List<Player> players = createPlayers(choice);
-        Board board = new Board();
-        GameEngine gameEngine = new GameEngine(players.get(0), players.get(1), board);
-        display.displayMarks(gameEngine.currentPlayer.getMark(), gameEngine.nextPlayer.getMark());
+        int formattedChoice = Integer.parseInt(choice);
+        GameEngine gameEngine = GameFactory.create(formattedChoice);
+        display.displayMarks(gameEngine.currentMark(), gameEngine.nextMark());
         return gameEngine;
     }
 
@@ -49,12 +42,7 @@ public class GameMenu {
     }
 
     private boolean validInput(String input) {
-        try {
-            int type = Integer.parseInt(input);
-            return gameOptions.contains(type);
-
-        } catch (NumberFormatException e) {
-            return false;
-        }
+        int type = Integer.parseInt(input);
+        return gameOptions.contains(type);
     }
 }

@@ -8,12 +8,10 @@ import java.util.List;
 public class Board {
 
     private Marks[] board = new Marks[9];
-    private final Marks emptyCell;
 
     public Board() {
-        this.emptyCell = Marks.CLEAR;
         for (int cell = 0; cell < 9; cell++) {
-            board[cell] = emptyCell;
+            board[cell] = Marks.CLEAR;
         }
     }
 
@@ -25,51 +23,55 @@ public class Board {
         return board.length;
     }
 
-    public Marks getAt(int cell) {
+    public Marks getMarkAt(int cell) {
         return board[cell];
     }
 
     public void clear(int location) {
-        board[location] = emptyCell;
+        board[location] = Marks.CLEAR;
     }
 
     public List<Integer> availableMoves() {
         List<Integer> moves = new ArrayList<>();
         for (int cell = 0; cell < board.length; cell++) {
-            if (board[cell].equals(emptyCell)) moves.add(cell);
+            if (board[cell] == Marks.CLEAR) moves.add(cell);
         }
         return moves;
     }
 
     public boolean isFull() {
-        for (Marks cell : board) if (cell.equals(emptyCell)) return false;
+        for (Marks cell : board) if (cell == Marks.CLEAR) { return false; }
         return true;
     }
 
     public boolean isEmpty() {
-        for (Marks cell : board) if (!cell.equals(emptyCell)) return false;
+        for (Marks cell : board) if (cell != Marks.CLEAR) { return false; }
         return true;
     }
 
     public boolean isDraw() {
-        return (isFull() && !isWon());
+        return isFull() && !isWon();
     }
 
     public boolean isFinished() {
-        return (isDraw() || isWon());
+        return isDraw() || isWon();
     }
 
     public boolean isAWinFor(Marks mark) {
         for (List<Marks> cells : winningPositions()) {
-            if (Collections.frequency(cells, mark) == 3) return true;
+            if (isAllTheSame(mark, cells)) return true;
         }
         return false;
     }
 
+    private boolean isAllTheSame(Marks mark, List<Marks> cells) {
+        return Collections.frequency(cells, mark) == 3;
+    }
+
     public boolean isWon() {
         for (List<Marks> cells : winningPositions()) {
-            if (Collections.frequency(cells, Marks.O) == 3) return true;
-            if (Collections.frequency(cells, Marks.X) == 3) return true;
+            if (isAllTheSame(Marks.O, cells)) return true;
+            if (isAllTheSame(Marks.X, cells)) return true;
         }
         return false;
     }

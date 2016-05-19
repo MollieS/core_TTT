@@ -119,21 +119,21 @@ public class PerfectPlayerTest {
         board = new Board();
         game = new GameEngine(opponent, perfectPlayer, board);
         game.play(0);
-        int cpuChoice = computerLocation();
-        assertEquals(4, cpuChoice);
-        game.play(cpuChoice);
+        int computerLocation = computerLocation();
+        assertEquals(4, computerLocation);
+        game.play(computerLocation);
         game.play(8);
-        cpuChoice = computerLocation();
-        assertEquals(1, cpuChoice);
-        game.play(cpuChoice);
+        computerLocation = computerLocation();
+        assertEquals(1, computerLocation);
+        game.play(computerLocation);
         game.play(7);
-        cpuChoice = computerLocation();
-        assertEquals(6, cpuChoice);
-        game.play(cpuChoice);
+        computerLocation = computerLocation();
+        assertEquals(6, computerLocation);
+        game.play(computerLocation);
         game.play(2);
-        cpuChoice = computerLocation();
-        assertEquals(5, cpuChoice);
-        game.play(cpuChoice);
+        computerLocation = computerLocation();
+        assertEquals(5, computerLocation);
+        game.play(computerLocation);
         game.play(3);
     }
 

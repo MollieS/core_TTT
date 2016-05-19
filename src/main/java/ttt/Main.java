@@ -7,7 +7,7 @@ public class Main {
         ConsoleBoard consoleBoard = new ConsoleBoard();
         ConsoleInput input = new ConsoleInput();
         GameMenu menu = new GameMenu(input, display);
-        GamePlay gameplay = new GamePlay(menu.createGame(), input, display, consoleBoard);
+        GameLoop gameplay = new GameLoop(menu.createGame(), input, display, consoleBoard);
         gameplay.start();
     }
 }

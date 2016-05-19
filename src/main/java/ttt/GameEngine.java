@@ -2,9 +2,9 @@ package ttt;
 
 public class GameEngine {
 
-    public Board board;
-    public Player currentPlayer;
-    public Player nextPlayer;
+    private Board board;
+    private Player currentPlayer;
+    private Player nextPlayer;
     private Player player1;
     private Player player2;
 
@@ -32,7 +32,7 @@ public class GameEngine {
     }
 
     public Marks board(int cell) {
-        return board.getAt(cell);
+        return board.getMarkAt(cell);
     }
 
     public boolean isWon() {
@@ -51,5 +51,21 @@ public class GameEngine {
         if (!board.isWon()) return null;
         if (board.isAWinFor(currentPlayer.getMark())) return currentPlayer.getMark();
         return nextPlayer.getMark();
+    }
+
+    public Board showBoard() {
+        return board;
+    }
+
+    public Marks currentMark() {
+        return currentPlayer.getMark();
+    }
+
+    public Marks nextMark() {
+        return nextPlayer.getMark();
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
     }
 }
