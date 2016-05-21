@@ -27,4 +27,8 @@ public interface Display {
     void clearScreen();
 
     void winner(Marks x);
+
+    void replay();
+
+    void goodbye();
 }

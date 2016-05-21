@@ -82,4 +82,16 @@ public class DisplayTest {
         display.winner(Marks.X);
         assertTrue(displayContains("X wins!"));
     }
+
+    @Test
+    public void asksForReplay() {
+        display.replay();
+        assertTrue(displayContains("Would you like to play again?"));
+    }
+
+    @Test
+    public void saysGoodbye() {
+        display.goodbye();
+        assertTrue(displayContains("Thanks for playing!"));
+    }
 }

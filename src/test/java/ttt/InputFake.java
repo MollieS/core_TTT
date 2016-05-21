@@ -21,4 +21,9 @@ public class InputFake implements Input {
     public boolean validInput(String input) {
         return input.matches("[0-9]+");
     }
+
+    public String getReplay() {
+        String input = stream.remove(0);
+        return input;
+    }
 }

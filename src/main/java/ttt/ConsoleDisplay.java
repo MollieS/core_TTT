@@ -60,4 +60,14 @@ public class ConsoleDisplay implements Display {
     public void winner(Marks mark) {
         write(mark + " wins!");
     }
+
+    public void replay() {
+        write("Would you like to play again?");
+        write("Type 1 to play, any other key to quit");
+    }
+
+    public void goodbye() {
+        write("Thanks for playing!");
+        write("Goodbye!");
+    }
 }
