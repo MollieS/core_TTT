@@ -3,38 +3,29 @@ package ttt;
 public class ConsoleBoard {
 
     public String createBoard(Board gameBoard) {
-        if (gameBoard.size() == 16) {
-            return bigBoard(gameBoard);
-        }
-        return smallBoard(gameBoard);
+        return board(gameBoard);
     }
 
-    private String smallBoard(Board gameBoard) {
-        String board = firstRow();
-        for (int cell = 0; cell < 9; cell++) {
-            if (isEndOfRow(cell)) {
-                board += "|\n-------------\n";
+    private String board(Board gameBoard) {
+        String board = firstRow(gameBoard.dimensions());
+        for (int cell = 0; cell < gameBoard.size(); cell++) {
+            if (isEndOfRow(cell, gameBoard)) {
+                board += dividingRow(gameBoard.dimensions());
             }
-            board += "|" + cellContents(gameBoard, cell) + " ";
+            board += cellDivider(gameBoard.dimensions()) + cellContents(gameBoard, cell) + " ";
         }
-        board += lastRow();
+        board += lastRow(gameBoard.dimensions());
         return board;
     }
 
-    private String firstRow() {
-        return "-------------\n";
+    private String cellDivider(int dimensions) {
+        if (dimensions == 3) { return "|"; }
+        return "| ";
     }
 
-    private String lastRow() {
-        return "|\n-------------";
-    }
-
-    private boolean isEndOfRow(int cell) {
-        return cell % 3 == 0 && cell != 0;
-    }
-
-    private boolean isEndOfBigRow(int cell) {
-        return cell % 4 == 0 && cell != 0;
+    private String dividingRow(int dimensions) {
+        if (dimensions == 3) { return "|\n-------------\n"; }
+        return "|\n---------------------\n";
     }
 
     private String cellContents(Board board, int location) {
@@ -47,24 +38,17 @@ public class ConsoleBoard {
         return " " + board.getMarkAt(location).toString();
     }
 
-    private String bigFirstRow() {
+    private boolean isEndOfRow(int cell, Board board) {
+        return cell % board.dimensions() == 0 && cell != 0;
+    }
+
+    private String firstRow(int dimensions) {
+        if (dimensions == 3) { return "-------------\n"; }
         return ("---------------------\n");
     }
 
-    private String bigLastRow() {
-        return ("|\n--------------------");
+    private String lastRow(int dimensions) {
+        if (dimensions == 3) { return "|\n-------------"; }
+        return ("|\n---------------------");
     }
-
-    private String bigBoard(Board gameBoard) {
-        String board = bigFirstRow();
-        for (int cell = 0; cell < gameBoard.size(); cell++) {
-            if (isEndOfBigRow(cell)) {
-                board += "|\n---------------------\n";
-            }
-            board += "| " + cellContents(gameBoard, cell) + " ";
-        }
-        board += bigLastRow();
-        return board;
-    }
-
 }
