@@ -11,6 +11,8 @@ public class GameLoopTest {
     private GameLoop gameLoop;
     private DisplayFake display;
     private InputFake input;
+    private String yes = "y";
+    private String no = "n";
 
     @Before
     public void setUp() {
@@ -26,42 +28,42 @@ public class GameLoopTest {
 
     @Test
     public void promptsUserForLocation() {
-        input.set("5", "1", "4", "2", "6", "2");
+        input.set("5", "1", "4", "2", "6", no);
         gameLoop.start();
         assertTrue(displayContains("choose a location"));
     }
 
     @Test
     public void loopsUntilValidLocation() {
-        input.set("10", "-1", "5", "1", "4", "2", "6", "7", "9");
+        input.set("10", "-1", "5", "1", "4", "2", "6", "7", "9", no);
         gameLoop.start();
         assertTrue(displayContains("Please choose a location from 1 to 9"));
     }
 
     @Test
     public void playsADraw() {
-        input.set("1", "2", "3", "4", "6", "7", "8", "9", "5", "2");
+        input.set("1", "2", "3", "4", "6", "7", "8", "9", "5", "2", no);
         gameLoop.start();
         assertTrue(displayContains("It's a draw!"));
     }
 
     @Test
     public void returnsWinner() {
-        input.set("5", "1", "4", "2", "6", "2");
+        input.set("5", "1", "4", "2", "6", no);
         gameLoop.start();
         assertTrue(displayContains("X wins!"));
     }
 
     @Test
     public void cannotChooseTakenLocation() {
-        input.set("1", "4", "2", "5", "2", "3", "2");
+        input.set("1", "4", "2", "5", "2", "3", no);
         gameLoop.start();
         assertTrue(displayContains("Already taken"));
     }
 
     @Test
     public void canReplayTheGame() {
-        input.set("1", "4", "2", "5", "3", "1", "1", "1", "1", "4", "2", "5", "3", "2");
+        input.set("1", "4", "2", "5", "3", yes, "1", "1", "1", "4", "2", "5", "3", no);
         gameLoop.start();
         assertTrue(displayContains("Would you like to play again?"));
         assertTrue(displayContains("Welcome to Tic Tac Toe"));
@@ -69,7 +71,7 @@ public class GameLoopTest {
 
     @Test
     public void canChooseToNotReplayTheGame() {
-        input.set("1", "4", "2", "5", "2", "3", "2");
+        input.set("1", "4", "2", "5", "2", "3", no);
         gameLoop.start();
         assertTrue(displayContains("Thanks for playing!"));
     }
@@ -82,7 +84,7 @@ public class GameLoopTest {
         Player player2 = new HumanPlayer(Marks.O);
         GameEngine gameEngine = new GameEngine(player1, player2, board);
         this.gameLoop = new GameLoop(gameEngine, input, display, consoleBoard);
-        input.set("1", "4", "6", "8", "11", "12", "16", "2");
+        input.set("1", "4", "6", "8", "11", "12", "16", no);
         gameLoop.start();
         assertTrue(displayContains("X wins!"));
     }
