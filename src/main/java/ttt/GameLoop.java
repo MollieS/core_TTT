@@ -5,6 +5,7 @@ public class GameLoop {
     private Display display;
     private Input input;
     private ConsoleBoard consoleBoard;
+    private final String[] replayOptions = {"y", "n"};
 
     public GameLoop(GameEngine gameEngine, Input input, Display output, ConsoleBoard consoleBoard) {
         this.gameEngine = gameEngine;
@@ -70,14 +71,18 @@ public class GameLoop {
 
     private void replay() {
         display.replay();
-        playAgain(input.get());
-        display.goodbye();
+        playAgain(input.getReplay());
     }
 
     private void playAgain(String answer) {
-        if (answer.equals("1")) {
+        if (answer.equals(replayOptions[0])) {
             this.gameEngine = new GameMenu(input, display).createGame();
             start();
+        } else if (answer.equals(replayOptions[1])) {
+            display.goodbye();
+        } else {
+            display.invalidInput();
+            playAgain(input.getReplay());
         }
     }
 

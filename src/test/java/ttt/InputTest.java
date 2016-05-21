@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class InputTest {
 
@@ -25,5 +26,12 @@ public class InputTest {
     public void validatesInput() {
         InputFake input = new InputFake();
         assertFalse(input.validInput("HELLO"));
+    }
+
+    @Test
+    public void getsReplayAnswer() {
+        InputFake input = new InputFake();
+        input.set("y");
+        assertTrue(input.getReplay().contains("y"));
     }
 }
