@@ -1,4 +1,6 @@
-package ttt;
+package ttt.game;
+
+import ttt.consoleui.Input;
 
 public interface Player {
 

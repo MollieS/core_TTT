@@ -2,6 +2,8 @@ package ttt;
 
 import org.junit.Before;
 import org.junit.Test;
+import ttt.game.GameEngine;
+import ttt.gameplay.GameMenu;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;

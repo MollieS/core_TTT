@@ -1,4 +1,4 @@
-package ttt;
+package ttt.game;
 
 import java.util.ArrayList;
 import java.util.Arrays;

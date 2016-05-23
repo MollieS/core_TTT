@@ -1,4 +1,4 @@
-package ttt;
+package ttt.consoleui;
 
 import java.util.Scanner;
 

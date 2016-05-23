@@ -1,5 +1,11 @@
 package ttt;
 
+import ttt.consoleui.ConsoleBoard;
+import ttt.consoleui.ConsoleDisplay;
+import ttt.consoleui.ConsoleInput;
+import ttt.gameplay.GameLoop;
+import ttt.gameplay.GameMenu;
+
 public class Main {
 
     public static void main(String[] args) {

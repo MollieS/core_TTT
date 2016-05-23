@@ -2,6 +2,10 @@ package ttt;
 
 import org.junit.Before;
 import org.junit.Test;
+import ttt.consoleui.Input;
+import ttt.game.Board;
+import ttt.game.Marks;
+import ttt.players.ComputerPlayer;
 
 import static org.junit.Assert.assertEquals;
 

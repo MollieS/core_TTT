@@ -1,4 +1,7 @@
-package ttt;
+package ttt.consoleui;
+
+import ttt.game.Board;
+import ttt.game.Marks;
 
 public class ConsoleBoard {
 
