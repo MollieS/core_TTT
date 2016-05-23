@@ -16,7 +16,7 @@ public class GameLoopTest {
 
     @Before
     public void setUp() {
-        Board board = new Board();
+        Board board = new Board(3);
         ConsoleBoard consoleBoard = new ConsoleBoard();
         Player player1 = new HumanPlayer(Marks.X);
         Player player2 = new HumanPlayer(Marks.O);
@@ -63,7 +63,7 @@ public class GameLoopTest {
 
     @Test
     public void canReplayTheGame() {
-        input.set("1", "4", "2", "5", "3", yes, "1", "1", "4", "2", "5", "3", no);
+        input.set("1", "4", "2", "5", "3", yes, "1", "1", "1", "4", "2", "5", "3", no);
         gameLoop.start();
         assertTrue(displayContains("Would you like to play again?"));
         assertTrue(displayContains("Welcome to Tic Tac Toe"));
@@ -74,6 +74,19 @@ public class GameLoopTest {
         input.set("1", "4", "2", "5", "2", "3", no);
         gameLoop.start();
         assertTrue(displayContains("Thanks for playing!"));
+    }
+
+    @Test
+    public void allowsLocationsForBiggerBoard() {
+        Board board = new Board(4);
+        ConsoleBoard consoleBoard = new ConsoleBoard();
+        Player player1 = new HumanPlayer(Marks.X);
+        Player player2 = new HumanPlayer(Marks.O);
+        GameEngine gameEngine = new GameEngine(player1, player2, board);
+        this.gameLoop = new GameLoop(gameEngine, input, display, consoleBoard);
+        input.set("1", "4", "6", "8", "11", "12", "16", no);
+        gameLoop.start();
+        assertTrue(displayContains("X wins!"));
     }
 
     private boolean displayContains(String message) {

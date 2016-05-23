@@ -69,4 +69,10 @@ public class DisplayFake implements Display {
     public void goodbye() {
         write("Thanks for playing!");
     }
+
+    public void boardOptions() {
+        write("What sized board would you like?");
+        write("1. 3 x 3");
+        write("2. 4 x 4");
+    }
 }

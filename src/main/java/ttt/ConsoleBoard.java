@@ -3,31 +3,52 @@ package ttt;
 public class ConsoleBoard {
 
     public String createBoard(Board gameBoard) {
-        String board = firstRow();
-        for (int cell = 0; cell < 9; cell++) {
-            if (isEndOfRow(cell)) {
-                board += "|\n-------------\n";
+        return board(gameBoard);
+    }
+
+    private String board(Board gameBoard) {
+        String board = firstRow(gameBoard.dimensions());
+        for (int cell = 0; cell < gameBoard.size(); cell++) {
+            if (isEndOfRow(cell, gameBoard)) {
+                board += dividingRow(gameBoard.dimensions());
             }
-            board += "| " + cellContents(gameBoard.getMarkAt(cell), cell) + " ";
+            board += cellDivider(gameBoard.dimensions()) + cellContents(gameBoard, cell) + " ";
         }
-        board += lastRow();
+        board += lastRow(gameBoard.dimensions());
         return board;
     }
 
-    private String firstRow() {
-        return "-------------\n";
+    private String cellDivider(int dimensions) {
+        if (dimensions == 3) { return "|"; }
+        return "| ";
     }
 
-    private String lastRow() {
-        return "|\n-------------";
+    private String dividingRow(int dimensions) {
+        if (dimensions == 3) { return "|\n-------------\n"; }
+        return "|\n---------------------\n";
     }
 
-    private boolean isEndOfRow(int cell) {
-        return cell % 3 == 0 && cell != 0;
+    private String cellContents(Board board, int location) {
+        if (board.getMarkAt(location).equals(Marks.CLEAR))
+            if (location < 9) {
+                return " " + String.valueOf((location + 1));
+            } else {
+                return String.valueOf(location + 1);
+            }
+        return " " + board.getMarkAt(location).toString();
     }
 
-    private String cellContents(Marks cell, int location) {
-        if (cell.equals(Marks.CLEAR)) return String.valueOf((location + 1));
-        return cell.toString();
+    private boolean isEndOfRow(int cell, Board board) {
+        return cell % board.dimensions() == 0 && cell != 0;
+    }
+
+    private String firstRow(int dimensions) {
+        if (dimensions == 3) { return "-------------\n"; }
+        return ("---------------------\n");
+    }
+
+    private String lastRow(int dimensions) {
+        if (dimensions == 3) { return "|\n-------------"; }
+        return ("|\n---------------------");
     }
 }

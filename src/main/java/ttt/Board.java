@@ -7,10 +7,14 @@ import java.util.List;
 
 public class Board {
 
-    private Marks[] board = new Marks[9];
+    private Marks[] board;
+    private int size;
 
-    public Board() {
-        for (int cell = 0; cell < 9; cell++) {
+    public Board(int size) {
+        this.size = size;
+        int boardSize = (size * size);
+        this.board = new Marks[boardSize];
+        for (int cell = 0; cell < boardSize; cell++) {
             board[cell] = Marks.CLEAR;
         }
     }
@@ -64,10 +68,6 @@ public class Board {
         return false;
     }
 
-    private boolean isAllTheSame(Marks mark, List<Marks> cells) {
-        return Collections.frequency(cells, mark) == 3;
-    }
-
     public boolean isWon() {
         for (List<Marks> cells : winningPositions()) {
             if (isAllTheSame(Marks.O, cells)) return true;
@@ -83,12 +83,17 @@ public class Board {
         return positions;
     }
 
+
     private List<List<Marks>> rows() {
         int rowStart = 0;
         List<List<Marks>> rows = new ArrayList<>();
-        for (int i = 0; i < 3; i ++) {
-            rows.add(Arrays.asList(board[rowStart], board[rowStart + 1], board[rowStart + 2]));
-            rowStart += 3;
+        for (int i = 0; i < size; i++) {
+            List<Marks> cells = new ArrayList<>();
+            for (int cell = 0; cell < size; cell++) {
+                cells.add(board[cell + rowStart]);
+            }
+            rows.add(cells);
+            rowStart += size;
         }
         return rows;
     }
@@ -96,16 +101,44 @@ public class Board {
     private List<List<Marks>> columns() {
         int columnStart = 0;
         List<List<Marks>> columns = new ArrayList<>();
-        for (int cell = 0; cell < 3; cell ++) {
-            columns.add(Arrays.asList(board[columnStart], board[columnStart + 3], board[columnStart + 6]));
+        for (int cell = 0; cell < size; cell ++) {
+            List<Marks> cells = new ArrayList<>();
+            for (int i = columnStart; i < size(); i += size) {
+                cells.add(board[i]);
+            }
+            columns.add(cells);
             columnStart ++;
         }
         return columns;
     }
 
     private List<List<Marks>> diagonals() {
-        List<Marks> left = Arrays.asList(board[0], board[4], board[8]);
-        List<Marks> right = Arrays.asList(board[2], board[4], board[6]);
+        List<Marks> left = leftDiagonal();
+        List<Marks> right = rightDiagonal();
         return Arrays.asList(left, right);
+    }
+
+    private List<Marks> leftDiagonal() {
+        List<Marks> left = new ArrayList();
+        for (int i = 0; i < size(); i += (size + 1)) {
+            left.add(board[i]);
+        }
+        return left;
+    }
+
+    public List<Marks> rightDiagonal() {
+        List<Marks> right = new ArrayList();
+        for (int i = (size - 1); i < (size() -1); i += (size - 1)) {
+            right.add(board[i]);
+        }
+        return right;
+    }
+
+    private boolean isAllTheSame(Marks mark, List<Marks> cells) {
+        return Collections.frequency(cells, mark) == size;
+    }
+
+    public int dimensions() {
+        return size;
     }
 }

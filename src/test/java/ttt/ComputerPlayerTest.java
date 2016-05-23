@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 public class ComputerPlayerTest {
 
     private Input input = new InputFake();
-    private Board board = new Board();
+    private Board board = new Board(3);
     private ComputerPlayer computer;
 
     @Before

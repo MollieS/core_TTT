@@ -94,4 +94,10 @@ public class DisplayTest {
         display.goodbye();
         assertTrue(displayContains("Thanks for playing!"));
     }
+
+    @Test
+    public void displaysBoardOptions() {
+        display.boardOptions();
+        assertTrue(displayContains("3 x 3"));
+    }
 }

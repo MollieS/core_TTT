@@ -1,5 +1,6 @@
 package ttt;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,41 +9,59 @@ public class GameMenu {
     private Input input;
     private Display display;
     private List<Integer> gameOptions;
+    private List<Integer> boardOptions;
 
     public GameMenu(Input input, Display display) {
         this.input = input;
         this.display = display;
         this.gameOptions = Arrays.asList(1, 2, 3, 4, 5, 6);
-    }
-
-    public void show() {
-        display.gameOptions();
+        this.boardOptions = Arrays.asList(1, 2);
     }
 
     public GameEngine createGame() {
-        openMenu();
-        String choice = loopForValidInput(input.get());
-        int formattedChoice = Integer.parseInt(choice);
-        GameEngine gameEngine = GameFactory.create(formattedChoice);
+        List<Integer> playerChoices = new ArrayList<>();
+        openGameMenu();
+        playerChoices.add(getGameChoice());
+        openBoardMenu();
+        playerChoices.add(getBoardChoice());
+        GameEngine gameEngine = GameFactory.create(playerChoices);
         display.displayMarks(gameEngine.currentMark(), gameEngine.nextMark());
         return gameEngine;
     }
 
-    private void openMenu() {
+    private int getBoardChoice() {
+        String boardChoice = loopForValidInput(input.get(), 2);
+        return Integer.parseInt(boardChoice);
+    }
+
+    private int getGameChoice() {
+        String gameChoice = loopForValidInput(input.get(), 1);
+        return Integer.parseInt(gameChoice);
+    }
+
+    private void openGameMenu() {
         display.greet();
         display.gameOptions();
     }
 
-    private String loopForValidInput(String userInput) {
-        while (!validInput(userInput)) {
+    private void openBoardMenu() {
+        display.boardOptions();
+    }
+
+    private String loopForValidInput(String userInput, int type) {
+        while (!validInput(userInput, type)) {
             display.invalidInput();
             userInput = input.get();
         }
         return userInput;
     }
 
-    private boolean validInput(String input) {
-        int type = Integer.parseInt(input);
-        return gameOptions.contains(type);
+    private boolean validInput(String input, int type) {
+        int option = Integer.parseInt(input);
+        if (type == 1) {
+            return gameOptions.contains(option);
+        } else {
+            return boardOptions.contains(option);
+        }
     }
 }

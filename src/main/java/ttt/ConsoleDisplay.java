@@ -25,18 +25,24 @@ public class ConsoleDisplay implements Display {
 
     public void invalidInput() {
         write("Please choose a valid option");
+        write("");
     }
 
     public void displayTurn(Marks mark) {
+        write("");
         write(mark + "'s turn: choose a location");
     }
 
     public void promptForLocation() {
+        write("-------------------------------");
         write("Please choose a location from 1 to 9");
+        write("");
     }
 
     public void draw() {
+        write("-------------------------------");
         write("It's a draw!");
+        write("-------------------------------");
     }
 
     public String currentMark(Marks mark) {
@@ -44,12 +50,16 @@ public class ConsoleDisplay implements Display {
     }
 
     public void greet() {
+        clearScreen();
+        write("---------------------------------");
         write("Welcome to Tic Tac Toe");
+        write("---------------------------------");
     }
 
     public void displayMarks(Marks mark1, Marks mark2) {
         write("Player Two's mark is " + mark2);
         write("Player One's mark is " + mark1);
+        write("");
     }
 
     public void clearScreen() {
@@ -58,7 +68,9 @@ public class ConsoleDisplay implements Display {
     }
 
     public void winner(Marks mark) {
+        write("");
         write(mark + " wins!");
+        write("-----------------------");
     }
 
     public void replay() {
@@ -69,5 +81,12 @@ public class ConsoleDisplay implements Display {
     public void goodbye() {
         write("Thanks for playing!");
         write("Goodbye!");
+    }
+
+    public void boardOptions() {
+        write("What size board would you like?");
+        write("1. 3 x 3");
+        write("2. 4 x 4");
+        write("");
     }
 }

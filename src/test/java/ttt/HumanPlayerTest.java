@@ -17,7 +17,7 @@ public class HumanPlayerTest {
         InputFake input = new InputFake();
         Player player = new HumanPlayer(Marks.X);
         input.set("1");
-        Board board = new Board();
+        Board board = new Board(3);
         assertEquals("0", player.getLocation(input, board));
     }
 }
