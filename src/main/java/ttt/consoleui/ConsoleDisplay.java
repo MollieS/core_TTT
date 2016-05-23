@@ -76,8 +76,7 @@ public class ConsoleDisplay implements Display {
     }
 
     public void replay() {
-        write("Would you like to play again?");
-        write("Type 1 to play, any other key to quit");
+        write("Would you like to play again?(y/n)");
     }
 
     public void goodbye() {
