@@ -7,7 +7,7 @@ import ttt.game.Board;
 import ttt.game.GameEngine;
 import ttt.game.Marks;
 import ttt.game.Player;
-import ttt.gameplay.GameLoop;
+import ttt.game.GameLoop;
 import ttt.players.HumanPlayer;
 
 import static junit.framework.TestCase.assertTrue;
