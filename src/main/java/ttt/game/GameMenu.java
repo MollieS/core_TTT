@@ -1,8 +1,9 @@
-package ttt.gameplay;
+package ttt.game;
 
 import ttt.consoleui.Display;
 import ttt.consoleui.Input;
 import ttt.game.GameEngine;
+import ttt.game.GameFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;

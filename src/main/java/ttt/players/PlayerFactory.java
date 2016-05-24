@@ -2,6 +2,10 @@ package ttt.players;
 
 import ttt.game.Marks;
 import ttt.game.Player;
+import ttt.players.ComputerPlayer;
+import ttt.players.HumanPlayer;
+import ttt.players.PerfectPlayer;
+import ttt.players.RandomLocationGenerator;
 
 import java.util.Arrays;
 import java.util.List;

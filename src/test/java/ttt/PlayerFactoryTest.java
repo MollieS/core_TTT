@@ -3,6 +3,7 @@ package ttt;
 import org.junit.Test;
 import ttt.game.Marks;
 import ttt.game.Player;
+import ttt.players.PlayerFactory;
 import ttt.players.*;
 
 import static junit.framework.TestCase.assertTrue;

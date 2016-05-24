@@ -1,4 +1,4 @@
-package ttt.gameplay;
+package ttt.game;
 
 import ttt.game.Board;
 import ttt.game.GameEngine;

@@ -4,7 +4,7 @@ import org.junit.Test;
 import ttt.game.Board;
 import ttt.game.GameEngine;
 import ttt.game.Marks;
-import ttt.gameplay.GameFactory;
+import ttt.game.GameFactory;
 import ttt.players.HumanPlayer;
 
 import java.util.Arrays;
