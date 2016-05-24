@@ -24,11 +24,6 @@ public class BigBoardTest {
     }
 
     @Test
-    public void hasSixteenSpaces() {
-        assertEquals(16, board.size());
-    }
-
-    @Test
     public void winningPositionsContainsLeftDiagonalWin() {
         leftDiagonalWin();
         assertTrue(board.winningPositions().contains(Arrays.asList(O, O, O, O)));

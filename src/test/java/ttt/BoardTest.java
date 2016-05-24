@@ -26,11 +26,6 @@ public class BoardTest {
     }
 
     @Test
-    public void hasNineSpacesInA3x3Board() {
-        assertEquals(9, board.size());
-    }
-
-    @Test
     public void placesAMark() {
         board.placeMark(X, 0);
         assertEquals(X, board.getMarkAt(0));

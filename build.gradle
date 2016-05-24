@@ -18,6 +18,7 @@ task (run, dependsOn: 'classes', type: JavaExec) {
 // In this section you declare where to find the dependencies of your project
 repositories {
   jcenter()
+  mavenCentral()
 }
 
 
@@ -29,6 +30,7 @@ dependencies {
   // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
   // 'ttt.useTestNG()' to your build script.
   testCompile 'junit:junit:4.12'
+  compile group: 'pl.pragmatists', name: 'JUnitParams', version: '0.3.6'
 }
 
 jacocoTestReport {
