@@ -6,11 +6,10 @@ import ttt.consoleui.ConsoleBoard;
 import ttt.game.Board;
 import ttt.game.GameEngine;
 import ttt.game.Marks;
-import ttt.gameplay.GameLoop;
+import ttt.game.GameLoop;
 import ttt.players.HumanPlayer;
 
 import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertEquals;
 
 public class GameLoopTest {
 
