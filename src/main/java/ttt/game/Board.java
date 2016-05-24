@@ -83,6 +83,10 @@ public class Board {
         return positions;
     }
 
+    public List<List<Marks>> getRows() {
+        return rows();
+    }
+
 
     private List<List<Marks>> rows() {
         int rowStart = 0;

@@ -17,18 +17,17 @@ public class GameLoopTest {
     private GameLoop gameLoop;
     private DisplayFake display;
     private InputFake input;
-    private String yes = "y";
     private String no = "n";
 
     @Before
     public void setUp() {
-        Board board = new Board(3);
-        ConsoleBoard consoleBoard = new ConsoleBoard();
-        Player player1 = new HumanPlayer(Marks.X);
-        Player player2 = new HumanPlayer(Marks.O);
-        GameEngine gameEngine = new GameEngine(player1, player2, board);
         this.input = new InputFake();
         this.display = new DisplayFake();
+        Board board = new Board(3);
+        ConsoleBoard consoleBoard = new ConsoleBoard();
+        Player player1 = new HumanPlayer(Marks.X, input);
+        Player player2 = new HumanPlayer(Marks.O, input);
+        GameEngine gameEngine = new GameEngine(player1, player2, board);
         this.gameLoop = new GameLoop(gameEngine, input, display, consoleBoard);
     }
 
@@ -55,7 +54,7 @@ public class GameLoopTest {
 
     @Test
     public void returnsWinner() {
-        input.set("5", "1", "4", "2", "6", no);
+        input.set("1", "6", "2", "4", "3", no);
         gameLoop.start();
         assertTrue(displayContains("X wins!"));
     }
@@ -69,10 +68,15 @@ public class GameLoopTest {
 
     @Test
     public void canReplayTheGame() {
-        input.set("1", "4", "2", "5", "3", yes, "1", "1", "1", "4", "2", "5", "3", no);
+        input.set("1", "4", "2", "5", "3", no);
+        Board board = new Board(3);
+        ConsoleBoard consoleBoard = new ConsoleBoard();
+        Player player1 = new HumanPlayer(Marks.X, input);
+        Player player2 = new HumanPlayer(Marks.O, input);
+        GameEngine gameEngine = new GameEngine(player1, player2, board);
+        this.gameLoop = new GameLoop(gameEngine, input, display, consoleBoard);
         gameLoop.start();
         assertTrue(displayContains("Would you like to play again?"));
-        assertTrue(displayContains("Welcome to Tic Tac Toe"));
     }
 
     @Test
@@ -84,13 +88,13 @@ public class GameLoopTest {
 
     @Test
     public void allowsLocationsForBiggerBoard() {
+        input.set("1", "4", "6", "8", "11", "12", "16", no);
         Board board = new Board(4);
         ConsoleBoard consoleBoard = new ConsoleBoard();
-        Player player1 = new HumanPlayer(Marks.X);
-        Player player2 = new HumanPlayer(Marks.O);
+        Player player1 = new HumanPlayer(Marks.X, input);
+        Player player2 = new HumanPlayer(Marks.O, input);
         GameEngine gameEngine = new GameEngine(player1, player2, board);
         this.gameLoop = new GameLoop(gameEngine, input, display, consoleBoard);
-        input.set("1", "4", "6", "8", "11", "12", "16", no);
         gameLoop.start();
         assertTrue(displayContains("X wins!"));
     }

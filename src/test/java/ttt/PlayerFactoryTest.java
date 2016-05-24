@@ -14,7 +14,7 @@ public class PlayerFactoryTest {
     @Test
     public void createsAHumanvHumanGameWhereXGoesFirst() {
         Player player = getPlayer(1, 0);
-        assertTrue(player.getClass().equals(new HumanPlayer(X).getClass()));
+        assertTrue(player.getClass().equals(new HumanPlayer(X, new InputFake()).getClass()));
         assertTrue(player.getMark().equals(X));
     }
 

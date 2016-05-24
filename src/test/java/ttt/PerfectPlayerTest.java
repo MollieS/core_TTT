@@ -22,7 +22,7 @@ public class PerfectPlayerTest {
     @Before
     public void setUp() {
         this.perfectPlayer = new PerfectPlayer(X);
-        Player opponent = new HumanPlayer(O);
+        Player opponent = new HumanPlayer(O, new InputFake());
         this.board = new Board(3);
         this.game = new GameEngine(perfectPlayer, opponent, board);
         this.input = new InputFake();
@@ -107,7 +107,7 @@ public class PerfectPlayerTest {
     }
 
     private int computerLocation() {
-        String choice = perfectPlayer.getLocation(input, board);
+        String choice = perfectPlayer.getLocation(board);
         return Integer.parseInt(choice);
     }
 
@@ -155,7 +155,7 @@ public class PerfectPlayerTest {
 
     private void setUpGame() {
         perfectPlayer = new PerfectPlayer(X);
-        Player opponent = new HumanPlayer(O);
+        Player opponent = new HumanPlayer(O, new InputFake());
         board = new Board(3);
         game = new GameEngine(opponent, perfectPlayer, board);
     }

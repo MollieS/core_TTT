@@ -47,7 +47,7 @@ public class GameLoop {
         write(consoleBoard.createBoard(gameEngine.showBoard()));
         display.displayTurn(gameEngine.currentMark());
         display.promptForLocation(gameEngine.showBoard().size());
-        return gameEngine.getCurrentPlayer().getLocation(input, gameEngine.showBoard());
+        return gameEngine.getCurrentPlayer().getLocation(gameEngine.showBoard());
     }
 
     private void placeMark(String input) {

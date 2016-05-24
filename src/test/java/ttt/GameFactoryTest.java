@@ -16,7 +16,7 @@ public class GameFactoryTest {
 
     @Test
     public void createsAHumanVHumanGameWith3x3Board() {
-        GameEngine testGame = new GameEngine(new HumanPlayer(Marks.X), new HumanPlayer(Marks.O), new Board(3));
+        GameEngine testGame = new GameEngine(new HumanPlayer(Marks.X, new InputFake()), new HumanPlayer(Marks.O, new InputFake()), new Board(3));
         List<Integer> choices = Arrays.asList(1, 1);
         GameEngine game = GameFactory.create(choices);
         assertTrue(game.getClass().equals(testGame.getClass()));
