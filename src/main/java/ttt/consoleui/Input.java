@@ -1,4 +1,4 @@
-package ttt;
+package ttt.consoleui;
 
 public interface Input {
     String get();

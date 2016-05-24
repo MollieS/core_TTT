@@ -1,5 +1,8 @@
 package ttt;
 
+import ttt.consoleui.Display;
+import ttt.game.Marks;
+
 public class DisplayFake implements Display {
     private String stream = "";
 

@@ -1,5 +1,7 @@
 package ttt;
 
+import ttt.consoleui.Input;
+
 import java.util.ArrayList;
 
 public class InputFake implements Input {

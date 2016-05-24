@@ -2,6 +2,9 @@ package ttt;
 
 import org.junit.Before;
 import org.junit.Test;
+import ttt.consoleui.ConsoleBoard;
+import ttt.game.Board;
+import ttt.game.Marks;
 
 import static org.junit.Assert.assertEquals;
 

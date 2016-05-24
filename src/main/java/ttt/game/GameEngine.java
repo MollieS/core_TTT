@@ -1,4 +1,4 @@
-package ttt;
+package ttt.game;
 
 public class GameEngine {
 

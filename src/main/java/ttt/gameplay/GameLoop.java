@@ -1,4 +1,10 @@
-package ttt;
+package ttt.gameplay;
+
+import ttt.consoleui.ConsoleBoard;
+import ttt.consoleui.Display;
+import ttt.consoleui.Input;
+import ttt.game.GameEngine;
+import ttt.game.Marks;
 
 public class GameLoop {
     private GameEngine gameEngine;

@@ -1,6 +1,11 @@
-package ttt;
+package ttt.players;
 
-public class ComputerPlayer implements Player{
+import ttt.consoleui.Input;
+import ttt.game.Board;
+import ttt.game.Marks;
+import ttt.game.Player;
+
+public class ComputerPlayer implements Player {
 
     private Randomizer randomizer;
     private Marks mark;

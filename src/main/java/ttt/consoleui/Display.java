@@ -1,4 +1,6 @@
-package ttt;
+package ttt.consoleui;
+
+import ttt.game.Marks;
 
 public interface Display {
 

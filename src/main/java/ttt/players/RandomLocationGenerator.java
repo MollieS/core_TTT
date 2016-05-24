@@ -1,4 +1,6 @@
-package ttt;
+package ttt.players;
+
+import ttt.players.Randomizer;
 
 import java.util.List;
 import java.util.Random;
