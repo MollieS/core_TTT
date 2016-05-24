@@ -17,7 +17,6 @@ public class BoardTest {
     private Marks X;
     private Marks O;
 
-
     @Before
     public void setUp() {
         this.board = new Board(3);

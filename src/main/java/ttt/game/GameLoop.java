@@ -25,7 +25,6 @@ public class GameLoop {
     }
 
     private void getGameResult() {
-        write(consoleBoard.createBoard(gameEngine.showBoard()));
         if (gameEngine.isDraw()) {
             display.draw();
         } else {
@@ -35,6 +34,7 @@ public class GameLoop {
 
     private void playGame() {
         while (!gameEngine.isOver()) {
+            write(consoleBoard.createBoard(gameEngine.showBoard()));
             String input = getLocation();
             display.clearScreen();
             processInput(input);
@@ -42,7 +42,6 @@ public class GameLoop {
     }
 
     private String getLocation() {
-        write(consoleBoard.createBoard(gameEngine.showBoard()));
         display.displayTurn(gameEngine.currentMark());
         display.promptForLocation(gameEngine.showBoard().size());
         return gameEngine.getCurrentPlayer().getLocation(gameEngine.showBoard());

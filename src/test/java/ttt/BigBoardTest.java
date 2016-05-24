@@ -8,7 +8,6 @@ import ttt.game.Marks;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class BigBoardTest {
@@ -17,41 +16,16 @@ public class BigBoardTest {
     private Marks X;
     private Marks O;
 
-
     @Before
     public void setUp() {
         this.board = new Board(4);
         this.X = Marks.X;
         this.O = Marks.O;
-
     }
 
     @Test
     public void hasSixteenSpaces() {
         assertEquals(16, board.size());
-    }
-
-    @Test
-    public void placesAMark() {
-        board.placeMark(X, 0);
-        assertEquals(X, board.getMarkAt(0));
-    }
-
-    @Test
-    public void newBoardIsEmpty() {
-        assertTrue(board.isEmpty());
-    }
-
-    @Test
-    public void boardIsNotEmptyAfterMarkPlaced() {
-        board.placeMark(X, 4);
-        assertFalse(board.isEmpty());
-    }
-
-    @Test
-    public void boardIsNotEmptyForEitherMark() {
-        board.placeMark(O, 6);
-        assertFalse(board.isEmpty());
     }
 
     @Test
@@ -125,13 +99,6 @@ public class BigBoardTest {
     }
 
     @Test
-    public void clearsCell() {
-        board.placeMark(X, 4);
-        board.clear(4);
-        assertEquals(Marks.CLEAR, board.getMarkAt(4));
-    }
-
-    @Test
     public void knowsWinnerForFirstMark() {
         board.placeMark(X, 0);
         board.placeMark(X, 1);
@@ -150,51 +117,9 @@ public class BigBoardTest {
     }
 
     @Test
-    public void knowsWhenFull() {
-        fillBoard();
-        assertTrue(board.isFull());
-    }
-
-    @Test
-    public void knowsIfNotFull() {
-        board.placeMark(X, 1);
-        assertFalse(board.isFull());
-    }
-
-    @Test
     public void knowsIfDrawn() {
         drawnGame();
         assertTrue(board.isDraw());
-    }
-
-    @Test
-    public void knowsWhenFinishedIfWon() {
-        horizontalWin();
-        assertTrue(board.isFinished());
-    }
-
-    @Test
-    public void knowsWhenFinishedIfBoardIsDrawn() {
-        drawnGame();
-        assertTrue(board.isFinished());
-    }
-
-    @Test
-    public void isNotFinishedIfBoardIsNotWonOrDrawn() {
-        board.placeMark(X, 4);
-        assertFalse(board.isFinished());
-    }
-
-    @Test
-    public void knowsIfWon() {
-        horizontalWin();
-        assertTrue(board.isWon());
-    }
-
-    private void fillBoard() {
-        for (int i = 0; i < 16; i++) {
-            board.placeMark(X, i);
-        }
     }
 
     private void horizontalWin() {
