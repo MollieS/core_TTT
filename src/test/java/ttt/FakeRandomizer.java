@@ -1,5 +1,7 @@
 package ttt;
 
+import ttt.players.Randomizer;
+
 import java.util.List;
 
 public class FakeRandomizer implements Randomizer {

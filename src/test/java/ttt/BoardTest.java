@@ -2,6 +2,8 @@ package ttt;
 
 import org.junit.Before;
 import org.junit.Test;
+import ttt.game.Board;
+import ttt.game.Marks;
 
 import java.util.Arrays;
 

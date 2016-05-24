@@ -1,4 +1,4 @@
-package ttt;
+package ttt.players;
 
 import java.util.List;
 

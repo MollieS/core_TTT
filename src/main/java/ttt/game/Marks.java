@@ -1,4 +1,4 @@
-package ttt;
+package ttt.game;
 
 public enum Marks {
     X,
