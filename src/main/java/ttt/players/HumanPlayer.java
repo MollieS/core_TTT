@@ -1,9 +1,9 @@
 package ttt.players;
 
-import ttt.consoleui.Input;
+import ttt.Input;
 import ttt.game.Board;
 import ttt.game.Marks;
-import ttt.game.Player;
+import ttt.Player;
 
 public class HumanPlayer implements Player {
 

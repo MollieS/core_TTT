@@ -1,6 +1,7 @@
-package ttt.game;
+package ttt;
 
-import ttt.consoleui.Input;
+import ttt.game.Board;
+import ttt.game.Marks;
 
 public interface Player {
 

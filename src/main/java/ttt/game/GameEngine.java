@@ -1,5 +1,7 @@
 package ttt.game;
 
+import ttt.Player;
+
 public class GameEngine {
 
     private Board board;

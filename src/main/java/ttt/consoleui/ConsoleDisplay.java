@@ -1,5 +1,6 @@
 package ttt.consoleui;
 
+import ttt.Display;
 import ttt.game.Marks;
 
 public class ConsoleDisplay implements Display {

@@ -1,7 +1,7 @@
 package ttt.players;
 
 import ttt.game.Marks;
-import ttt.game.Player;
+import ttt.Player;
 
 import java.util.Arrays;
 import java.util.List;

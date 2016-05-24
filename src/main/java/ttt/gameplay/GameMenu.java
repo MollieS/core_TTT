@@ -1,7 +1,7 @@
 package ttt.gameplay;
 
-import ttt.consoleui.Display;
-import ttt.consoleui.Input;
+import ttt.Display;
+import ttt.Input;
 import ttt.game.GameEngine;
 
 import java.util.ArrayList;

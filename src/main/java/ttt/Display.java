@@ -1,4 +1,4 @@
-package ttt.consoleui;
+package ttt;
 
 import ttt.game.Marks;
 

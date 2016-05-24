@@ -2,7 +2,7 @@ package ttt.gameplay;
 
 import ttt.game.Board;
 import ttt.game.GameEngine;
-import ttt.game.Player;
+import ttt.Player;
 import ttt.players.PlayerFactory;
 
 import java.util.List;
