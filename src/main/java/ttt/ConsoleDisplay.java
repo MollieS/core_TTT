@@ -33,9 +33,9 @@ public class ConsoleDisplay implements Display {
         write(mark + "'s turn: choose a location");
     }
 
-    public void promptForLocation() {
+    public void promptForLocation(int boardSize) {
         write("-------------------------------");
-        write("Please choose a location from 1 to 9");
+        write("Please choose a location from 1 to " + boardSize);
         write("");
     }
 

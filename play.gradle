@@ -1,0 +1,10 @@
+apply plugin: 'java'
+
+task (run, dependsOn: 'classes', type: JavaExec) {
+    main = 'ttt.Main'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+run {
+    standardInput = System.in
+}

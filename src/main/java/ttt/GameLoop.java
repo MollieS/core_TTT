@@ -40,7 +40,7 @@ public class GameLoop {
     private String getLocation() {
         write(consoleBoard.createBoard(gameEngine.showBoard()));
         display.displayTurn(gameEngine.currentMark());
-        display.promptForLocation();
+        display.promptForLocation(gameEngine.showBoard().size());
         return gameEngine.getCurrentPlayer().getLocation(input, gameEngine.showBoard());
     }
 
