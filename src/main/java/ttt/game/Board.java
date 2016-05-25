@@ -7,20 +7,24 @@ import java.util.List;
 
 public class Board {
 
-    private Marks[] board;
-    private int size;
+    private final Marks[] board;
+    private final int size;
 
-    public Board(int size) {
+    public Board(int size, Marks[] moves) {
         this.size = size;
         int boardSize = (size * size);
-        this.board = new Marks[boardSize];
-        for (int cell = 0; cell < boardSize; cell++) {
-            board[cell] = Marks.CLEAR;
+        if (moves.length == 0) {
+            this.board = new Marks[boardSize];
+            for (int cell = 0; cell < boardSize; cell++) {
+                board[cell] = Marks.CLEAR;
+            }
+        } else {
+            this.board = moves;
         }
     }
 
-    public void placeMark(Marks mark, int location) {
-        board[location] = mark;
+    public Board placeMark(Marks mark, int location) {
+        Marks[] newBoard = board;
     }
 
     public int size() {
@@ -44,12 +48,18 @@ public class Board {
     }
 
     public boolean isFull() {
-        for (Marks cell : board) if (cell == Marks.CLEAR) { return false; }
+        for (Marks cell : board)
+            if (cell == Marks.CLEAR) {
+                return false;
+            }
         return true;
     }
 
     public boolean isEmpty() {
-        for (Marks cell : board) if (cell != Marks.CLEAR) { return false; }
+        for (Marks cell : board)
+            if (cell != Marks.CLEAR) {
+                return false;
+            }
         return true;
     }
 
@@ -105,13 +115,13 @@ public class Board {
     private List<List<Marks>> columns() {
         int columnStart = 0;
         List<List<Marks>> columns = new ArrayList<>();
-        for (int cell = 0; cell < size; cell ++) {
+        for (int cell = 0; cell < size; cell++) {
             List<Marks> cells = new ArrayList<>();
             for (int i = columnStart; i < size(); i += size) {
                 cells.add(board[i]);
             }
             columns.add(cells);
-            columnStart ++;
+            columnStart++;
         }
         return columns;
     }
@@ -132,7 +142,7 @@ public class Board {
 
     public List<Marks> rightDiagonal() {
         List<Marks> right = new ArrayList();
-        for (int i = (size - 1); i < (size() -1); i += (size - 1)) {
+        for (int i = (size - 1); i < (size() - 1); i += (size - 1)) {
             right.add(board[i]);
         }
         return right;

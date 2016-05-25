@@ -31,7 +31,7 @@ public class BoardAvailableMovesTest {
     public void withAMark(int size, int location, String... expectedPositions) {
         Board board = new Board(size);
         List<Integer> expected = setUpExpectedPositions(expectedPositions);
-        board.placeMark(Marks.X, location);
+        board = board.placeMark(Marks.X, location);
         assertEquals(expected, board.availableMoves());
     }
 
@@ -40,7 +40,7 @@ public class BoardAvailableMovesTest {
     public void knowsWhenFull(int size, String...locations) {
         Board board = new Board(size);
         for (int position = 0; position < locations.length; position++) {
-            board.placeMark(Marks.X, position);
+            board = board.placeMark(Marks.X, position);
         }
         assertTrue(board.isFull());
     }

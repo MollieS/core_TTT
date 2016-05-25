@@ -20,7 +20,7 @@ public class BoardWinningPositionsTest {
     public void winOnTopRow(int size, String...locations) {
         Board board = new Board(size);
         List<Marks> expected = expectedMarks(size);
-        placeMarks(board, locations, Marks.X);
+        board = placeMarks(board, locations, Marks.X);
         assertTrue(board.winningPositions().contains(expected));
     }
 
@@ -112,10 +112,11 @@ public class BoardWinningPositionsTest {
         assertTrue(board.isAWinFor(Marks.O));
     }
 
-    private void placeMarks(Board board, String[] locations, Marks mark) {
+    private Board placeMarks(Board board, String[] locations, Marks mark) {
         for (String location : locations) {
-            board.placeMark(mark, Integer.parseInt(location));
+            board = board.placeMark(mark, Integer.parseInt(location));
         }
+        return board;
     }
 
     private List<Marks> expectedMarks(int size) {

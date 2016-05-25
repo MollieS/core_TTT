@@ -17,15 +17,15 @@ public class BoardTest {
 
     @Before
     public void setUp() {
-        this.board = new Board(3);
+        this.board = new Board(3, []);
         this.X = Marks.X;
         this.O = Marks.O;
     }
 
     @Test
     public void placesAMark() {
-        board.placeMark(X, 0);
-        assertEquals(X, board.getMarkAt(0));
+        Board markedBoard = board.placeMark(X, 0);
+        assertEquals(X, markedBoard.getMarkAt(0));
     }
 
     @Test
@@ -35,20 +35,19 @@ public class BoardTest {
 
     @Test
     public void boardIsNotEmptyAfterMarkPlaced() {
-        board.placeMark(X, 4);
-        assertFalse(board.isEmpty());
+        Board markedBoard = board.placeMark(X, 4);
+        assertFalse(markedBoard.isEmpty());
     }
 
     @Test
     public void boardIsNotEmptyForEitherMark() {
-        board.placeMark(O, 6);
-        assertFalse(board.isEmpty());
+        Board markedBoard = board.placeMark(O, 6);
+        assertFalse(markedBoard.isEmpty());
     }
 
     @Test
     public void clearsCell() {
         board.placeMark(X, 4);
-        board.clear(4);
         assertEquals(Marks.CLEAR, board.getMarkAt(4));
     }
 
@@ -72,7 +71,7 @@ public class BoardTest {
 
     @Test
     public void isNotFinishedIfBoardIsNotWonOrDrawn() {
-        board.placeMark(X, 4);
+        board = board.placeMark(X, 4);
         assertFalse(board.isFinished());
     }
 
@@ -87,23 +86,25 @@ public class BoardTest {
         assertEquals(3, board.dimensions());
     }
 
-    private void horizontalWin() {
-        board.placeMark(X, 0);
-        board.placeMark(O, 3);
-        board.placeMark(X, 1);
-        board.placeMark(O, 4);
-        board.placeMark(X, 2);
+    private Board horizontalWin() {
+        board = board.placeMark(X, 0);
+        board = board.placeMark(O, 3);
+        board = board.placeMark(X, 1);
+        board = board.placeMark(O, 4);
+        board = board.placeMark(X, 2);
+        return board;
     }
 
-    private void drawnGame() {
-        board.placeMark(X, 0);
-        board.placeMark(O, 1);
-        board.placeMark(X, 2);
-        board.placeMark(O, 3);
-        board.placeMark(X, 5);
-        board.placeMark(O, 6);
-        board.placeMark(X, 7);
-        board.placeMark(O, 8);
-        board.placeMark(X, 4);
+    private Board drawnGame() {
+        board = board.placeMark(X, 0);
+        board = board.placeMark(O, 1);
+        board = board.placeMark(X, 2);
+        board = board.placeMark(O, 3);
+        board = board.placeMark(X, 5);
+        board = board.placeMark(O, 6);
+        board = board.placeMark(X, 7);
+        board = board.placeMark(O, 8);
+        board = board.placeMark(X, 4);
+        return board;
     }
 }
