@@ -4,7 +4,6 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import ttt.game.Board;
 import ttt.game.Marks;
 
@@ -21,7 +20,7 @@ public class BoardWinningPositionsTest {
     public void winOnTopRow(int size, String...locations) {
         Board board = new Board(size);
         List<Marks> expected = expectedMarks(size);
-        placeMarks(board, locations);
+        placeMarks(board, locations, Marks.X);
         assertTrue(board.winningPositions().contains(expected));
     }
 
@@ -30,7 +29,7 @@ public class BoardWinningPositionsTest {
     public void winOnSecondRow(int size, String...locations) {
         Board board = new Board(size);
         List<Marks> expected = expectedMarks(size);
-        placeMarks(board, locations);
+        placeMarks(board, locations, Marks.X);
         assertTrue(board.winningPositions().contains(expected));
     }
 
@@ -39,7 +38,7 @@ public class BoardWinningPositionsTest {
     public void winOnThirdRow(int size, String...locations) {
         Board board = new Board(size);
         List<Marks> expected = expectedMarks(size);
-        placeMarks(board, locations);
+        placeMarks(board, locations, Marks.X);
         assertTrue(board.winningPositions().contains(expected));
     }
 
@@ -48,7 +47,7 @@ public class BoardWinningPositionsTest {
     public void winOnFourthRow(int size, String...locations) {
         Board board = new Board(size);
         List<Marks> expected = expectedMarks(size);
-        placeMarks(board, locations);
+        placeMarks(board, locations, Marks.X);
         assertTrue(board.winningPositions().contains(expected));
     }
 
@@ -57,7 +56,7 @@ public class BoardWinningPositionsTest {
     public void winOnFirstColumn(int size, String...locations) {
         Board board = new Board(size);
         List<Marks> expected = expectedMarks(size);
-        placeMarks(board, locations);
+        placeMarks(board, locations, Marks.X);
         assertTrue(board.winningPositions().contains(expected));
     }
 
@@ -66,7 +65,7 @@ public class BoardWinningPositionsTest {
     public void winOnSecondColumn(int size, String...locations) {
         Board board = new Board(size);
         List<Marks> expected = expectedMarks(size);
-        placeMarks(board, locations);
+        placeMarks(board, locations, Marks.X);
         assertTrue(board.winningPositions().contains(expected));
     }
 
@@ -75,7 +74,7 @@ public class BoardWinningPositionsTest {
     public void winOnThirdColumn(int size, String...locations) {
         Board board = new Board(size);
         List<Marks> expected = expectedMarks(size);
-        placeMarks(board, locations);
+        placeMarks(board, locations, Marks.X);
         assertTrue(board.winningPositions().contains(expected));
     }
 
@@ -84,7 +83,7 @@ public class BoardWinningPositionsTest {
     public void winOnFourthColumn(int size, String...locations) {
         Board board = new Board(size);
         List<Marks> expected = expectedMarks(size);
-        placeMarks(board, locations);
+        placeMarks(board, locations, Marks.X);
         assertTrue(board.winningPositions().contains(expected));
     }
 
@@ -93,18 +92,34 @@ public class BoardWinningPositionsTest {
     public void diagonals(int size, String...locations) {
         Board board = new Board(size);
         List<Marks> expected = expectedMarks(size);
-        placeMarks(board, locations);
+        placeMarks(board, locations, Marks.X);
         assertTrue(board.winningPositions().contains(expected));
     }
 
-    private void placeMarks(Board board, String[] locations) {
+    @Test
+    @Parameters({"3, 3, 4, 5", "4, 0, 1, 2, 3"})
+    public void winForFirstMark(int size, String...locations) {
+        Board board = new Board(size);
+        placeMarks(board, locations, Marks.X);
+        assertTrue(board.isAWinFor(Marks.X));
+    }
+
+    @Test
+    @Parameters({"3, 3, 4, 5", "4, 0, 1, 2, 3"})
+    public void winForSecondMark(int size, String...locations) {
+        Board board = new Board(size);
+        placeMarks(board, locations, Marks.O);
+        assertTrue(board.isAWinFor(Marks.O));
+    }
+
+    private void placeMarks(Board board, String[] locations, Marks mark) {
         for (String location : locations) {
-            board.placeMark(Marks.X, Integer.parseInt(location));
+            board.placeMark(mark, Integer.parseInt(location));
         }
     }
 
     private List<Marks> expectedMarks(int size) {
-        List<Marks> expected = new ArrayList();
+        List<Marks> expected = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             expected.add(Marks.X);
         }
