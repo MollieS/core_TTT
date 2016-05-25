@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import ttt.game.Board;
+import ttt.game.Marks;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -30,7 +31,7 @@ public class BoardSizeTest {
 
     @Test
     public void hasASize() {
-        Board board = new Board(fInput);
+        Board board = new Board(fInput, new Marks[0]);
         assertEquals(fExpected, board.size());
     }
 }

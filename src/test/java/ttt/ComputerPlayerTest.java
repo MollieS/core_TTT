@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class ComputerPlayerTest {
 
     private Input input = new InputFake();
-    private Board board = new Board(3);
+    private Board board = new Board(3, new Marks[0]);
     private ComputerPlayer computer;
 
     @Before

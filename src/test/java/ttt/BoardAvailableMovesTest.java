@@ -4,7 +4,6 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import ttt.game.Board;
 import ttt.game.Marks;
 
@@ -21,7 +20,7 @@ public class BoardAvailableMovesTest {
     @Test
     @Parameters({"3, 0, 1, 2, 3, 4, 5, 6, 7, 8", "4, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15"})
     public void anEmptyBoard(int size, String... expectedPositions) {
-        Board board = new Board(size);
+        Board board = new Board(size, new Marks[0]);
         List<Integer> expected = setUpExpectedPositions(expectedPositions);
         assertEquals(expected, board.availableMoves());
     }
@@ -29,7 +28,7 @@ public class BoardAvailableMovesTest {
     @Test
     @Parameters({"3, 4, 0, 1, 2, 3, 5, 6, 7, 8", "4, 5, 0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15"})
     public void withAMark(int size, int location, String... expectedPositions) {
-        Board board = new Board(size);
+        Board board = new Board(size, new Marks[0]);
         List<Integer> expected = setUpExpectedPositions(expectedPositions);
         board = board.placeMark(Marks.X, location);
         assertEquals(expected, board.availableMoves());
@@ -38,7 +37,7 @@ public class BoardAvailableMovesTest {
     @Test
     @Parameters({"3, 0, 1, 2, 3, 4, 5, 6, 7, 8", "4, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15"})
     public void knowsWhenFull(int size, String...locations) {
-        Board board = new Board(size);
+        Board board = new Board(size, new Marks[0]);
         for (int position = 0; position < locations.length; position++) {
             board = board.placeMark(Marks.X, position);
         }
@@ -48,7 +47,7 @@ public class BoardAvailableMovesTest {
     @Test
     @Parameters({"3", "4"})
     public void knowsWhenNotFull(int size) {
-        Board board = new Board(size);
+        Board board = new Board(size, new Marks[0]);
         assertFalse(board.isFull());
     }
 

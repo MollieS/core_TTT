@@ -22,7 +22,7 @@ public class GameLoopTest {
     public void setUp() {
         this.input = new InputFake();
         this.display = new DisplayFake();
-        Board board = new Board(3);
+        Board board = new Board(3, new Marks[0]);
         ConsoleBoard consoleBoard = new ConsoleBoard();
         Player player1 = new HumanPlayer(Marks.X, input);
         Player player2 = new HumanPlayer(Marks.O, input);
@@ -68,7 +68,7 @@ public class GameLoopTest {
     @Test
     public void canReplayTheGame() {
         input.set("1", "4", "2", "5", "3", no);
-        Board board = new Board(3);
+        Board board = new Board(3, new Marks[0]);
         ConsoleBoard consoleBoard = new ConsoleBoard();
         Player player1 = new HumanPlayer(Marks.X, input);
         Player player2 = new HumanPlayer(Marks.O, input);
@@ -88,7 +88,7 @@ public class GameLoopTest {
     @Test
     public void allowsLocationsForBiggerBoard() {
         input.set("1", "4", "6", "8", "11", "12", "16", no);
-        Board board = new Board(4);
+        Board board = new Board(4, new Marks[0]);
         ConsoleBoard consoleBoard = new ConsoleBoard();
         Player player1 = new HumanPlayer(Marks.X, input);
         Player player2 = new HumanPlayer(Marks.O, input);

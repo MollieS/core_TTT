@@ -7,27 +7,25 @@ import java.util.List;
 
 public class Board {
 
-    private final Marks[] board;
-    private final int size;
+    final private Marks[] board;
+    final private int size;
 
     public Board(int size, Marks[] moves) {
         this.size = size;
         int boardSize = (size * size);
         if (moves.length == 0) {
-            this.board = new Marks[boardSize];
-            for (int cell = 0; cell < boardSize; cell++) {
-                board[cell] = Marks.CLEAR;
-            }
+            this.board = createEmptyBoard(boardSize);
         } else {
             this.board = moves;
         }
     }
 
-    public Board placeMark(Marks mark, int location) {
-        Marks[] newBoard = board;
+    public final Board placeMark(Marks mark, int location) {
+        Marks[] newBoard = createNewBoard(mark, location);
+        return new Board(size, newBoard);
     }
 
-    public int size() {
+    public final int size() {
         return board.length;
     }
 
@@ -48,18 +46,20 @@ public class Board {
     }
 
     public boolean isFull() {
-        for (Marks cell : board)
+        for (Marks cell : board) {
             if (cell == Marks.CLEAR) {
                 return false;
             }
+        }
         return true;
     }
 
     public boolean isEmpty() {
-        for (Marks cell : board)
+        for (Marks cell : board) {
             if (cell != Marks.CLEAR) {
                 return false;
             }
+        }
         return true;
     }
 
@@ -73,15 +73,19 @@ public class Board {
 
     public boolean isAWinFor(Marks mark) {
         for (List<Marks> cells : winningPositions()) {
-            if (isAllTheSame(mark, cells)) return true;
+            if (isAllTheSame(mark, cells)) { return true; }
         }
         return false;
     }
 
     public boolean isWon() {
         for (List<Marks> cells : winningPositions()) {
-            if (isAllTheSame(Marks.O, cells)) return true;
-            if (isAllTheSame(Marks.X, cells)) return true;
+            if (isAllTheSame(Marks.O, cells)) {
+                return true;
+            }
+            if (isAllTheSame(Marks.X, cells)) {
+                return true;
+            }
         }
         return false;
     }
@@ -154,5 +158,25 @@ public class Board {
 
     public int dimensions() {
         return size;
+    }
+
+    private Marks[] createEmptyBoard(int boardSize) {
+        Marks[] marks = new Marks[boardSize];
+        for (int cell = 0; cell < boardSize; cell++) {
+            marks[cell] = Marks.CLEAR;
+        }
+        return marks;
+    }
+
+    private Marks[] createNewBoard(Marks mark, int location) {
+        Marks[] newBoard = new Marks[size()];
+        for (int cell = 0; cell < board.length; cell++) {
+            if (cell == location) {
+                newBoard[cell] = mark;
+            } else {
+                newBoard[cell] = board[cell];
+            }
+        }
+        return newBoard;
     }
 }

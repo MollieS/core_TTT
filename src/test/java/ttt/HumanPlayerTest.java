@@ -20,7 +20,7 @@ public class HumanPlayerTest {
         InputFake input = new InputFake();
         input.set("1");
         Player player = new HumanPlayer(Marks.X, input);
-        Board board = new Board(3);
+        Board board = new Board(3, new Marks[0]);
         assertEquals("0", player.getLocation(board));
     }
 }

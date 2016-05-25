@@ -1,6 +1,5 @@
 package ttt.players;
 
-import ttt.Input;
 import ttt.game.Board;
 import ttt.game.Marks;
 import ttt.Player;

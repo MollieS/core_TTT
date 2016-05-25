@@ -17,7 +17,7 @@ public class BoardTest {
 
     @Before
     public void setUp() {
-        this.board = new Board(3, []);
+        this.board = new Board(3, new Marks[0]);
         this.X = Marks.X;
         this.O = Marks.O;
     }
@@ -26,6 +26,13 @@ public class BoardTest {
     public void placesAMark() {
         Board markedBoard = board.placeMark(X, 0);
         assertEquals(X, markedBoard.getMarkAt(0));
+    }
+
+    @Test
+    public void immutableBoard() {
+        assertTrue(board.isEmpty());
+        board.placeMark(X, 4);
+        assertTrue(board.isEmpty());
     }
 
     @Test

@@ -1,7 +1,5 @@
 package ttt.game;
 
-import ttt.game.Board;
-import ttt.game.GameEngine;
 import ttt.Player;
 import ttt.players.PlayerFactory;
 
@@ -12,9 +10,9 @@ public class GameFactory {
     public static GameEngine create(List<Integer> types) {
         Board board;
         if (types.get(1) == 1) {
-            board = new Board(3);
+            board = new Board(3, new Marks[0]);
         } else {
-            board = new Board(4);
+            board = new Board(4, new Marks[0]);
         }
         List<Player> playerList = PlayerFactory.create(types.get(0));
         return new GameEngine(playerList.get(0), playerList.get(1), board);
