@@ -25,6 +25,7 @@ public class GameLoop {
     }
 
     private void getGameResult() {
+        write(consoleBoard.createBoard(gameEngine.showBoard()));
         if (gameEngine.isDraw()) {
             display.draw();
         } else {
@@ -74,19 +75,23 @@ public class GameLoop {
 
     private void replay() {
         display.replay();
-        playAgain(input.getReplay());
+        this.gameEngine = playAgain(input.getReplay());
+        if (this.gameEngine != null) {
+            start();
+        }
     }
 
-    private void playAgain(String answer) {
+    public GameEngine playAgain(String answer) {
+        GameEngine newGame = null;
         if (answer.equals(replayOptions[0])) {
-            this.gameEngine = new GameMenu(input, display).createGame();
-            start();
+            newGame = new GameMenu(input, display).createGame();
         } else if (answer.equals(replayOptions[1])) {
             display.goodbye();
         } else {
             display.invalidInput();
             playAgain(input.getReplay());
         }
+        return newGame;
     }
 
     private void write(String message) {
