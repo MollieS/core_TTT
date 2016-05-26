@@ -4,7 +4,9 @@ import ttt.game.Board;
 import ttt.game.Marks;
 import ttt.Player;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class PerfectPlayer implements Player {
 
