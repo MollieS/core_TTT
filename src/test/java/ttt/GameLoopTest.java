@@ -10,6 +10,7 @@ import ttt.game.GameLoop;
 import ttt.players.HumanPlayer;
 
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class GameLoopTest {
 
@@ -17,6 +18,7 @@ public class GameLoopTest {
     private DisplayFake display;
     private InputFake input;
     private String no = "n";
+    private GameEngine gameEngine;
 
     @Before
     public void setUp() {
@@ -26,7 +28,7 @@ public class GameLoopTest {
         ConsoleBoard consoleBoard = new ConsoleBoard();
         Player player1 = new HumanPlayer(Marks.X, input);
         Player player2 = new HumanPlayer(Marks.O, input);
-        GameEngine gameEngine = new GameEngine(player1, player2, board);
+        this.gameEngine = new GameEngine(player1, player2, board);
         this.gameLoop = new GameLoop(gameEngine, input, display, consoleBoard);
     }
 
@@ -67,15 +69,8 @@ public class GameLoopTest {
 
     @Test
     public void canReplayTheGame() {
-        input.set("1", "4", "2", "5", "3", no);
-        Board board = new Board(3);
-        ConsoleBoard consoleBoard = new ConsoleBoard();
-        Player player1 = new HumanPlayer(Marks.X, input);
-        Player player2 = new HumanPlayer(Marks.O, input);
-        GameEngine gameEngine = new GameEngine(player1, player2, board);
-        this.gameLoop = new GameLoop(gameEngine, input, display, consoleBoard);
-        gameLoop.start();
-        assertTrue(displayContains("Would you like to play again?"));
+        input.set("1", "1");
+        assertEquals(gameLoop.playAgain("y").getClass(), gameEngine.getClass());
     }
 
     @Test

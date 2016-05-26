@@ -1,14 +1,13 @@
 package ttt.players;
 
-import ttt.Input;
 import ttt.game.Board;
 import ttt.game.Marks;
 import ttt.Player;
 
 public class ComputerPlayer implements Player {
 
-    private Randomizer randomizer;
-    private Marks mark;
+    final private Randomizer randomizer;
+    final private Marks mark;
 
     public ComputerPlayer(Randomizer randomizer, Marks mark) {
         this.randomizer = randomizer;

@@ -6,7 +6,6 @@ import ttt.game.GameEngine;
 import ttt.game.GameMenu;
 
 import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertEquals;
 
 public class MenuTest {
 

@@ -18,7 +18,7 @@ public class ConsoleBoard {
             board += rowDivisor(gameBoard) + "\n" + "|";
             for (int cell = 0; cell < row.size(); cell++) {
                 board += " " + newCellContents(gameBoard, counter) + "|";
-                counter ++;
+                counter++;
             }
             board += "\n";
         }

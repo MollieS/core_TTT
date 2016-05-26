@@ -1,11 +1,12 @@
 package ttt.players;
 
-import ttt.Input;
 import ttt.game.Board;
 import ttt.game.Marks;
 import ttt.Player;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class PerfectPlayer implements Player {
 
@@ -30,16 +31,16 @@ public class PerfectPlayer implements Player {
     }
 
     private int negamax(Board board, int depth, int colour, int alpha, int beta) {
-        if (board.isFinished()) return score(board, depth) * colour;
+        if (board.isFinished()) { return score(board, depth) * colour; }
         int bestValue = -999;
         for (int move : board.availableMoves()) {
             makeMove(board, colour, move);
             int value = -negamax(board, depth + 1, -colour, -beta, -alpha);
             board.clear(move);
             bestValue = Math.max(value, bestValue);
-            if (depth == 0 && bestValue > alpha) scores.put(move, bestValue);
+            if (depth == 0 && bestValue > alpha) { scores.put(move, bestValue); }
             alpha = Math.max(alpha, bestValue);
-            if (alpha >= beta) return beta;
+            if (alpha >= beta) { return beta; }
         }
         return bestValue;
     }
