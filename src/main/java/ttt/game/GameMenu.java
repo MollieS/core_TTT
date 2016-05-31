@@ -1,9 +1,7 @@
 package ttt.game;
 
-import ttt.consoleui.Display;
-import ttt.consoleui.Input;
-import ttt.game.GameEngine;
-import ttt.game.GameFactory;
+import ttt.Display;
+import ttt.Input;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,16 +9,14 @@ import java.util.List;
 
 public class GameMenu {
 
-    private Input input;
-    private Display display;
-    private List<Integer> gameOptions;
-    private List<Integer> boardOptions;
+    final private Input input;
+    final private Display display;
+    final private List<Integer> gameOptions = Arrays.asList(1, 2, 3, 4, 5, 6);
+    final private List<Integer> boardOptions = Arrays.asList(1, 2);
 
     public GameMenu(Input input, Display display) {
         this.input = input;
         this.display = display;
-        this.gameOptions = Arrays.asList(1, 2, 3, 4, 5, 6);
-        this.boardOptions = Arrays.asList(1, 2);
     }
 
     public GameEngine createGame() {
@@ -29,7 +25,7 @@ public class GameMenu {
         playerChoices.add(getGameChoice());
         openBoardMenu();
         playerChoices.add(getBoardChoice());
-        GameEngine gameEngine = GameFactory.create(playerChoices);
+        GameEngine gameEngine = GameConstructor.create(playerChoices);
         display.displayMarks(gameEngine.currentMark(), gameEngine.nextMark());
         return gameEngine;
     }

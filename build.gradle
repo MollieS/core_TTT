@@ -12,12 +12,13 @@ jar {
 }
 
 task (run, dependsOn: 'classes', type: JavaExec) {
-  main = "ttt.Main" 
+  main = "ttt.Main"
   classpath = sourceSets.main.runtimeClasspath
 }
 // In this section you declare where to find the dependencies of your project
 repositories {
   jcenter()
+  mavenCentral()
 }
 
 
@@ -29,6 +30,7 @@ dependencies {
   // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
   // 'ttt.useTestNG()' to your build script.
   testCompile 'junit:junit:4.12'
+    testCompile 'pl.pragmatists:JUnitParams:1.0.4'
 }
 
 jacocoTestReport {

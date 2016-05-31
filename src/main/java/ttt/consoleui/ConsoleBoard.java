@@ -3,55 +3,50 @@ package ttt.consoleui;
 import ttt.game.Board;
 import ttt.game.Marks;
 
+import java.util.List;
+
 public class ConsoleBoard {
 
     public String createBoard(Board gameBoard) {
-        return board(gameBoard);
+        return newBoard(gameBoard);
     }
 
-    private String board(Board gameBoard) {
-        String board = firstRow(gameBoard.dimensions());
-        for (int cell = 0; cell < gameBoard.size(); cell++) {
-            if (isEndOfRow(cell, gameBoard)) {
-                board += dividingRow(gameBoard.dimensions());
+    private String newBoard(Board gameBoard) {
+        String board = "";
+        int counter = 1;
+        for (List<Marks> row : gameBoard.getRows()) {
+            board += rowDivisor(gameBoard) + "\n" + "|";
+            for (int cell = 0; cell < row.size(); cell++) {
+                board += " " + newCellContents(gameBoard, counter) + "|";
+                counter++;
             }
-            board += cellDivider(gameBoard.dimensions()) + cellContents(gameBoard, cell) + " ";
+            board += "\n";
         }
-        board += lastRow(gameBoard.dimensions());
+        board += rowDivisor(gameBoard);
         return board;
     }
 
-    private String cellDivider(int dimensions) {
-        if (dimensions == 3) { return "|"; }
-        return "| ";
+    private String rowDivisor(Board gameBoard) {
+        String divisor = "";
+        for (int length = 0; length < ((4 * gameBoard.dimensions()) + 1); length++) { divisor += "-"; }
+        return divisor;
     }
 
-    private String dividingRow(int dimensions) {
-        if (dimensions == 3) { return "|\n-------------\n"; }
-        return "|\n---------------------\n";
+
+    private String newCellContents(Board board, int location) {
+        if (board.getMarkAt((location - 1)) == Marks.CLEAR) {
+            return getNumber(location);
+        } else {
+            return board.getMarkAt(location - 1).toString() + " ";
+        }
     }
 
-    private String cellContents(Board board, int location) {
-        if (board.getMarkAt(location).equals(Marks.CLEAR))
-            if (location < 9) {
-                return " " + String.valueOf((location + 1));
-            } else {
-                return String.valueOf(location + 1);
-            }
-        return " " + board.getMarkAt(location).toString();
+    private String getNumber(int location) {
+        if (location + 1 > 10) {
+            return String.valueOf(location);
+        } else {
+            return String.valueOf(location) + " ";
+        }
     }
 
-    private boolean isEndOfRow(int cell, Board board) {
-        return cell % board.dimensions() == 0 && cell != 0;
-    }
-
-    private String firstRow(int dimensions) {
-        if (dimensions == 3) { return "-------------\n"; }
-        return ("---------------------\n");
-    }
-
-    private String lastRow(int dimensions) {
-        if (dimensions == 3) { return "|\n-------------"; }
-        return ("|\n---------------------");
-    }
 }

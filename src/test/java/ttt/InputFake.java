@@ -1,7 +1,5 @@
 package ttt;
 
-import ttt.consoleui.Input;
-
 import java.util.ArrayList;
 
 public class InputFake implements Input {
@@ -9,14 +7,14 @@ public class InputFake implements Input {
     private ArrayList<String> stream = new ArrayList();
 
     public void set(String... words) {
-        for (int word = 0; word < words.length; word ++){
+        for (int word = 0; word < words.length; word++) {
            stream.add(words[word]);
         }
     }
 
     public String get() {
         String input = stream.remove(0);
-        if (validInput(input)) return input;
+        if (validInput(input)) { return input; }
         return "-1";
     }
 

@@ -11,7 +11,7 @@ When the repository is cloned, `cd TicTacToe` to move into the program directory
 
 #### How to play
 
-Once in the directory, you can run the game with `gradle run`
+Once in the directory, you can run the game with `./play.sh'
 
 #### How to test
 

@@ -1,6 +1,5 @@
 package ttt;
 
-import ttt.consoleui.Display;
 import ttt.game.Marks;
 
 public class DisplayFake implements Display {
@@ -26,8 +25,8 @@ public class DisplayFake implements Display {
         return stream;
     }
 
-    public void promptForLocation() {
-        write("Please choose a location from 1 to 9");
+    public void promptForLocation(int boardSize) {
+        write("Please choose a location from 1 to " + boardSize);
     }
 
     public void invalidLocation() {

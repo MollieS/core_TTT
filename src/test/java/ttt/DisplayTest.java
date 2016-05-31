@@ -35,8 +35,10 @@ public class DisplayTest {
 
     @Test
     public void promptsForLocation() {
-        display.promptForLocation();
+        display.promptForLocation(9);
         assertTrue(displayContains("Please choose a location from 1 to 9"));
+        display.promptForLocation(16);
+        assertTrue(displayContains("Please choose a location from 1 to 16"));
     }
 
     @Test

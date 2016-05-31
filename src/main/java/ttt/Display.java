@@ -1,4 +1,4 @@
-package ttt.consoleui;
+package ttt;
 
 import ttt.game.Marks;
 
@@ -8,7 +8,7 @@ public interface Display {
 
     void draw();
 
-    void promptForLocation();
+    void promptForLocation(int boardSize);
 
     void invalidLocation();
 

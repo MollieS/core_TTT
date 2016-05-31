@@ -1,8 +1,8 @@
 package ttt.game;
 
 import ttt.consoleui.ConsoleBoard;
-import ttt.consoleui.Display;
-import ttt.consoleui.Input;
+import ttt.Display;
+import ttt.Input;
 
 public class GameLoop {
     private GameEngine gameEngine;
@@ -35,6 +35,7 @@ public class GameLoop {
 
     private void playGame() {
         while (!gameEngine.isOver()) {
+            write(consoleBoard.createBoard(gameEngine.showBoard()));
             String input = getLocation();
             display.clearScreen();
             processInput(input);
@@ -42,10 +43,9 @@ public class GameLoop {
     }
 
     private String getLocation() {
-        write(consoleBoard.createBoard(gameEngine.showBoard()));
         display.displayTurn(gameEngine.currentMark());
-        display.promptForLocation();
-        return gameEngine.getCurrentPlayer().getLocation(input, gameEngine.showBoard());
+        display.promptForLocation(gameEngine.showBoard().size());
+        return gameEngine.getCurrentPlayer().getLocation(gameEngine.showBoard());
     }
 
     private void placeMark(String input) {
@@ -75,19 +75,23 @@ public class GameLoop {
 
     private void replay() {
         display.replay();
-        playAgain(input.getReplay());
+        this.gameEngine = playAgain(input.getReplay());
+        if (this.gameEngine != null) {
+            start();
+        }
     }
 
-    private void playAgain(String answer) {
+    public GameEngine playAgain(String answer) {
+        GameEngine newGame = null;
         if (answer.equals(replayOptions[0])) {
-            this.gameEngine = new GameMenu(input, display).createGame();
-            start();
+            newGame = new GameMenu(input, display).createGame();
         } else if (answer.equals(replayOptions[1])) {
             display.goodbye();
         } else {
             display.invalidInput();
             playAgain(input.getReplay());
         }
+        return newGame;
     }
 
     private void write(String message) {

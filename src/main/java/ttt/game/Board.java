@@ -38,18 +38,18 @@ public class Board {
     public List<Integer> availableMoves() {
         List<Integer> moves = new ArrayList<>();
         for (int cell = 0; cell < board.length; cell++) {
-            if (board[cell] == Marks.CLEAR) moves.add(cell);
+            if (board[cell] == Marks.CLEAR) { moves.add(cell); }
         }
         return moves;
     }
 
     public boolean isFull() {
-        for (Marks cell : board) if (cell == Marks.CLEAR) { return false; }
+        for (Marks cell : board) { if (cell == Marks.CLEAR) { return false; } }
         return true;
     }
 
     public boolean isEmpty() {
-        for (Marks cell : board) if (cell != Marks.CLEAR) { return false; }
+        for (Marks cell : board) { if (cell != Marks.CLEAR) { return false; } }
         return true;
     }
 
@@ -63,15 +63,15 @@ public class Board {
 
     public boolean isAWinFor(Marks mark) {
         for (List<Marks> cells : winningPositions()) {
-            if (isAllTheSame(mark, cells)) return true;
+            if (isAllTheSame(mark, cells)) { return true; }
         }
         return false;
     }
 
     public boolean isWon() {
         for (List<Marks> cells : winningPositions()) {
-            if (isAllTheSame(Marks.O, cells)) return true;
-            if (isAllTheSame(Marks.X, cells)) return true;
+            if (isAllTheSame(Marks.O, cells)) { return true; }
+            if (isAllTheSame(Marks.X, cells)) { return true; }
         }
         return false;
     }
@@ -83,14 +83,18 @@ public class Board {
         return positions;
     }
 
+    public List<List<Marks>> getRows() {
+        return rows();
+    }
+
 
     private List<List<Marks>> rows() {
         int rowStart = 0;
         List<List<Marks>> rows = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
+        for (int cell = 0; cell < size; cell++) {
             List<Marks> cells = new ArrayList<>();
-            for (int cell = 0; cell < size; cell++) {
-                cells.add(board[cell + rowStart]);
+            for (int currentCell = 0; currentCell < size; currentCell++) {
+                cells.add(board[currentCell + rowStart]);
             }
             rows.add(cells);
             rowStart += size;
@@ -101,13 +105,13 @@ public class Board {
     private List<List<Marks>> columns() {
         int columnStart = 0;
         List<List<Marks>> columns = new ArrayList<>();
-        for (int cell = 0; cell < size; cell ++) {
+        for (int cell = 0; cell < size; cell++) {
             List<Marks> cells = new ArrayList<>();
-            for (int i = columnStart; i < size(); i += size) {
-                cells.add(board[i]);
+            for (int currentCell = columnStart; currentCell < size(); currentCell += size) {
+                cells.add(board[currentCell]);
             }
             columns.add(cells);
-            columnStart ++;
+            columnStart++;
         }
         return columns;
     }
@@ -120,16 +124,16 @@ public class Board {
 
     private List<Marks> leftDiagonal() {
         List<Marks> left = new ArrayList();
-        for (int i = 0; i < size(); i += (size + 1)) {
-            left.add(board[i]);
+        for (int cell = 0; cell < size(); cell += (size + 1)) {
+            left.add(board[cell]);
         }
         return left;
     }
 
     public List<Marks> rightDiagonal() {
         List<Marks> right = new ArrayList();
-        for (int i = (size - 1); i < (size() -1); i += (size - 1)) {
-            right.add(board[i]);
+        for (int cell = (size - 1); cell < (size() - 1); cell += (size - 1)) {
+            right.add(board[cell]);
         }
         return right;
     }

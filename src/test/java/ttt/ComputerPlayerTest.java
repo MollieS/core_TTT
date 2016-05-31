@@ -2,7 +2,6 @@ package ttt;
 
 import org.junit.Before;
 import org.junit.Test;
-import ttt.consoleui.Input;
 import ttt.game.Board;
 import ttt.game.Marks;
 import ttt.players.ComputerPlayer;
@@ -22,7 +21,7 @@ public class ComputerPlayerTest {
 
     @Test
     public void returnsARandomLocation() {
-        assertEquals("1", computer.getLocation(input, board));
+        assertEquals("1", computer.getLocation(board));
     }
 
     @Test

@@ -1,5 +1,7 @@
 package ttt.consoleui;
 
+import ttt.Input;
+
 import java.util.Scanner;
 
 public class ConsoleInput implements Input {
