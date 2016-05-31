@@ -46,20 +46,12 @@ public class Board {
     }
 
     public boolean isFull() {
-        for (Marks cell : board) {
-            if (cell == Marks.CLEAR) {
-                return false;
-            }
-        }
+        for (Marks cell : board) { if (cell == Marks.CLEAR) { return false; } }
         return true;
     }
 
     public boolean isEmpty() {
-        for (Marks cell : board) {
-            if (cell != Marks.CLEAR) {
-                return false;
-            }
-        }
+        for (Marks cell : board) { if (cell != Marks.CLEAR) { return false; } }
         return true;
     }
 
