@@ -19,7 +19,7 @@ public class GameEngine {
     }
 
     public void play(int location) {
-        board.placeMark(currentPlayer.getMark(), location);
+        board = board.placeMark(currentPlayer.getMark(), location);
         switchTurn();
     }
 

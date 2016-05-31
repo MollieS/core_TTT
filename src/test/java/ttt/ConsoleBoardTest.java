@@ -18,7 +18,7 @@ public class ConsoleBoardTest {
     @Before
     public void setUp() {
         this.consoleBoard = new ConsoleBoard();
-        this.board = new Board(3);
+        this.board = new Board(3, new Marks[0]);
     }
 
     @Test
@@ -28,27 +28,27 @@ public class ConsoleBoardTest {
 
     @Test
     public void updatesBoard() {
-        board.placeMark(X, 1);
+        board = board.placeMark(X, 1);
         assertEquals(board(), consoleBoard.createBoard(board));
     }
 
     @Test
     public void maintainsChange() {
-        board.placeMark(X, 1);
-        board.placeMark(O, 0);
+        board = board.placeMark(X, 1);
+        board = board.placeMark(O, 0);
         assertEquals(drawnBoard(), consoleBoard.createBoard(board));
     }
 
     @Test
     public void drawsBigBoard() {
-        Board bigBoard = new Board(4);
+        Board bigBoard = new Board(4, new Marks[0]);
         assertEquals(bigBoard(), consoleBoard.createBoard(bigBoard));
     }
 
     @Test
     public void updatesBigBoard() {
-        Board bigBoard = new Board(4);
-        bigBoard.placeMark(X, 0);
+        Board bigBoard = new Board(4, new Marks[0]);
+        bigBoard = bigBoard.placeMark(X, 0);
         assertEquals(markedbigBoard(), consoleBoard.createBoard(bigBoard));
     }
 

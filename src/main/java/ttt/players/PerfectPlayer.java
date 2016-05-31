@@ -34,7 +34,7 @@ public class PerfectPlayer implements Player {
         if (board.isFinished()) { return score(board, depth) * colour; }
         int bestValue = -999;
         for (int move : board.availableMoves()) {
-            makeMove(board, colour, move);
+            board = makeMove(board, colour, move);
             int value = -negamax(board, depth + 1, -colour, -beta, -alpha);
             board.clear(move);
             bestValue = Math.max(value, bestValue);
@@ -45,12 +45,13 @@ public class PerfectPlayer implements Player {
         return bestValue;
     }
 
-    private void makeMove(Board board, int colour, int move) {
+    private Board makeMove(Board board, int colour, int move) {
         if (colour == 1) {
-            board.placeMark(mark, move);
+            board = board.placeMark(mark, move);
         } else {
-            board.placeMark(opponent, move);
+            board = board.placeMark(opponent, move);
         }
+        return board;
     }
 
     private int score(Board board, int depth) {

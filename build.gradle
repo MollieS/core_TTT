@@ -1,57 +1,50 @@
 plugins {
-  id "com.github.kt3k.coveralls" version "2.6.3"
+    id "com.github.kt3k.coveralls" version "2.6.3"
     id "jacoco"
 }
 
 apply plugin: 'java'
 
 jar {
-  manifest {
-    attributes 'Main-Class': 'build.classes.main.ttt.Main'
-  }
+    manifest {
+        attributes 'Main-Class': 'build.classes.main.ttt.Main'
+    }
 }
 
-task (run, dependsOn: 'classes', type: JavaExec) {
-  main = "ttt.Main"
-  classpath = sourceSets.main.runtimeClasspath
+task(run, dependsOn: 'classes', type: JavaExec) {
+    main = "ttt.Main"
+    classpath = sourceSets.main.runtimeClasspath
 }
-// In this section you declare where to find the dependencies of your project
+
 repositories {
-  jcenter()
-  mavenCentral()
+    jcenter()
+    mavenCentral()
 }
 
-
-// In this section you declare the dependencies for your production and ttt code
 dependencies {
-  // The production code uses the SLF4J logging API at compile time
-  // Declare the dependency for your favourite ttt framework you want to use in your tests.
-  // TestNG is also supported by the Gradle Test task. Just change the
-  // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
-  // 'ttt.useTestNG()' to your build script.
-  testCompile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.12'
     testCompile 'pl.pragmatists:JUnitParams:1.0.4'
 }
 
 jacocoTestReport {
-  reports {
-    xml.enabled = true // coveralls plugin depends on xml format report
-      html.enabled = true
-  }
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
 
 
-  afterEvaluate {
-    classDirectories = files(classDirectories.files.collect {
-        fileTree(dir: it,
-            exclude: [ '**/Main.*',
-            '**/ConsoleDisplay.*',
-            '**/Minimax.*',
-            '**/ConsoleInput.*'
-            ])
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: ['**/Main.*',
+                              '**/ConsoleDisplay.*',
+                              '**/Minimax.*',
+                              '**/ConsoleInput.*'
+                    ])
         })
-  }
+    }
 }
 
 run {
-  standardInput = System.in
-  }
+    standardInput = System.in
+}
