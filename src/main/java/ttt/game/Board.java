@@ -33,10 +33,6 @@ public class Board {
         return board[cell];
     }
 
-    public void clear(int location) {
-        board[location] = Marks.CLEAR;
-    }
-
     public List<Integer> availableMoves() {
         List<Integer> moves = new ArrayList<>();
         for (int cell = 0; cell < board.length; cell++) {
@@ -72,12 +68,8 @@ public class Board {
 
     public boolean isWon() {
         for (List<Marks> cells : winningPositions()) {
-            if (isAllTheSame(Marks.O, cells)) {
-                return true;
-            }
-            if (isAllTheSame(Marks.X, cells)) {
-                return true;
-            }
+            if (isAllTheSame(Marks.O, cells)) { return true; }
+            if (isAllTheSame(Marks.X, cells)) { return true; }
         }
         return false;
     }

@@ -147,6 +147,12 @@ public class PerfectPlayerTest {
         board = board.placeMark(O, 3);
     }
 
+    @Test
+    public void bigBoard() {
+        Board board = new Board(4, new Marks[0]);
+        assertEquals("0", perfectPlayer.getLocation(board));
+    }
+
     private int computerLocation(Board board) {
         String choice = perfectPlayer.getLocation(board);
         return Integer.parseInt(choice);
