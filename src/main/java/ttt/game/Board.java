@@ -33,10 +33,6 @@ public class Board {
         return board[cell];
     }
 
-    public void clear(int location) {
-        board[location] = Marks.CLEAR;
-    }
-
     public List<Integer> availableMoves() {
         List<Integer> moves = new ArrayList<>();
         for (int cell = 0; cell < board.length; cell++) {
