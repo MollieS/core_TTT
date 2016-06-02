@@ -6,12 +6,13 @@ import ttt.game.Board;
 import ttt.game.Marks;
 import ttt.players.ComputerPlayer;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 public class ComputerPlayerTest {
 
-    private Input input = new InputFake();
-    private Board board = new Board(3, new Marks[0]);
+    private Board board = new Board(3, new ArrayList<>());
     private ComputerPlayer computer;
 
     @Before

@@ -9,6 +9,8 @@ import ttt.game.Marks;
 import ttt.players.HumanPlayer;
 import ttt.players.PerfectPlayer;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 public class PerfectPlayerTest {
@@ -23,7 +25,7 @@ public class PerfectPlayerTest {
     public void setUp() {
         this.perfectPlayer = new PerfectPlayer(X);
         Player opponent = new HumanPlayer(O, new InputFake());
-        this.board = new Board(3, new Marks[0]);
+        this.board = new Board(3, new ArrayList<>());
         this.game = new GameEngine(perfectPlayer, opponent, board);
     }
 
@@ -148,8 +150,8 @@ public class PerfectPlayerTest {
     }
 
     @Test
-    public void bigBoard() {
-        Board board = new Board(4, new Marks[0]);
+    public void placesAMarkOnABigBoard() {
+        Board board = new Board(4, new ArrayList<>());
         assertEquals("0", perfectPlayer.getLocation(board));
     }
 
@@ -162,7 +164,7 @@ public class PerfectPlayerTest {
     private void setUpGame() {
         perfectPlayer = new PerfectPlayer(X);
         Player opponent = new HumanPlayer(O, new InputFake());
-        board = new Board(3, new Marks[0]);
+        board = new Board(3, new ArrayList<>());
         game = new GameEngine(opponent, perfectPlayer, board);
     }
 

@@ -6,6 +6,7 @@ import org.junit.runners.Parameterized;
 import ttt.game.Board;
 import ttt.game.Marks;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -21,17 +22,17 @@ public class BoardSizeTest {
         });
     }
 
-    private int fInput;
-    private int fExpected;
+    private int size;
+    private int numberOfCells;
 
     public BoardSizeTest(int input, int expected) {
-        this.fInput = input;
-        this.fExpected = expected;
+        this.size = input;
+        this.numberOfCells = expected;
     }
 
     @Test
     public void hasASize() {
-        Board board = new Board(fInput, new Marks[0]);
-        assertEquals(fExpected, board.size());
+        Board board = new Board(size, new ArrayList<>());
+        assertEquals(numberOfCells, board.size());
     }
 }

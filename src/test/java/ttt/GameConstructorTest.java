@@ -7,6 +7,7 @@ import ttt.game.Marks;
 import ttt.game.GameConstructor;
 import ttt.players.HumanPlayer;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class GameConstructorTest {
 
     @Test
     public void createsAHumanVHumanGameWith3x3Board() {
-        GameEngine testGame = new GameEngine(new HumanPlayer(Marks.X, new InputFake()), new HumanPlayer(Marks.O, new InputFake()), new Board(3, new Marks[0]));
+        GameEngine testGame = new GameEngine(new HumanPlayer(Marks.X, new InputFake()), new HumanPlayer(Marks.O, new InputFake()), new Board(3, new ArrayList<>()));
         List<Integer> choices = Arrays.asList(1, 1);
         GameEngine game = GameConstructor.create(choices);
         assertTrue(game.getClass().equals(testGame.getClass()));

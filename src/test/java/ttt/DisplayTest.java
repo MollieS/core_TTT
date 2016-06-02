@@ -53,10 +53,6 @@ public class DisplayTest {
         assertTrue(displayContains("Please choose a valid option"));
     }
 
-    private boolean displayContains(String s) {
-        return display.read().contains(s);
-    }
-
     @Test
     public void displaysDraw() {
         display.draw();
@@ -103,4 +99,9 @@ public class DisplayTest {
         display.boardOptions();
         assertTrue(displayContains("3 x 3"));
     }
+
+    private boolean displayContains(String output) {
+        return display.read().contains(output);
+    }
+
 }

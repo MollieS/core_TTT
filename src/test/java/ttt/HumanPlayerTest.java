@@ -5,6 +5,8 @@ import ttt.game.Board;
 import ttt.game.Marks;
 import ttt.players.HumanPlayer;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 public class HumanPlayerTest {
@@ -20,7 +22,7 @@ public class HumanPlayerTest {
         InputFake input = new InputFake();
         input.set("1");
         Player player = new HumanPlayer(Marks.X, input);
-        Board board = new Board(3, new Marks[0]);
+        Board board = new Board(3, new ArrayList<>());
         assertEquals("0", player.getLocation(board));
     }
 }
