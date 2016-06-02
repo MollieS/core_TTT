@@ -1,5 +1,6 @@
 package ttt.game;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -156,14 +157,8 @@ public class Board {
     }
 
     private List<Marks> createNewBoard(Marks mark, int location) {
-        List<Marks> newBoard = new ArrayList<>();
-        for (int cell = 0; cell < board.size(); cell++) {
-            if (cell == location) {
-                newBoard.add(cell, mark);
-            } else {
-                newBoard.add(cell, board.get(cell));
-            }
-        }
+        List<Marks> newBoard = new ArrayList<>(board);
+        newBoard.set(location, mark);
         return newBoard;
     }
 }

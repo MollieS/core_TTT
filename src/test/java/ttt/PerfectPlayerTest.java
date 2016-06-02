@@ -150,6 +150,28 @@ public class PerfectPlayerTest {
     }
 
     @Test
+    public void doesNotLoseOn3x3Board() {
+        setUpGame();
+        game.play(0);
+        int computerLocation = computerLocation(game.showBoard());
+        assertEquals(4, computerLocation);
+        game.play(computerLocation);
+        game.play(8);
+        computerLocation = computerLocation(game.showBoard());
+        assertEquals(1, computerLocation);
+        game.play(computerLocation);
+        game.play(7);
+        computerLocation = computerLocation(game.showBoard());
+        assertEquals(6, computerLocation);
+        game.play(computerLocation);
+        game.play(2);
+        computerLocation = computerLocation(game.showBoard());
+        assertEquals(5, computerLocation);
+        game.play(computerLocation);
+        game.play(3);
+    }
+
+    @Test
     public void placesAMarkOnABigBoard() {
         Board board = new Board(4, new ArrayList<>());
         assertEquals("0", perfectPlayer.getLocation(board));
