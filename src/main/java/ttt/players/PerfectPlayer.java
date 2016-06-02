@@ -20,6 +20,11 @@ public class PerfectPlayer implements Player {
     public String getLocation(Board board) {
         resetMoveSelection();
         int location = getBestMove(board);
+        try {
+            Thread.sleep(1000);                 //1000 milliseconds is one second.
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
         return String.valueOf(location);
     }
 

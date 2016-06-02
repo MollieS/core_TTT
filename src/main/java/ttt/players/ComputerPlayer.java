@@ -15,6 +15,11 @@ public class ComputerPlayer implements Player {
     }
 
     public String getLocation(Board board) {
+        try {
+            Thread.sleep(1000);                 //1000 milliseconds is one second.
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
         int location = randomizer.location(board.availableMoves());
         return String.valueOf(location);
     }

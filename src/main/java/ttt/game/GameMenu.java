@@ -11,7 +11,7 @@ public class GameMenu {
 
     final private Input input;
     final private Display display;
-    final private List<Integer> gameOptions = Arrays.asList(1, 2, 3, 4, 5, 6);
+    final private List<Integer> gameOptions = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
     final private List<Integer> boardOptions = Arrays.asList(1, 2);
 
     public GameMenu(Input input, Display display) {
