@@ -1,7 +1,7 @@
 package ttt;
 
 public interface Input {
-    String get();
+    String getUserChoice();
 
     boolean validInput(String input);
 

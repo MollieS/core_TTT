@@ -1,5 +1,6 @@
 package ttt;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -8,29 +9,32 @@ import static org.junit.Assert.assertTrue;
 
 public class InputTest {
 
+    private InputFake input;
+
+    @Before
+    public void setUp() {
+        this.input = new InputFake();
+    }
+
     @Test
     public void returnsInput() {
-        InputFake input = new InputFake();
         input.set("1");
-        assertEquals("1", input.get());
+        assertEquals("1", input.getUserChoice());
     }
 
     @Test
     public void onlyTakesNumbers() {
-        InputFake input = new InputFake();
         input.set("Hello!");
-        assertEquals("-1", input.get());
+        assertEquals("-1", input.getUserChoice());
     }
 
     @Test
-    public void validatesInput() {
-        InputFake input = new InputFake();
+    public void doesNotAllowLettersForLocation() {
         assertFalse(input.validInput("HELLO"));
     }
 
     @Test
     public void getsReplayAnswer() {
-        InputFake input = new InputFake();
         input.set("y");
         assertTrue(input.getReplay().contains("y"));
     }

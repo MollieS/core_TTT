@@ -31,12 +31,12 @@ public class GameMenu {
     }
 
     private int getBoardChoice() {
-        String boardChoice = loopForValidInput(input.get(), 2);
+        String boardChoice = loopForValidInput(input.getUserChoice(), 2);
         return Integer.parseInt(boardChoice);
     }
 
     private int getGameChoice() {
-        String gameChoice = loopForValidInput(input.get(), 1);
+        String gameChoice = loopForValidInput(input.getUserChoice(), 1);
         return Integer.parseInt(gameChoice);
     }
 
@@ -52,7 +52,7 @@ public class GameMenu {
     private String loopForValidInput(String userInput, int type) {
         while (!validInput(userInput, type)) {
             display.invalidInput();
-            userInput = input.get();
+            userInput = input.getUserChoice();
         }
         return userInput;
     }

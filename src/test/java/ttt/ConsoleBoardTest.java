@@ -20,7 +20,7 @@ public class ConsoleBoardTest {
     @Before
     public void setUp() {
         this.consoleBoard = new ConsoleBoard();
-        this.board = new Board(3, new ArrayList<>());
+        this.board = new Board(3);
     }
 
     @Test
@@ -43,13 +43,13 @@ public class ConsoleBoardTest {
 
     @Test
     public void displaysBiggerBoard() {
-        Board bigBoard = new Board(4, new ArrayList<>());
+        Board bigBoard = new Board(4);
         assertEquals(bigBoard(), consoleBoard.createBoard(bigBoard));
     }
 
     @Test
     public void updatesBiggerBoard() {
-        Board bigBoard = new Board(4, new ArrayList<>());
+        Board bigBoard = new Board(4);
         bigBoard = bigBoard.placeMark(X, 0);
         assertEquals(markedBigBoard(), consoleBoard.createBoard(bigBoard));
     }

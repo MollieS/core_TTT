@@ -24,7 +24,7 @@ public class HumanPlayer implements Player {
     }
 
     private String formatLocation(Input input) {
-        int location = Integer.parseInt((input.get()));
+        int location = Integer.parseInt((input.getUserChoice()));
         return String.valueOf(location - 1);
     }
 }

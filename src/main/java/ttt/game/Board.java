@@ -13,14 +13,14 @@ public class Board {
     final private List<Marks> board;
     final private int size;
 
-    public Board(int size, List<Marks> moves) {
+    public Board(int size) {
         this.size = size;
-        int boardSize = (size * size);
-        if (moves.size() == 0) {
-            this.board = createEmptyBoard(boardSize);
-        } else {
-            this.board = moves;
-        }
+        this.board = createEmptyBoard(size * size);
+    }
+
+    public Board(int size, List<Marks> board) {
+        this.board = board;
+        this.size = size;
     }
 
     public final Board placeMark(Marks mark, int location) {

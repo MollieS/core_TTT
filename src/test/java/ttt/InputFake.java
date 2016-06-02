@@ -12,7 +12,7 @@ public class InputFake implements Input {
         }
     }
 
-    public String get() {
+    public String getUserChoice() {
         String input = stream.remove(0);
         if (validInput(input)) { return input; }
         return "-1";

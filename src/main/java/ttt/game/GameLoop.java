@@ -55,19 +55,33 @@ public class GameLoop {
 
     private void processInput(String input) {
         if (isInvalidInput(input)) {
+            write(consoleBoard.createBoard(gameEngine.showBoard()));
             display.invalidInput();
         } else {
             placeMark(input);
         }
     }
 
-    private boolean isInvalidInput(String choice) {
+    private boolean isInvalidLocation(String choice) {
         int location = Integer.parseInt(choice);
         if (location < 0 || location > (gameEngine.showBoard().size() - 1)) {
             display.invalidLocation();
             return true;
-        } else if (gameEngine.board(location) != Marks.CLEAR) {
+        }
+        return false;
+    }
+
+    private boolean isTakenCell(String choice) {
+        int location = Integer.parseInt(choice);
+        if (gameEngine.board(location) != Marks.CLEAR) {
             display.takenCell();
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isInvalidInput(String choice) {
+        if (isInvalidLocation(choice) || isTakenCell(choice)) {
             return true;
         }
         return false;

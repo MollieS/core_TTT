@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class ConsoleInput implements Input {
 
-    public String get() {
+    public String getUserChoice() {
         String stream = getInput();
         if (validInput(stream)) { return stream; }
         return "-1";

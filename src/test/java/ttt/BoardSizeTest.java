@@ -32,7 +32,7 @@ public class BoardSizeTest {
 
     @Test
     public void hasASize() {
-        Board board = new Board(size, new ArrayList<>());
+        Board board = new Board(size);
         assertEquals(numberOfCells, board.size());
     }
 }

@@ -22,7 +22,7 @@ public class HumanPlayerTest {
         InputFake input = new InputFake();
         input.set("1");
         Player player = new HumanPlayer(Marks.X, input);
-        Board board = new Board(3, new ArrayList<>());
+        Board board = new Board(3);
         assertEquals("0", player.getLocation(board));
     }
 }

@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ComputerPlayerTest {
 
-    private Board board = new Board(3, new ArrayList<>());
+    private Board board = new Board(3);
     private ComputerPlayer computer;
 
     @Before
