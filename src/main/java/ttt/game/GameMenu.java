@@ -31,13 +31,11 @@ public class GameMenu {
     }
 
     private int getBoardChoice() {
-        String boardChoice = loopForValidInput(input.getUserChoice(), 2);
-        return Integer.parseInt(boardChoice);
+        return loopForValidInput(input.getMenuChoice(boardOptions), boardOptions);
     }
 
     private int getGameChoice() {
-        String gameChoice = loopForValidInput(input.getUserChoice(), 1);
-        return Integer.parseInt(gameChoice);
+        return loopForValidInput(input.getMenuChoice(gameOptions), gameOptions);
     }
 
     private void openGameMenu() {
@@ -49,20 +47,11 @@ public class GameMenu {
         display.boardOptions();
     }
 
-    private String loopForValidInput(String userInput, int type) {
-        while (!validInput(userInput, type)) {
+    private int loopForValidInput(int userInput, List<Integer> options) {
+        while (userInput == 0) {
             display.invalidInput();
-            userInput = input.getUserChoice();
+            userInput = input.getMenuChoice(options);
         }
         return userInput;
-    }
-
-    private boolean validInput(String input, int type) {
-        int option = Integer.parseInt(input);
-        if (type == 1) {
-            return gameOptions.contains(option);
-        } else {
-            return boardOptions.contains(option);
-        }
     }
 }
