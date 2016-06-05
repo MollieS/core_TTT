@@ -66,7 +66,7 @@ public class GameLoopTest {
     public void cannotChooseTakenLocation() {
         input.set("1", "4", "2", "5", "2", "3", no);
         gameLoop.start();
-        assertTrue(displayContains("Already taken"));
+        assertTrue(displayContains("Please choose a location from 1 to 9"));
     }
 
     @Test

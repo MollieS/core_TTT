@@ -7,12 +7,6 @@ import java.util.Scanner;
 
 public class ConsoleInput implements Input {
 
-    public String getUserChoice() {
-        String stream = getInput();
-        if (isAnInteger(stream)) { return stream; }
-        return "-1";
-    }
-
     private String getInput() {
         Scanner scanner = new Scanner(System.in);
         return scanner.next();
@@ -27,10 +21,10 @@ public class ConsoleInput implements Input {
         return stream;
     }
 
-    public int getMenuChoice(List<Integer> options) {
+    public Integer getMenuChoice(List<Integer> options) {
         int choice =  validateChoice();
         if (options.contains(choice)) { return choice; }
-        return 0;
+        return null;
     }
 
     private int validateChoice() {
@@ -43,5 +37,13 @@ public class ConsoleInput implements Input {
         }
         return choice;
     }
+
+   public Integer getUserLocation(List<Integer> board) {
+       String input = getInput();
+       if (!isAnInteger(input)) { return null; }
+       int location = (Integer.parseInt(input) - 1);
+       if (board.contains(location)) { return location; }
+       return null;
+   }
 
 }

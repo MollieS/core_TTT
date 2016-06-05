@@ -19,72 +19,39 @@ public class GameLoop {
     }
 
     public void start() {
+        display.clearScreen();
+        write(consoleBoard.createBoard(gameEngine.showBoard()));
         playGame();
         getGameResult();
         replay();
     }
 
-    private void getGameResult() {
-        write(consoleBoard.createBoard(gameEngine.showBoard()));
-        if (gameEngine.isDraw()) {
-            display.draw();
-        } else {
-            display.winner(gameEngine.winningMark());
-        }
-    }
-
     private void playGame() {
         while (!gameEngine.isOver()) {
-            write(consoleBoard.createBoard(gameEngine.showBoard()));
-            String input = getLocation();
+            Integer location = getLocation();
             display.clearScreen();
-            processInput(input);
+            processInput(location);
         }
     }
 
-    private String getLocation() {
+    private Integer getLocation() {
         display.displayTurn(gameEngine.currentMark());
         display.promptForLocation(gameEngine.showBoard().size());
         return gameEngine.getCurrentPlayer().getLocation(gameEngine.showBoard());
     }
 
-    private void placeMark(String input) {
-        int choice = Integer.parseInt(input);
-        gameEngine.play(choice);
+    private void placeMark(Integer input) {
+        gameEngine.play(input);
     }
 
-    private void processInput(String input) {
-        if (isInvalidInput(input)) {
+    private void processInput(Integer input) {
+        if (input == null) {
             write(consoleBoard.createBoard(gameEngine.showBoard()));
             display.invalidInput();
         } else {
             placeMark(input);
+            write(consoleBoard.createBoard(gameEngine.showBoard()));
         }
-    }
-
-    private boolean isInvalidLocation(String choice) {
-        int location = Integer.parseInt(choice);
-        if (location < 0 || location > (gameEngine.showBoard().size() - 1)) {
-            display.invalidLocation();
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isTakenCell(String choice) {
-        int location = Integer.parseInt(choice);
-        if (gameEngine.board(location) != Marks.CLEAR) {
-            display.takenCell();
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isInvalidInput(String choice) {
-        if (isInvalidLocation(choice) || isTakenCell(choice)) {
-            return true;
-        }
-        return false;
     }
 
     private void replay() {
@@ -97,18 +64,28 @@ public class GameLoop {
 
     public GameEngine playAgain(String answer) {
         GameEngine newGame = null;
+        if (answer == null) {
+            display.invalidInput();
+            playAgain(input.getReplay());
+        }
         if (answer.equals(replayOptions[0])) {
             newGame = new GameMenu(input, display).createGame();
         } else if (answer.equals(replayOptions[1])) {
             display.goodbye();
-        } else {
-            display.invalidInput();
-            playAgain(input.getReplay());
         }
         return newGame;
     }
 
     private void write(String message) {
         display.write(message);
+    }
+
+    private void getGameResult() {
+        write(consoleBoard.createBoard(gameEngine.showBoard()));
+        if (gameEngine.isDraw()) {
+            display.draw();
+        } else {
+            display.winner(gameEngine.winningMark());
+        }
     }
 }

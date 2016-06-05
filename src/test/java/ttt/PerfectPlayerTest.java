@@ -174,12 +174,11 @@ public class PerfectPlayerTest {
     @Test
     public void placesAMarkOnABigBoard() {
         Board board = new Board(4);
-        assertEquals("0", perfectPlayer.getLocation(board));
+        assertEquals(Integer.valueOf(0), perfectPlayer.getLocation(board));
     }
 
     private int computerLocation(Board board) {
-        String choice = perfectPlayer.getLocation(board);
-        return Integer.parseInt(choice);
+        return perfectPlayer.getLocation(board);
     }
 
 

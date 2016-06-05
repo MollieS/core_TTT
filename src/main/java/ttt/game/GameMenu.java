@@ -47,8 +47,8 @@ public class GameMenu {
         display.boardOptions();
     }
 
-    private int loopForValidInput(int userInput, List<Integer> options) {
-        while (userInput == 0) {
+    private int loopForValidInput(Integer userInput, List<Integer> options) {
+        while (userInput == null) {
             display.invalidInput();
             userInput = input.getMenuChoice(options);
         }

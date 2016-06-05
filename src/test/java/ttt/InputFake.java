@@ -13,12 +13,6 @@ public class InputFake implements Input {
         }
     }
 
-    public String getUserChoice() {
-        String input = stream.remove(0);
-        if (isAnInteger(input)) { return input; }
-        return "-1";
-    }
-
     public boolean isAnInteger(String input) {
         return input.matches("[0-9]+");
     }
@@ -28,8 +22,15 @@ public class InputFake implements Input {
         return input;
     }
 
+    public Integer getUserLocation(List<Integer> board) {
+        String input = stream.remove(0);
+        if (!isAnInteger(input)) { return null; }
+        int location = (Integer.parseInt(input) - 1);
+        if (board.contains(location)) { return location; }
+        return null;
+    }
 
-    public int getMenuChoice(List<Integer> options) {
+    public Integer getMenuChoice(List<Integer> options) {
         String input = stream.remove(0);
         int choice;
         if (isAnInteger(input)) {
@@ -38,7 +39,7 @@ public class InputFake implements Input {
             choice = 0;
         }
         if (options.contains(choice)) return choice;
-        return 0;
+        return null;
     }
 
 }
