@@ -177,10 +177,26 @@ public class PerfectPlayerTest {
         assertEquals(Integer.valueOf(0), perfectPlayer.getLocation(board));
     }
 
+    @Test
+    public void drawsPlayerChoosesCenter() {
+        setUpGame();
+        game.play(4);
+        int computerLocation = computerLocation(game.showBoard());
+        assertEquals(0 ,computerLocation);
+        game.play(computerLocation);
+        game.play(2);
+        computerLocation = computerLocation(game.showBoard());
+        assertEquals(6, computerLocation);
+        game.play(computerLocation);
+        game.play(3);
+        computerLocation = computerLocation(game.showBoard());
+        assertEquals(5, computerLocation);
+        game.play(computerLocation);
+    }
+
     private int computerLocation(Board board) {
         return perfectPlayer.getLocation(board);
     }
-
 
     private void setUpGame() {
         perfectPlayer = new PerfectPlayer(X);

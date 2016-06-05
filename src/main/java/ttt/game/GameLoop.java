@@ -67,8 +67,7 @@ public class GameLoop {
         if (answer == null) {
             display.invalidInput();
             playAgain(input.getReplay());
-        }
-        if (answer.equals(replayOptions[0])) {
+        } else if (answer.equals(replayOptions[0])) {
             newGame = new GameMenu(input, display).createGame();
         } else if (answer.equals(replayOptions[1])) {
             display.goodbye();
@@ -81,7 +80,6 @@ public class GameLoop {
     }
 
     private void getGameResult() {
-        write(consoleBoard.createBoard(gameEngine.showBoard()));
         if (gameEngine.isDraw()) {
             display.draw();
         } else {
