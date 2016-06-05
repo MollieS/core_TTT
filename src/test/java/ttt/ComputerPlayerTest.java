@@ -22,7 +22,7 @@ public class ComputerPlayerTest {
 
     @Test
     public void returnsARandomLocation() {
-        assertEquals("1", computer.getLocation(board));
+        assertEquals(Integer.valueOf(1), computer.getLocation(board));
     }
 
     @Test

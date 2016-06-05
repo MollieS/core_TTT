@@ -9,8 +9,6 @@ import ttt.game.Marks;
 import ttt.players.HumanPlayer;
 import ttt.players.PerfectPlayer;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
 
 public class PerfectPlayerTest {
@@ -174,14 +172,28 @@ public class PerfectPlayerTest {
     @Test
     public void placesAMarkOnABigBoard() {
         Board board = new Board(4);
-        assertEquals("0", perfectPlayer.getLocation(board));
+        assertEquals(Integer.valueOf(0), perfectPlayer.getLocation(board));
+    }
+
+    @Test
+    public void drawsIfPlayerChoosesCenter() {
+        setUpGame();
+        game.play(4);
+        int computerLocation = computerLocation(game.showBoard());
+        assertEquals(0 ,computerLocation);
+        game.play(computerLocation);
+        game.play(2);
+        computerLocation = computerLocation(game.showBoard());
+        assertEquals(6, computerLocation);
+        game.play(computerLocation);
+        game.play(3);
+        computerLocation = computerLocation(game.showBoard());
+        assertEquals(5, computerLocation);
     }
 
     private int computerLocation(Board board) {
-        String choice = perfectPlayer.getLocation(board);
-        return Integer.parseInt(choice);
+        return perfectPlayer.getLocation(board);
     }
-
 
     private void setUpGame() {
         perfectPlayer = new PerfectPlayer(X);
@@ -189,6 +201,5 @@ public class PerfectPlayerTest {
         board = new Board(3);
         game = new GameEngine(opponent, perfectPlayer, board);
     }
-
 
 }

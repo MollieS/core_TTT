@@ -23,6 +23,6 @@ public class HumanPlayerTest {
         input.set("1");
         Player player = new HumanPlayer(Marks.X, input);
         Board board = new Board(3);
-        assertEquals("0", player.getLocation(board));
+        assertEquals(Integer.valueOf(0), player.getLocation(board));
     }
 }

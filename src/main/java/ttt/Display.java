@@ -10,11 +10,7 @@ public interface Display {
 
     void promptForLocation(int boardSize);
 
-    void invalidLocation();
-
     void invalidInput();
-
-    void takenCell();
 
     void displayTurn(Marks mark);
 

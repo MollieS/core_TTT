@@ -47,6 +47,37 @@ public class PlayerFactoryTest {
         assertTrue(player.getMark().equals(X));
     }
 
+    @Test
+    public void createsPerfectPlayerVPerfectPlayerGame() {
+        Player player = getPlayer(6, 0);
+        Player player2 = getPlayer(6, 1);
+        assertTrue(player.getClass().equals(PerfectPlayer.class));
+        assertTrue(player2.getClass().equals(PerfectPlayer.class));
+    }
+
+    @Test
+    public void createsPerfectPlayerVRandomPlayerGame() {
+        Player player = getPlayer(7, 0);
+        Player player2 = getPlayer(7, 1);
+        assertTrue(player.getClass().equals(PerfectPlayer.class));
+        assertTrue(player2.getClass().equals(ComputerPlayer.class));
+    }
+
+    @Test
+    public void createsComputerPlayerVRandomPlayerGame() {
+        Player player = getPlayer(8, 0);
+        Player player2 = getPlayer(8, 1);
+        assertTrue(player2.getClass().equals(PerfectPlayer.class));
+        assertTrue(player.getClass().equals(ComputerPlayer.class));
+    }
+
+    @Test
+    public void createsRandomPlayerVRandomPlayerGame() {
+        Player player = getPlayer(9, 0);
+        Player player2 = getPlayer(9, 1);
+        assertTrue(player2.getClass().equals(ComputerPlayer.class));
+        assertTrue(player.getClass().equals(ComputerPlayer.class));
+    }
     private Player getPlayer(int type, int player) {
         return PlayerFactory.create(type).get(player);
     }

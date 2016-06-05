@@ -22,14 +22,6 @@ public class ConsoleDisplay implements Display {
         System.out.println(message);
     }
 
-    public void takenCell() {
-        write("Already taken");
-    }
-
-    public void invalidLocation() {
-        write("Invalid location");
-    }
-
     public void invalidInput() {
         write("Please choose a valid option");
         write("");

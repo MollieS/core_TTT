@@ -42,12 +42,6 @@ public class DisplayTest {
     }
 
     @Test
-    public void displaysInvalidLocationError() {
-        display.invalidLocation();
-        assertTrue(displayContains("Invalid location"));
-    }
-
-    @Test
     public void displaysInvalidInputError() {
         display.invalidInput();
         assertTrue(displayContains("Please choose a valid option"));
@@ -68,12 +62,6 @@ public class DisplayTest {
     public void displaysTurn() {
         display.displayTurn(Marks.X);
         assertTrue(displayContains("X's turn"));
-    }
-
-    @Test
-    public void displaysTakenCellError() {
-        display.takenCell();
-        assertTrue(displayContains("Already taken"));
     }
 
     @Test

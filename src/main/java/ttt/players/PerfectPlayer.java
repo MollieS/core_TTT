@@ -5,6 +5,7 @@ import ttt.game.Marks;
 import ttt.Player;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class PerfectPlayer implements Player {
 
@@ -17,7 +18,7 @@ public class PerfectPlayer implements Player {
         this.opponent = mark.equals(Marks.X) ? Marks.O : Marks.X;
     }
 
-    public String getLocation(Board board) {
+    public Integer getLocation(Board board) {
         resetMoveSelection();
         int location = getBestMove(board);
         try {
@@ -25,7 +26,7 @@ public class PerfectPlayer implements Player {
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        return String.valueOf(location);
+        return location;
     }
 
     public Marks getMark() {

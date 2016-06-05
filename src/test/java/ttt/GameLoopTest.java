@@ -1,5 +1,6 @@
 package ttt;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import ttt.consoleui.ConsoleBoard;
@@ -66,13 +67,20 @@ public class GameLoopTest {
     public void cannotChooseTakenLocation() {
         input.set("1", "4", "2", "5", "2", "3", no);
         gameLoop.start();
-        assertTrue(displayContains("Already taken"));
+        assertTrue(displayContains("Please choose a location from 1 to 9"));
     }
 
     @Test
     public void canReplayTheGame() {
         input.set("1", "1");
         assertEquals(gameLoop.playAgain("y").getClass(), gameEngine.getClass());
+    }
+
+    @Test
+    public void doesNotAllowInvalidReplayInput() {
+        input.set("hello", "n");
+        gameLoop.playAgain(null);
+        assertTrue(displayContains("Please choose a valid option"));
     }
 
     @Test

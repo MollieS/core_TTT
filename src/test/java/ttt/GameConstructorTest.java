@@ -1,5 +1,6 @@
 package ttt;
 
+import org.junit.Before;
 import org.junit.Test;
 import ttt.game.Board;
 import ttt.game.GameEngine;
@@ -14,6 +15,11 @@ import java.util.List;
 import static junit.framework.TestCase.assertTrue;
 
 public class GameConstructorTest {
+
+    @Before
+    public void setUp() {
+        GameConstructor gameConstructor = new GameConstructor();
+    }
 
     @Test
     public void createsAHumanVHumanGameWith3x3Board() {

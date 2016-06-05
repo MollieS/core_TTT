@@ -14,14 +14,14 @@ public class ComputerPlayer implements Player {
         this.mark = mark;
     }
 
-    public String getLocation(Board board) {
+    public Integer getLocation(Board board) {
         try {
             Thread.sleep(1000);                 //1000 milliseconds is one second.
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
         int location = randomizer.location(board.availableMoves());
-        return String.valueOf(location);
+        return location;
     }
 
     public Marks getMark() {

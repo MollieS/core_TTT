@@ -19,12 +19,8 @@ public class HumanPlayer implements Player {
         return mark;
     }
 
-    public String getLocation(Board board) {
-        return formatLocation(input);
+    public Integer getLocation(Board board) {
+        return input.getUserLocation(board.availableMoves());
     }
 
-    private String formatLocation(Input input) {
-        int location = Integer.parseInt((input.getUserChoice()));
-        return String.valueOf(location - 1);
-    }
 }

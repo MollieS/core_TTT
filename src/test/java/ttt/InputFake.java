@@ -1,6 +1,7 @@
 package ttt;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class InputFake implements Input {
 
@@ -12,13 +13,7 @@ public class InputFake implements Input {
         }
     }
 
-    public String getUserChoice() {
-        String input = stream.remove(0);
-        if (validInput(input)) { return input; }
-        return "-1";
-    }
-
-    public boolean validInput(String input) {
+    public boolean isAnInteger(String input) {
         return input.matches("[0-9]+");
     }
 
@@ -26,4 +21,25 @@ public class InputFake implements Input {
         String input = stream.remove(0);
         return input;
     }
+
+    public Integer getUserLocation(List<Integer> board) {
+        String input = stream.remove(0);
+        if (!isAnInteger(input)) { return null; }
+        int location = (Integer.parseInt(input) - 1);
+        if (board.contains(location)) { return location; }
+        return null;
+    }
+
+    public Integer getMenuChoice(List<Integer> options) {
+        String input = stream.remove(0);
+        int choice;
+        if (isAnInteger(input)) {
+            choice = Integer.parseInt(input);
+        } else {
+            choice = 0;
+        }
+        if (options.contains(choice)) return choice;
+        return null;
+    }
+
 }

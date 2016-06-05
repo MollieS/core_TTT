@@ -7,5 +7,5 @@ public interface Player {
 
     Marks getMark();
 
-    String getLocation(Board board);
+    Integer getLocation(Board board);
 }
