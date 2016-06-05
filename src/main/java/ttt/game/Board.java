@@ -38,18 +38,18 @@ public class Board {
 
     public List<Integer> availableMoves() {
         List<Integer> moves = IntStream.range(0, board.size())
-                .filter(index -> board.get(index) == Marks.CLEAR)
+                .filter(index -> board.get(index) == Marks.NULL)
                 .mapToObj(index -> index)
                 .collect(Collectors.toList());
         return moves;
     }
 
     public boolean isFull() {
-        return board.stream().allMatch(cell -> cell != Marks.CLEAR);
+        return board.stream().allMatch(cell -> cell != Marks.NULL);
     }
 
     public boolean isEmpty() {
-        return board.stream().allMatch(cell -> cell == Marks.CLEAR);
+        return board.stream().allMatch(cell -> cell == Marks.NULL);
     }
 
     public boolean isDraw() {
@@ -151,7 +151,7 @@ public class Board {
     private List<Marks> createEmptyBoard(int boardSize) {
         List<Marks> marks = new ArrayList<>();
         for (int cell = 0; cell < boardSize; cell++) {
-            marks.add(cell, Marks.CLEAR);
+            marks.add(cell, Marks.NULL);
         }
         return marks;
     }

@@ -5,8 +5,6 @@ import ttt.game.Board;
 import ttt.game.Marks;
 import ttt.players.HumanPlayer;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
 
 public class HumanPlayerTest {

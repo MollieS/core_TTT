@@ -3,7 +3,6 @@ package ttt.game;
 import ttt.Player;
 import ttt.players.PlayerFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameConstructor {

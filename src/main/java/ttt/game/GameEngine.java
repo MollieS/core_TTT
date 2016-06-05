@@ -50,7 +50,9 @@ public class GameEngine {
     }
 
     public Marks winningMark() {
-        if (!board.isWon()) { return null; }
+        if (!board.isWon()) {
+            return Marks.NULL;
+        }
         return nextPlayer.getMark();
     }
 

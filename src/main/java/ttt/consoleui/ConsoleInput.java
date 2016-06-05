@@ -27,6 +27,16 @@ public class ConsoleInput implements Input {
         return null;
     }
 
+    public Integer getUserLocation(List<Integer> board) {
+        String input = getInput();
+        if (!isAnInteger(input)) {
+            return null;
+        }
+        int location = (Integer.parseInt(input) - 1);
+        if (board.contains(location)) { return location; }
+        return null;
+    }
+
     private int validateChoice() {
         String input = getInput();
         int choice;
@@ -38,12 +48,5 @@ public class ConsoleInput implements Input {
         return choice;
     }
 
-   public Integer getUserLocation(List<Integer> board) {
-       String input = getInput();
-       if (!isAnInteger(input)) { return null; }
-       int location = (Integer.parseInt(input) - 1);
-       if (board.contains(location)) { return location; }
-       return null;
-   }
 
 }

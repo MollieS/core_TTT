@@ -1,6 +1,5 @@
 package ttt;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import ttt.consoleui.ConsoleBoard;
@@ -9,8 +8,6 @@ import ttt.game.GameEngine;
 import ttt.game.Marks;
 import ttt.game.GameLoop;
 import ttt.players.HumanPlayer;
-
-import java.util.ArrayList;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;

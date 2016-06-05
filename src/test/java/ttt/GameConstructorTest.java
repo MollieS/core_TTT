@@ -8,7 +8,6 @@ import ttt.game.Marks;
 import ttt.game.GameConstructor;
 import ttt.players.HumanPlayer;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

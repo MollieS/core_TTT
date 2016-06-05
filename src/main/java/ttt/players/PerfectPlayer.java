@@ -5,7 +5,6 @@ import ttt.game.Marks;
 import ttt.Player;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 public class PerfectPlayer implements Player {
 
@@ -24,7 +23,7 @@ public class PerfectPlayer implements Player {
         try {
             Thread.sleep(1000);                 //1000 milliseconds is one second.
         } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
+            assert false;
         }
         return location;
     }
