@@ -42,19 +42,9 @@ public class DisplayTest {
     }
 
     @Test
-    public void displaysInvalidLocationError() {
-        display.invalidLocation();
-        assertTrue(displayContains("Invalid location"));
-    }
-
-    @Test
     public void displaysInvalidInputError() {
         display.invalidInput();
         assertTrue(displayContains("Please choose a valid option"));
-    }
-
-    private boolean displayContains(String s) {
-        return display.read().contains(s);
     }
 
     @Test
@@ -72,12 +62,6 @@ public class DisplayTest {
     public void displaysTurn() {
         display.displayTurn(Marks.X);
         assertTrue(displayContains("X's turn"));
-    }
-
-    @Test
-    public void displaysTakenCellError() {
-        display.takenCell();
-        assertTrue(displayContains("Already taken"));
     }
 
     @Test
@@ -103,4 +87,9 @@ public class DisplayTest {
         display.boardOptions();
         assertTrue(displayContains("3 x 3"));
     }
+
+    private boolean displayContains(String output) {
+        return display.read().contains(output);
+    }
+
 }

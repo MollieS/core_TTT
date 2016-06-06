@@ -25,9 +25,21 @@ public class PlayerFactory {
         } else if (type == 4) {
             player1 = new HumanPlayer(Marks.X, new ConsoleInput());
             player2 = new PerfectPlayer(Marks.O);
-        } else {
+        } else if (type == 5) {
             player1 = new PerfectPlayer(Marks.X);
             player2 = new HumanPlayer(Marks.O, new ConsoleInput());
+        } else if (type == 6) {
+            player1 = new PerfectPlayer(Marks.X);
+            player2 = new PerfectPlayer(Marks.O);
+        } else if (type == 7) {
+            player1 = new PerfectPlayer(Marks.X);
+            player2 = new ComputerPlayer(new RandomLocationGenerator(), Marks.O);
+        } else if (type == 8) {
+            player1 = new ComputerPlayer(new RandomLocationGenerator(), Marks.X);
+            player2 = new PerfectPlayer(Marks.O);
+        } else {
+            player1 = new ComputerPlayer(new RandomLocationGenerator(), Marks.X);
+            player2 = new ComputerPlayer(new RandomLocationGenerator(), Marks.O);
         }
         return Arrays.asList(player1, player2);
     }

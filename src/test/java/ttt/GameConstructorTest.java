@@ -1,5 +1,6 @@
 package ttt;
 
+import org.junit.Before;
 import org.junit.Test;
 import ttt.game.Board;
 import ttt.game.GameEngine;
@@ -7,6 +8,7 @@ import ttt.game.Marks;
 import ttt.game.GameConstructor;
 import ttt.players.HumanPlayer;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,9 +16,14 @@ import static junit.framework.TestCase.assertTrue;
 
 public class GameConstructorTest {
 
+    @Before
+    public void setUp() {
+        GameConstructor gameConstructor = new GameConstructor();
+    }
+
     @Test
     public void createsAHumanVHumanGameWith3x3Board() {
-        GameEngine testGame = new GameEngine(new HumanPlayer(Marks.X, new InputFake()), new HumanPlayer(Marks.O, new InputFake()), new Board(3, new Marks[0]));
+        GameEngine testGame = new GameEngine(new HumanPlayer(Marks.X, new InputFake()), new HumanPlayer(Marks.O, new InputFake()), new Board(3));
         List<Integer> choices = Arrays.asList(1, 1);
         GameEngine game = GameConstructor.create(choices);
         assertTrue(game.getClass().equals(testGame.getClass()));

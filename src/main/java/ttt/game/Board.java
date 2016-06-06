@@ -1,54 +1,55 @@
 package ttt.game;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Board {
 
-    final private Marks[] board;
+    final private List<Marks> board;
     final private int size;
 
-    public Board(int size, Marks[] moves) {
+    public Board(int size) {
         this.size = size;
-        int boardSize = (size * size);
-        if (moves.length == 0) {
-            this.board = createEmptyBoard(boardSize);
-        } else {
-            this.board = moves;
-        }
+        this.board = createEmptyBoard(size * size);
+    }
+
+    public Board(int size, List<Marks> board) {
+        this.board = board;
+        this.size = size;
     }
 
     public final Board placeMark(Marks mark, int location) {
-        Marks[] newBoard = createNewBoard(mark, location);
+        List<Marks> newBoard = createNewBoard(mark, location);
         return new Board(size, newBoard);
     }
 
     public final int size() {
-        return board.length;
+        return board.size();
     }
 
     public Marks getMarkAt(int cell) {
-        return board[cell];
+        return board.get(cell);
     }
 
     public List<Integer> availableMoves() {
-        List<Integer> moves = new ArrayList<>();
-        for (int cell = 0; cell < board.length; cell++) {
-            if (board[cell] == Marks.CLEAR) { moves.add(cell); }
-        }
+        List<Integer> moves = IntStream.range(0, board.size())
+                .filter(index -> board.get(index) == Marks.CLEAR)
+                .mapToObj(index -> index)
+                .collect(Collectors.toList());
         return moves;
     }
 
     public boolean isFull() {
-        for (Marks cell : board) { if (cell == Marks.CLEAR) { return false; } }
-        return true;
+        return board.stream().allMatch(cell -> cell != Marks.CLEAR);
     }
 
     public boolean isEmpty() {
-        for (Marks cell : board) { if (cell != Marks.CLEAR) { return false; } }
-        return true;
+        return board.stream().allMatch(cell -> cell == Marks.CLEAR);
     }
 
     public boolean isDraw() {
@@ -61,15 +62,18 @@ public class Board {
 
     public boolean isAWinFor(Marks mark) {
         for (List<Marks> cells : winningPositions()) {
-            if (isAllTheSame(mark, cells)) { return true; }
+            if (isAllTheSame(mark, cells)) {
+                return true;
+            }
         }
         return false;
     }
 
     public boolean isWon() {
         for (List<Marks> cells : winningPositions()) {
-            if (isAllTheSame(Marks.O, cells)) { return true; }
-            if (isAllTheSame(Marks.X, cells)) { return true; }
+            if (isAllTheSame(Marks.O, cells) || isAllTheSame(Marks.X, cells)) {
+                return true;
+            }
         }
         return false;
     }
@@ -92,7 +96,7 @@ public class Board {
         for (int cell = 0; cell < size; cell++) {
             List<Marks> cells = new ArrayList<>();
             for (int currentCell = 0; currentCell < size; currentCell++) {
-                cells.add(board[currentCell + rowStart]);
+                cells.add(board.get(currentCell + rowStart));
             }
             rows.add(cells);
             rowStart += size;
@@ -106,7 +110,7 @@ public class Board {
         for (int cell = 0; cell < size; cell++) {
             List<Marks> cells = new ArrayList<>();
             for (int currentCell = columnStart; currentCell < size(); currentCell += size) {
-                cells.add(board[currentCell]);
+                cells.add(board.get(currentCell));
             }
             columns.add(cells);
             columnStart++;
@@ -121,17 +125,17 @@ public class Board {
     }
 
     private List<Marks> leftDiagonal() {
-        List<Marks> left = new ArrayList();
+        List<Marks> left = new ArrayList<>();
         for (int cell = 0; cell < size(); cell += (size + 1)) {
-            left.add(board[cell]);
+            left.add(board.get(cell));
         }
         return left;
     }
 
     public List<Marks> rightDiagonal() {
-        List<Marks> right = new ArrayList();
+        List<Marks> right = new ArrayList<>();
         for (int cell = (size - 1); cell < (size() - 1); cell += (size - 1)) {
-            right.add(board[cell]);
+            right.add(board.get(cell));
         }
         return right;
     }
@@ -144,23 +148,17 @@ public class Board {
         return size;
     }
 
-    private Marks[] createEmptyBoard(int boardSize) {
-        Marks[] marks = new Marks[boardSize];
+    private List<Marks> createEmptyBoard(int boardSize) {
+        List<Marks> marks = new ArrayList<>();
         for (int cell = 0; cell < boardSize; cell++) {
-            marks[cell] = Marks.CLEAR;
+            marks.add(cell, Marks.CLEAR);
         }
         return marks;
     }
 
-    private Marks[] createNewBoard(Marks mark, int location) {
-        Marks[] newBoard = new Marks[size()];
-        for (int cell = 0; cell < board.length; cell++) {
-            if (cell == location) {
-                newBoard[cell] = mark;
-            } else {
-                newBoard[cell] = board[cell];
-            }
-        }
+    private List<Marks> createNewBoard(Marks mark, int location) {
+        List<Marks> newBoard = new ArrayList<>(board);
+        newBoard.set(location, mark);
         return newBoard;
     }
 }

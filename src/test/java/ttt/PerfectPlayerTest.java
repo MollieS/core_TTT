@@ -23,7 +23,7 @@ public class PerfectPlayerTest {
     public void setUp() {
         this.perfectPlayer = new PerfectPlayer(X);
         Player opponent = new HumanPlayer(O, new InputFake());
-        this.board = new Board(3, new Marks[0]);
+        this.board = new Board(3);
         this.game = new GameEngine(perfectPlayer, opponent, board);
     }
 
@@ -148,23 +148,58 @@ public class PerfectPlayerTest {
     }
 
     @Test
-    public void bigBoard() {
-        Board board = new Board(4, new Marks[0]);
-        assertEquals("0", perfectPlayer.getLocation(board));
+    public void doesNotLoseOn3x3Board() {
+        setUpGame();
+        game.play(0);
+        int computerLocation = computerLocation(game.showBoard());
+        assertEquals(4, computerLocation);
+        game.play(computerLocation);
+        game.play(8);
+        computerLocation = computerLocation(game.showBoard());
+        assertEquals(1, computerLocation);
+        game.play(computerLocation);
+        game.play(7);
+        computerLocation = computerLocation(game.showBoard());
+        assertEquals(6, computerLocation);
+        game.play(computerLocation);
+        game.play(2);
+        computerLocation = computerLocation(game.showBoard());
+        assertEquals(5, computerLocation);
+        game.play(computerLocation);
+        game.play(3);
+    }
+
+    @Test
+    public void placesAMarkOnABigBoard() {
+        Board board = new Board(4);
+        assertEquals(Integer.valueOf(0), perfectPlayer.getLocation(board));
+    }
+
+    @Test
+    public void drawsIfPlayerChoosesCenter() {
+        setUpGame();
+        game.play(4);
+        int computerLocation = computerLocation(game.showBoard());
+        assertEquals(0 ,computerLocation);
+        game.play(computerLocation);
+        game.play(2);
+        computerLocation = computerLocation(game.showBoard());
+        assertEquals(6, computerLocation);
+        game.play(computerLocation);
+        game.play(3);
+        computerLocation = computerLocation(game.showBoard());
+        assertEquals(5, computerLocation);
     }
 
     private int computerLocation(Board board) {
-        String choice = perfectPlayer.getLocation(board);
-        return Integer.parseInt(choice);
+        return perfectPlayer.getLocation(board);
     }
-
 
     private void setUpGame() {
         perfectPlayer = new PerfectPlayer(X);
         Player opponent = new HumanPlayer(O, new InputFake());
-        board = new Board(3, new Marks[0]);
+        board = new Board(3);
         game = new GameEngine(opponent, perfectPlayer, board);
     }
-
 
 }

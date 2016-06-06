@@ -5,6 +5,8 @@ import org.junit.Test;
 import ttt.game.Board;
 import ttt.game.Marks;
 
+import java.util.ArrayList;
+
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -17,7 +19,7 @@ public class BoardTest {
 
     @Before
     public void setUp() {
-        this.board = new Board(3, new Marks[0]);
+        this.board = new Board(3);
         this.X = Marks.X;
         this.O = Marks.O;
     }
@@ -29,7 +31,7 @@ public class BoardTest {
     }
 
     @Test
-    public void immutableBoard() {
+    public void placeMarkDoesNotAffectBoard() {
         assertTrue(board.isEmpty());
         board.placeMark(X, 4);
         assertTrue(board.isEmpty());
@@ -50,12 +52,6 @@ public class BoardTest {
     public void boardIsNotEmptyForEitherMark() {
         Board markedBoard = board.placeMark(O, 6);
         assertFalse(markedBoard.isEmpty());
-    }
-
-    @Test
-    public void clearsCell() {
-        board.placeMark(X, 4);
-        assertEquals(Marks.CLEAR, board.getMarkAt(4));
     }
 
     @Test

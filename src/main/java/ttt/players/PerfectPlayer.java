@@ -4,9 +4,8 @@ import ttt.game.Board;
 import ttt.game.Marks;
 import ttt.Player;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import java.util.*;
+import java.util.stream.Stream;
 
 public class PerfectPlayer implements Player {
 
@@ -19,10 +18,15 @@ public class PerfectPlayer implements Player {
         this.opponent = mark.equals(Marks.X) ? Marks.O : Marks.X;
     }
 
-    public String getLocation(Board board) {
+    public Integer getLocation(Board board) {
         resetMoveSelection();
         int location = getBestMove(board);
-        return String.valueOf(location);
+        try {
+            Thread.sleep(1000);                 //1000 milliseconds is one second.
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        return location;
     }
 
     public Marks getMark() {

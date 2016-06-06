@@ -12,18 +12,14 @@ public class ConsoleDisplay implements Display {
         write("3. Random Computer v Human");
         write("4. Human v Perfect Computer");
         write("5. Perfect Computer v Human");
+        write("6. Perfect Computer v Perfect Computer");
+        write("7. Random Computer v Perfect Computer");
+        write("8. Perfect Computer v Random Computer");
+        write("9. Random Computer v Random Computer");
     }
 
     public void write(String message) {
         System.out.println(message);
-    }
-
-    public void takenCell() {
-        write("Already taken");
-    }
-
-    public void invalidLocation() {
-        write("Invalid location");
     }
 
     public void invalidInput() {

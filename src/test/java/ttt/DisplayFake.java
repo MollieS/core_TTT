@@ -9,10 +9,6 @@ public class DisplayFake implements Display {
         return mark.toString();
     }
 
-    public void takenCell() {
-        write("Already taken");
-    }
-
     public void displayTurn(Marks mark) {
         write(mark.toString() + "'s turn: choose a location");
     }
@@ -27,10 +23,6 @@ public class DisplayFake implements Display {
 
     public void promptForLocation(int boardSize) {
         write("Please choose a location from 1 to " + boardSize);
-    }
-
-    public void invalidLocation() {
-        write("Invalid location");
     }
 
     public void invalidInput() {

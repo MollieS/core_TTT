@@ -7,6 +7,7 @@ import ttt.game.GameEngine;
 import ttt.game.Marks;
 import ttt.players.HumanPlayer;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static junit.framework.TestCase.assertTrue;
@@ -24,7 +25,7 @@ public class GameEngineTest {
     public void setUp() throws Exception {
         this.player1 = new HumanPlayer(Marks.X, new InputFake());
         this.player2 = new HumanPlayer(Marks.O, new InputFake());
-        this.board = new Board(3, new Marks[0]);
+        this.board = new Board(3);
         this.gameEngine = new GameEngine(player1, player2, board);
     }
 
@@ -49,7 +50,7 @@ public class GameEngineTest {
     }
 
     @Test
-    public void switchesBack() {
+    public void switchesTurnBack() {
         gameEngine.play(0);
         gameEngine.play(4);
         gameEngine.play(7);
@@ -69,7 +70,7 @@ public class GameEngineTest {
     }
 
     @Test
-    public void draw() {
+    public void knowsWhenAGameIsDrawn() {
         drawGame();
         assertTrue(gameEngine.isDraw());
     }
@@ -86,15 +87,9 @@ public class GameEngineTest {
     }
 
     @Test
-    public void gameOverIfDraw() {
+    public void gameOverIfDrawn() {
         drawGame();
         assertTrue(gameEngine.isOver());
-    }
-
-    @Test
-    public void drawnGame() {
-        drawGame();
-        assertTrue(gameEngine.isDraw());
     }
 
     @Test

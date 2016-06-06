@@ -1,5 +1,6 @@
 package ttt;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import ttt.consoleui.ConsoleBoard;
@@ -8,6 +9,8 @@ import ttt.game.GameEngine;
 import ttt.game.Marks;
 import ttt.game.GameLoop;
 import ttt.players.HumanPlayer;
+
+import java.util.ArrayList;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -24,7 +27,7 @@ public class GameLoopTest {
     public void setUp() {
         this.input = new InputFake();
         this.display = new DisplayFake();
-        Board board = new Board(3, new Marks[0]);
+        Board board = new Board(3);
         ConsoleBoard consoleBoard = new ConsoleBoard();
         Player player1 = new HumanPlayer(Marks.X, input);
         Player player2 = new HumanPlayer(Marks.O, input);
@@ -64,13 +67,20 @@ public class GameLoopTest {
     public void cannotChooseTakenLocation() {
         input.set("1", "4", "2", "5", "2", "3", no);
         gameLoop.start();
-        assertTrue(displayContains("Already taken"));
+        assertTrue(displayContains("Please choose a location from 1 to 9"));
     }
 
     @Test
     public void canReplayTheGame() {
         input.set("1", "1");
         assertEquals(gameLoop.playAgain("y").getClass(), gameEngine.getClass());
+    }
+
+    @Test
+    public void doesNotAllowInvalidReplayInput() {
+        input.set("hello", "n");
+        gameLoop.playAgain(null);
+        assertTrue(displayContains("Please choose a valid option"));
     }
 
     @Test
@@ -83,7 +93,7 @@ public class GameLoopTest {
     @Test
     public void allowsLocationsForBiggerBoard() {
         input.set("1", "4", "6", "8", "11", "12", "16", no);
-        Board board = new Board(4, new Marks[0]);
+        Board board = new Board(4);
         ConsoleBoard consoleBoard = new ConsoleBoard();
         Player player1 = new HumanPlayer(Marks.X, input);
         Player player2 = new HumanPlayer(Marks.O, input);

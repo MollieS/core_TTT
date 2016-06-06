@@ -6,6 +6,8 @@ import ttt.consoleui.ConsoleBoard;
 import ttt.game.Board;
 import ttt.game.Marks;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 public class ConsoleBoardTest {
@@ -18,7 +20,7 @@ public class ConsoleBoardTest {
     @Before
     public void setUp() {
         this.consoleBoard = new ConsoleBoard();
-        this.board = new Board(3, new Marks[0]);
+        this.board = new Board(3);
     }
 
     @Test
@@ -29,30 +31,30 @@ public class ConsoleBoardTest {
     @Test
     public void updatesBoard() {
         board = board.placeMark(X, 1);
-        assertEquals(board(), consoleBoard.createBoard(board));
+        assertEquals(twiceMarkedBoard(), consoleBoard.createBoard(board));
     }
 
     @Test
     public void maintainsChange() {
         board = board.placeMark(X, 1);
         board = board.placeMark(O, 0);
-        assertEquals(drawnBoard(), consoleBoard.createBoard(board));
+        assertEquals(markedBoard(), consoleBoard.createBoard(board));
     }
 
     @Test
-    public void drawsBigBoard() {
-        Board bigBoard = new Board(4, new Marks[0]);
+    public void displaysBiggerBoard() {
+        Board bigBoard = new Board(4);
         assertEquals(bigBoard(), consoleBoard.createBoard(bigBoard));
     }
 
     @Test
-    public void updatesBigBoard() {
-        Board bigBoard = new Board(4, new Marks[0]);
+    public void updatesBiggerBoard() {
+        Board bigBoard = new Board(4);
         bigBoard = bigBoard.placeMark(X, 0);
-        assertEquals(markedbigBoard(), consoleBoard.createBoard(bigBoard));
+        assertEquals(markedBigBoard(), consoleBoard.createBoard(bigBoard));
     }
 
-    private String drawnBoard() {
+    private String markedBoard() {
         return "-------------" + "\n" +
                 "| O | X | 3 |" + "\n" +
                 "-------------" + "\n" +
@@ -72,7 +74,7 @@ public class ConsoleBoardTest {
                 "-------------";
     }
 
-    private String board() {
+    private String twiceMarkedBoard() {
         return "-------------" + "\n" +
                 "| 1 | X | 3 |" + "\n" +
                 "-------------" + "\n" +
@@ -83,7 +85,7 @@ public class ConsoleBoardTest {
     }
 
 
-    private String markedbigBoard() {
+    private String markedBigBoard() {
         return "-----------------" + "\n" +
                 "| X | 2 | 3 | 4 |" + "\n" +
                 "-----------------" + "\n" +

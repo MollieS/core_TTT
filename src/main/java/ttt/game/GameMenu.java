@@ -11,7 +11,7 @@ public class GameMenu {
 
     final private Input input;
     final private Display display;
-    final private List<Integer> gameOptions = Arrays.asList(1, 2, 3, 4, 5, 6);
+    final private List<Integer> gameOptions = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
     final private List<Integer> boardOptions = Arrays.asList(1, 2);
 
     public GameMenu(Input input, Display display) {
@@ -31,13 +31,11 @@ public class GameMenu {
     }
 
     private int getBoardChoice() {
-        String boardChoice = loopForValidInput(input.get(), 2);
-        return Integer.parseInt(boardChoice);
+        return loopForValidInput(input.getMenuChoice(boardOptions), boardOptions);
     }
 
     private int getGameChoice() {
-        String gameChoice = loopForValidInput(input.get(), 1);
-        return Integer.parseInt(gameChoice);
+        return loopForValidInput(input.getMenuChoice(gameOptions), gameOptions);
     }
 
     private void openGameMenu() {
@@ -49,20 +47,11 @@ public class GameMenu {
         display.boardOptions();
     }
 
-    private String loopForValidInput(String userInput, int type) {
-        while (!validInput(userInput, type)) {
+    private int loopForValidInput(Integer userInput, List<Integer> options) {
+        while (userInput == null) {
             display.invalidInput();
-            userInput = input.get();
+            userInput = input.getMenuChoice(options);
         }
         return userInput;
-    }
-
-    private boolean validInput(String input, int type) {
-        int option = Integer.parseInt(input);
-        if (type == 1) {
-            return gameOptions.contains(option);
-        } else {
-            return boardOptions.contains(option);
-        }
     }
 }

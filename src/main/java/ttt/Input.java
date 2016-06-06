@@ -1,10 +1,15 @@
 package ttt;
 
-public interface Input {
-    String get();
+import java.util.List;
 
-    boolean validInput(String input);
+public interface Input {
+
+    boolean isAnInteger(String input);
 
     String getReplay();
+
+    Integer getMenuChoice(List<Integer> options);
+
+    Integer getUserLocation(List<Integer> availableMoves);
 }
 
