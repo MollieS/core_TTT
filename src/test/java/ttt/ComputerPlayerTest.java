@@ -6,8 +6,6 @@ import ttt.game.Board;
 import ttt.game.Marks;
 import ttt.players.ComputerPlayer;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
 
 public class ComputerPlayerTest {

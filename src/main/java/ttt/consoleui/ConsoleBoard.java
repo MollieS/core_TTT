@@ -28,13 +28,15 @@ public class ConsoleBoard {
 
     private String rowDivisor(Board gameBoard) {
         String divisor = "";
-        for (int length = 0; length < ((4 * gameBoard.dimensions()) + 1); length++) { divisor += "-"; }
+        for (int length = 0; length < ((4 * gameBoard.dimensions()) + 1); length++) {
+            divisor += "-";
+        }
         return divisor;
     }
 
 
     private String newCellContents(Board board, int location) {
-        if (board.getMarkAt((location - 1)) == Marks.CLEAR) {
+        if (board.getMarkAt((location - 1)) == Marks.NULL) {
             return getNumber(location);
         } else {
             return board.getMarkAt(location - 1).toString() + " ";

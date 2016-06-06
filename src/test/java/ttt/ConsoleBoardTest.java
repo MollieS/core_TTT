@@ -6,8 +6,6 @@ import ttt.consoleui.ConsoleBoard;
 import ttt.game.Board;
 import ttt.game.Marks;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
 
 public class ConsoleBoardTest {

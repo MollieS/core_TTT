@@ -7,7 +7,6 @@ import ttt.game.GameEngine;
 import ttt.game.Marks;
 import ttt.players.HumanPlayer;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import static junit.framework.TestCase.assertTrue;
@@ -113,7 +112,7 @@ public class GameEngineTest {
     @Test
     public void returnsNullWhenThereIsNoWinner() {
         drawGame();
-        assertEquals(null, gameEngine.winningMark());
+        assertEquals(Marks.NULL, gameEngine.winningMark());
     }
 
     private void horizontalWinForPlayerOne() {
