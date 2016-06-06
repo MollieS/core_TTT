@@ -9,8 +9,3 @@ The core functionality of Tic Tac Toe, with three player options: Human, Random 
 
 From the root of the project run `gradle test`
 
-#### UML
-
-Current UML is as follows: 
-
-![UML](/images/UML.png?raw=true "UML")
