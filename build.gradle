@@ -7,7 +7,7 @@ apply plugin: 'java'
 
 jar {
     manifest {
-        attributes 'Main-Class': 'main.ttt.Main'
+        attributes 'Main-Class': 'src.main.ttt.Main'
     }
 }
 
