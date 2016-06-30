@@ -13,14 +13,15 @@ public class GameMenu {
     final private Display display;
     final private List<Integer> gameOptions = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
     final private List<Integer> boardOptions = Arrays.asList(1, 2);
+    private List<Integer> playerChoices;
 
     public GameMenu(Input input, Display display) {
         this.input = input;
         this.display = display;
+        this.playerChoices = new ArrayList<>();
     }
 
     public GameEngine createGame() {
-        List<Integer> playerChoices = new ArrayList<>();
         openGameMenu();
         playerChoices.add(getGameChoice());
         openBoardMenu();
@@ -49,6 +50,12 @@ public class GameMenu {
 
     private int loopForValidInput(Integer userInput, List<Integer> options) {
         while (userInput == null) {
+            display.clearScreen();
+            if (playerChoices.isEmpty()) {
+                display.gameOptions();
+            } else {
+                display.boardOptions();
+            }
             display.invalidInput();
             userInput = input.getMenuChoice(options);
         }
