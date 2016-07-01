@@ -34,12 +34,22 @@ public class InputFake implements Input {
         String input = stream.remove(0);
         int choice;
         if (isAnInteger(input)) {
-            choice = Integer.parseInt(input);
+            choice = convertToInt(input);
         } else {
             choice = 0;
         }
         if (options.contains(choice)) return choice;
         return null;
+    }
+
+    private int convertToInt(String input) {
+        int choice;
+        try {
+            choice = Integer.parseInt(input);
+        } catch (NumberFormatException ex) {
+            choice = 0;
+        }
+        return choice;
     }
 
 }
