@@ -82,4 +82,10 @@ public class InputTest {
         input.set("9");
         assertEquals(null, input.getUserLocation(Arrays.asList(1, 2)));
     }
+
+    @Test
+    public void doesNotReturnErrorForBigNumber() {
+        input.set("999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999");
+        assertEquals(null, input.getMenuChoice(Arrays.asList(1, 2)));
+    }
 }

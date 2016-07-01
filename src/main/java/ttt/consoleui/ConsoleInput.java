@@ -32,7 +32,7 @@ public class ConsoleInput implements Input {
         if (!isAnInteger(input)) {
             return null;
         }
-        int location = (Integer.parseInt(input) - 1);
+        int location = (convertToInt(input) - 1);
         if (board.contains(location)) { return location; }
         return null;
     }
@@ -41,8 +41,18 @@ public class ConsoleInput implements Input {
         String input = getInput();
         int choice;
         if (isAnInteger(input)) {
-            choice = Integer.parseInt(input);
+            choice = convertToInt(input);
         } else {
+            choice = 0;
+        }
+        return choice;
+    }
+
+    private int convertToInt(String input) {
+        int choice;
+        try {
+            choice = Integer.parseInt(input);
+        } catch (Exception ex) {
             choice = 0;
         }
         return choice;
