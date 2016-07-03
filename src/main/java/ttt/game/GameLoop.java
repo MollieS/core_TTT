@@ -28,13 +28,32 @@ public class GameLoop {
 
     private void playGame() {
         while (!gameEngine.isOver()) {
-            Integer location = getLocation();
+            Exception exception = null;
+            Integer location = null;
+            try {
+                location = getLocation();
+            } catch (Exception e) {
+                exception = e;
+            }
             display.clearScreen();
+            processOutput(exception, location);
+        }
+    }
+
+    private void processOutput(Exception exception, Integer location) {
+        if (exception != null) {
+            displayErrorMessage(exception);
+        } else {
             processInput(location);
         }
     }
 
-    private Integer getLocation() {
+    private void displayErrorMessage(Exception exception) {
+        display.write(consoleBoard.createBoard(gameEngine.showBoard()));
+        display.write(exception.getMessage());
+    }
+
+    private Integer getLocation() throws Exception {
         display.displayTurn(gameEngine.currentMark());
         display.promptForLocation(gameEngine.showBoard().size());
         return gameEngine.getCurrentPlayer().getLocation(gameEngine.showBoard());
@@ -45,13 +64,8 @@ public class GameLoop {
     }
 
     private void processInput(Integer input) {
-        if (input == null) {
-            write(consoleBoard.createBoard(gameEngine.showBoard()));
-            display.invalidInput();
-        } else {
-            placeMark(input);
-            write(consoleBoard.createBoard(gameEngine.showBoard()));
-        }
+        placeMark(input);
+        write(consoleBoard.createBoard(gameEngine.showBoard()));
     }
 
     private void replay() {

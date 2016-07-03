@@ -17,7 +17,7 @@ public class GameConstructor {
         } else {
             board = new Board(boardSizes[1]);
         }
-        List<Player> playerList = PlayerFactory.create(types.get(0));
+        List<Player> playerList = PlayerFactory.create(types.get(0), board.size());
         return new GameEngine(playerList.get(0), playerList.get(1), board);
     }
 }

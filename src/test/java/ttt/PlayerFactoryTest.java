@@ -78,8 +78,9 @@ public class PlayerFactoryTest {
         assertTrue(player2.getClass().equals(ComputerPlayer.class));
         assertTrue(player.getClass().equals(ComputerPlayer.class));
     }
+
     private Player getPlayer(int type, int player) {
-        return PlayerFactory.create(type).get(player);
+        return PlayerFactory.create(type, 3).get(player);
     }
 
 }

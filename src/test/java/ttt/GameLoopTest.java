@@ -26,8 +26,8 @@ public class GameLoopTest {
         this.display = new DisplayFake();
         Board board = new Board(3);
         ConsoleBoard consoleBoard = new ConsoleBoard();
-        Player player1 = new HumanPlayer(Marks.X, input);
-        Player player2 = new HumanPlayer(Marks.O, input);
+        Player player1 = new HumanPlayer(Marks.X, input, 3);
+        Player player2 = new HumanPlayer(Marks.O, input, 3);
         this.gameEngine = new GameEngine(player1, player2, board);
         this.gameLoop = new GameLoop(gameEngine, input, display, consoleBoard);
     }
@@ -64,7 +64,15 @@ public class GameLoopTest {
     public void cannotChooseTakenLocation() {
         input.set("1", "4", "2", "5", "2", "3", no);
         gameLoop.start();
-        assertTrue(displayContains("Please choose a location from 1 to 9"));
+        assertTrue(displayContains("Already taken"));
+    }
+
+    @Test
+    public void cannotChooseOutOfBoundsLocation() {
+        input.set("1", "4", "2", "5", "18", "3", no);
+        gameLoop.start();
+        assertTrue(displayContains("Out of bounds"));
+
     }
 
     @Test
@@ -92,8 +100,8 @@ public class GameLoopTest {
         input.set("1", "4", "6", "8", "11", "12", "16", no);
         Board board = new Board(4);
         ConsoleBoard consoleBoard = new ConsoleBoard();
-        Player player1 = new HumanPlayer(Marks.X, input);
-        Player player2 = new HumanPlayer(Marks.O, input);
+        Player player1 = new HumanPlayer(Marks.X, input, 4);
+        Player player2 = new HumanPlayer(Marks.O, input, 4);
         GameEngine gameEngine = new GameEngine(player1, player2, board);
         this.gameLoop = new GameLoop(gameEngine, input, display, consoleBoard);
         gameLoop.start();

@@ -65,22 +65,22 @@ public class InputTest {
         assertEquals(null, input.getMenuChoice(Arrays.asList(1, 2)));
     }
 
-    @Test
-    public void doesNotReturnInvalidLocationInput() {
+    @Test(expected = GameException.class)
+    public void doesNotReturnInvalidLocationInput() throws GameException {
         input.set("Hello");
-        assertEquals(null, input.getUserLocation(Arrays.asList(1, 2)));
+        assertEquals(null, input.getUserLocation(Arrays.asList(1, 2), 3));
     }
 
     @Test
-    public void formatsLocationForBoard() {
+    public void formatsLocationForBoard() throws GameException {
         input.set("2");
-        assertEquals(Integer.valueOf(1), input.getUserLocation(Arrays.asList(1, 2)));
+        assertEquals(Integer.valueOf(1), input.getUserLocation(Arrays.asList(1, 2), 3));
     }
 
-    @Test
-    public void doesNotReturnInvalidLocation() {
+    @Test(expected = GameException.class)
+    public void doesNotReturnInvalidLocation() throws GameException {
         input.set("9");
-        assertEquals(null, input.getUserLocation(Arrays.asList(1, 2)));
+        assertEquals(null, input.getUserLocation(Arrays.asList(1, 2), 3));
     }
 
     @Test

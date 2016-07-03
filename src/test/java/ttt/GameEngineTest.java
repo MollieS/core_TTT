@@ -22,8 +22,8 @@ public class GameEngineTest {
 
     @Before
     public void setUp() throws Exception {
-        this.player1 = new HumanPlayer(Marks.X, new InputFake());
-        this.player2 = new HumanPlayer(Marks.O, new InputFake());
+        this.player1 = new HumanPlayer(Marks.X, new InputFake(), 3);
+        this.player2 = new HumanPlayer(Marks.O, new InputFake(), 3);
         this.board = new Board(3);
         this.gameEngine = new GameEngine(player1, player2, board);
     }

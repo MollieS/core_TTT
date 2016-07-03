@@ -11,15 +11,15 @@ public class HumanPlayerTest {
 
     @Test
     public void hasAMark() {
-        Player player = new HumanPlayer(Marks.X, new InputFake());
+        Player player = new HumanPlayer(Marks.X, new InputFake(), 3);
         assertEquals(Marks.X, player.getMark());
     }
 
     @Test
-    public void returnsALocation() {
+    public void returnsALocation() throws Exception {
         InputFake input = new InputFake();
         input.set("1");
-        Player player = new HumanPlayer(Marks.X, input);
+        Player player = new HumanPlayer(Marks.X, input, 3);
         Board board = new Board(3);
         assertEquals(Integer.valueOf(0), player.getLocation(board));
     }
