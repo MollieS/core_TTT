@@ -1,5 +1,6 @@
 package ttt;
 
+import org.junit.Before;
 import org.junit.Test;
 import ttt.game.Board;
 import ttt.game.Marks;
@@ -11,6 +12,17 @@ import ttt.players.RandomPlayer;
 import static org.junit.Assert.assertTrue;
 
 public class DelayedPlayerTest {
+
+    @Test
+    public void onlyDelaysIfDurationShorterThanHalfASecond() throws InterruptedException {
+        DelayedPlayer player = new DelayedPlayer(new RandomPlayer(new RandomLocationGenerator(), Marks.X));
+        long start = System.currentTimeMillis();
+        player.delayResponse(2, 600);
+        long end = System.currentTimeMillis();
+        System.out.print(end - start);
+        assertTrue(end - start < 1000);
+
+    }
 
     @Test
     public void delaysRandomPlayer() throws Exception {
@@ -29,7 +41,7 @@ public class DelayedPlayerTest {
         long start = System.currentTimeMillis();
         player.getLocation(board);
         long end = System.currentTimeMillis();
-        assertTrue((end - start) > 1000);
+        assertTrue((end - start) > 500);
         assertTrue((end - start) < 2000);
     }
 }

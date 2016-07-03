@@ -21,7 +21,11 @@ public class DelayedPlayer implements Player {
         Integer location = player.getLocation(board);
         long endTime = System.currentTimeMillis();
         long duration = (endTime - startTime);
-        if (duration > 1000) {
+        return delayResponse(location, duration);
+    }
+
+    public Integer delayResponse(Integer location, long duration) throws InterruptedException {
+        if (duration > 500) {
             return location;
         } else {
             Thread.sleep(1000);
