@@ -19,13 +19,11 @@ public class PerfectPlayer implements Player {
 
     public Integer getLocation(Board board) {
         resetMoveSelection();
-        int location = getBestMove(board);
-        try {
-            Thread.sleep(1000);                 //1000 milliseconds is one second.
-        } catch(InterruptedException ex) {
-            assert false;
-        }
-        return location;
+        return getBestMove(board);
+    }
+
+    public Class playerType() {
+        return getClass();
     }
 
     public Marks getMark() {

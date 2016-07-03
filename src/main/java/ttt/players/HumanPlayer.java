@@ -25,4 +25,8 @@ public class HumanPlayer implements Player {
         return input.getUserLocation(board.availableMoves(), boardSize);
     }
 
+    public Class playerType() {
+        return getClass();
+    }
+
 }
