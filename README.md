@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Tic Tac Toe Core
 
 [![Coverage Status](https://coveralls.io/repos/github/MollieS/core_TTT/badge.svg?branch=master)](https://coveralls.io/github/MollieS/core_TTT?branch=master)

@@ -7,7 +7,6 @@ import ttt.game.GameEngine;
 import ttt.game.Marks;
 import ttt.players.HumanPlayer;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import static junit.framework.TestCase.assertTrue;
@@ -23,8 +22,8 @@ public class GameEngineTest {
 
     @Before
     public void setUp() throws Exception {
-        this.player1 = new HumanPlayer(Marks.X, new InputFake());
-        this.player2 = new HumanPlayer(Marks.O, new InputFake());
+        this.player1 = new HumanPlayer(Marks.X, new InputFake(), 3);
+        this.player2 = new HumanPlayer(Marks.O, new InputFake(), 3);
         this.board = new Board(3);
         this.gameEngine = new GameEngine(player1, player2, board);
     }
@@ -113,7 +112,22 @@ public class GameEngineTest {
     @Test
     public void returnsNullWhenThereIsNoWinner() {
         drawGame();
-        assertEquals(null, gameEngine.winningMark());
+        assertEquals(Marks.NULL, gameEngine.winningMark());
+    }
+
+    @Test
+    public void knowsCurrentPlayersMark() {
+        assertEquals(Marks.X, gameEngine.currentMark());
+    }
+
+    @Test
+    public void knowsTheNextMark() {
+        assertEquals(Marks.O, gameEngine.nextMark());
+    }
+
+    @Test
+    public void knowsTheCurrentPlayer() {
+        assertEquals(Marks.X, gameEngine.getCurrentPlayer().getMark());
     }
 
     private void horizontalWinForPlayerOne() {

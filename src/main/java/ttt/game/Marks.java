@@ -3,5 +3,5 @@ package ttt.game;
 public enum Marks {
     X,
     O,
-    CLEAR
+    NULL,
 }

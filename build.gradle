@@ -7,7 +7,7 @@ apply plugin: 'java'
 
 jar {
     manifest {
-        attributes 'Main-Class': 'build.classes.main.ttt.Main'
+        attributes 'Main-Class': 'src.main.ttt.Main'
     }
 }
 
@@ -39,7 +39,8 @@ jacocoTestReport {
                     exclude: ['**/Main.*',
                               '**/ConsoleDisplay.*',
                               '**/Minimax.*',
-                              '**/ConsoleInput.*'
+                              '**/ConsoleInput.*',
+                              '**/GameException.*'
                     ])
         })
     }

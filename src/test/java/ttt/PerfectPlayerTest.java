@@ -22,7 +22,7 @@ public class PerfectPlayerTest {
     @Before
     public void setUp() {
         this.perfectPlayer = new PerfectPlayer(X);
-        Player opponent = new HumanPlayer(O, new InputFake());
+        Player opponent = new HumanPlayer(O, new InputFake(), 3);
         this.board = new Board(3);
         this.game = new GameEngine(perfectPlayer, opponent, board);
     }
@@ -191,13 +191,18 @@ public class PerfectPlayerTest {
         assertEquals(5, computerLocation);
     }
 
+    @Test
+    public void knowsItsClass() {
+        assertEquals(PerfectPlayer.class, perfectPlayer.playerType());
+    }
+
     private int computerLocation(Board board) {
         return perfectPlayer.getLocation(board);
     }
 
     private void setUpGame() {
         perfectPlayer = new PerfectPlayer(X);
-        Player opponent = new HumanPlayer(O, new InputFake());
+        Player opponent = new HumanPlayer(O, new InputFake(), 3);
         board = new Board(3);
         game = new GameEngine(opponent, perfectPlayer, board);
     }

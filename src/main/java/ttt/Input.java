@@ -10,6 +10,6 @@ public interface Input {
 
     Integer getMenuChoice(List<Integer> options);
 
-    Integer getUserLocation(List<Integer> availableMoves);
+    Integer getUserLocation(List<Integer> availableMoves, int boardSize) throws Exception;
 }
 

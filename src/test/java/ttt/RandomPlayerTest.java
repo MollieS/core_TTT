@@ -4,20 +4,18 @@ import org.junit.Before;
 import org.junit.Test;
 import ttt.game.Board;
 import ttt.game.Marks;
-import ttt.players.ComputerPlayer;
-
-import java.util.ArrayList;
+import ttt.players.RandomPlayer;
 
 import static org.junit.Assert.assertEquals;
 
-public class ComputerPlayerTest {
+public class RandomPlayerTest {
 
     private Board board = new Board(3);
-    private ComputerPlayer computer;
+    private RandomPlayer computer;
 
     @Before
     public void setUp() {
-        this.computer = new ComputerPlayer(new FakeRandomizer(), Marks.X);
+        this.computer = new RandomPlayer(new FakeRandomizer(), Marks.X);
     }
 
     @Test
@@ -28,5 +26,10 @@ public class ComputerPlayerTest {
     @Test
     public void hasMark() {
         assertEquals(computer.getMark(), Marks.X);
+    }
+
+    @Test
+    public void knowsItsClass() {
+        assertEquals(RandomPlayer.class, computer.playerType());
     }
 }

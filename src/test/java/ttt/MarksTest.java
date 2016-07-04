@@ -19,7 +19,7 @@ public class MarksTest {
 
     @Test
     public void hasClear() {
-        assertEquals(Marks.CLEAR, Marks.valueOf("CLEAR"));
+        assertEquals(Marks.NULL, Marks.valueOf("NULL"));
     }
 
     @Test
