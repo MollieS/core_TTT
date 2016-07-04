@@ -24,23 +24,11 @@ public class DelayedPlayerTest {
     }
 
     @Test
-    public void delaysRandomPlayer() throws Exception {
-        Board board = new Board(3);
+    public void delaysIfLessThanHalfASecond() throws Exception {
         DelayedPlayer player = new DelayedPlayer(new RandomPlayer(new RandomLocationGenerator(), Marks.X));
         long start = System.currentTimeMillis();
-        player.getLocation(board);
+        player.delayResponse(2, 400);
         long end = System.currentTimeMillis();
-        assertTrue((end - start) > 1000);
-    }
-
-    @Test
-    public void doesNotDelayPerfectPlayerIfItTakesLongerThanASecond() throws Exception {
-        Board board = new Board(4);
-        DelayedPlayer player = new DelayedPlayer(new PerfectPlayer(Marks.X));
-        long start = System.currentTimeMillis();
-        player.getLocation(board);
-        long end = System.currentTimeMillis();
-        assertTrue((end - start) > 500);
-        assertTrue((end - start) < 2000);
+        assertTrue(end - start > 1000);
     }
 }
