@@ -29,6 +29,6 @@ public class DelayedPlayerTest {
         long start = System.currentTimeMillis();
         player.delayResponse(2, 400);
         long end = System.currentTimeMillis();
-        assertTrue(end - start > 1000);
+        assertTrue(end - start > 900);
     }
 }
