@@ -10,20 +10,22 @@ public class PerfectPlayer implements Player {
 
     private Marks mark;
     private Marks opponent;
+    private Delay delay;
     private HashMap<Integer, Integer> scores = new HashMap<>();
 
-    public PerfectPlayer(Marks mark) {
+    public PerfectPlayer(Marks mark, Delay delay) {
         this.mark = mark;
         this.opponent = mark.equals(Marks.X) ? Marks.O : Marks.X;
+        this.delay = delay;
     }
 
     public Integer getLocation(Board board) {
         resetMoveSelection();
-        return getBestMove(board);
-    }
-
-    public Class playerType() {
-        return getClass();
+        if (board.availableMoves().size() > 8) {
+            return getBestMove(board);
+        } else {
+            return delay.delayMove(getBestMove(board));
+        }
     }
 
     public Marks getMark() {

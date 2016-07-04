@@ -15,7 +15,7 @@ public class RandomPlayerTest {
 
     @Before
     public void setUp() {
-        this.computer = new RandomPlayer(new FakeRandomizer(), Marks.X);
+        this.computer = new RandomPlayer(new FakeRandomizer(), Marks.X, new DelayFake());
     }
 
     @Test
@@ -28,8 +28,4 @@ public class RandomPlayerTest {
         assertEquals(computer.getMark(), Marks.X);
     }
 
-    @Test
-    public void knowsItsClass() {
-        assertEquals(RandomPlayer.class, computer.playerType());
-    }
 }

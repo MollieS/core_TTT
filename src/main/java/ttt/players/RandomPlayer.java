@@ -6,20 +6,19 @@ import ttt.Player;
 
 public class RandomPlayer implements Player {
 
-    final private Randomizer randomizer;
-    final private Marks mark;
+    private final Randomizer randomizer;
+    private final Marks mark;
+    private final Delay delay;
 
-    public RandomPlayer(Randomizer randomizer, Marks mark) {
+    public RandomPlayer(Randomizer randomizer, Marks mark, Delay delay) {
         this.randomizer = randomizer;
         this.mark = mark;
+        this.delay = delay;
     }
 
     public Integer getLocation(Board board) {
-        return randomizer.location(board.availableMoves());
-    }
-
-    public Class playerType() {
-        return getClass();
+        Integer move = randomizer.location(board.availableMoves());
+        return delay.delayMove(move);
     }
 
     public Marks getMark() {
