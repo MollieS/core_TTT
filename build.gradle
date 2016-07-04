@@ -39,7 +39,8 @@ jacocoTestReport {
                     exclude: ['**/Main.*',
                               '**/ConsoleDisplay.*',
                               '**/Minimax.*',
-                              '**/ConsoleInput.*'
+                              '**/ConsoleInput.*',
+                              '**/GameException.*'
                     ])
         })
     }

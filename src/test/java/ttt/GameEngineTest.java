@@ -115,6 +115,21 @@ public class GameEngineTest {
         assertEquals(Marks.NULL, gameEngine.winningMark());
     }
 
+    @Test
+    public void knowsCurrentPlayersMark() {
+        assertEquals(Marks.X, gameEngine.currentMark());
+    }
+
+    @Test
+    public void knowsTheNextMark() {
+        assertEquals(Marks.O, gameEngine.nextMark());
+    }
+
+    @Test
+    public void knowsTheCurrentPlayer() {
+        assertEquals(Marks.X, gameEngine.getCurrentPlayer().getMark());
+    }
+
     private void horizontalWinForPlayerOne() {
         gameEngine.play(0);
         gameEngine.play(3);
