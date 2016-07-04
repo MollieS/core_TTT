@@ -8,7 +8,7 @@ import ttt.players.RandomPlayer;
 
 import static org.junit.Assert.assertEquals;
 
-public class ComputerPlayerTest {
+public class RandomPlayerTest {
 
     private Board board = new Board(3);
     private RandomPlayer computer;
@@ -26,5 +26,10 @@ public class ComputerPlayerTest {
     @Test
     public void hasMark() {
         assertEquals(computer.getMark(), Marks.X);
+    }
+
+    @Test
+    public void knowsItsClass() {
+        assertEquals(RandomPlayer.class, computer.playerType());
     }
 }
