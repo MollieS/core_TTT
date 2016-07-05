@@ -25,21 +25,23 @@ public class DelayedPlayer implements Player {
 
     public Integer getLocation(Board board) throws Exception {
         Integer location = player.getLocation(board);
-        if (board.availableMoves().size() > 9) {
-            return location;
-        } else {
+        setDelay(board);
+        delayResponse();
+        return location;
+    }
+
+    private void setDelay(Board board) {
+        if (board.availableMoves().size() > 8) {
             this.delay = 1000;
-            return delayResponse(location);
         }
     }
 
-    public Integer delayResponse(Integer location) {
+    private void delayResponse() {
         try {
             Thread.sleep(delay);
         } catch (InterruptedException e) {
             assert false;
         }
-        return location;
     }
 
     public Integer getDelay() {
