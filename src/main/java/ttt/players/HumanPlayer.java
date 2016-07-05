@@ -21,7 +21,7 @@ public class HumanPlayer implements Player {
         return mark;
     }
 
-    public Integer getLocation(Board board) throws Exception {
+    public int getLocation(Board board) throws Exception {
         return input.getUserLocation(board.availableMoves(), boardSize);
     }
 

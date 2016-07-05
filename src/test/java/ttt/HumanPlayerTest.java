@@ -28,7 +28,7 @@ public class HumanPlayerTest {
     public void returnsALocation() throws Exception {
         Board board = new Board(3);
         input.set("1");
-        assertEquals(Integer.valueOf(0), player.getLocation(board));
+        assertEquals(0, player.getLocation(board));
     }
 
     @Test

@@ -18,8 +18,8 @@ public class DelayedPlayer implements Player {
         return player.getMark();
     }
 
-    public Integer getLocation(Board board) throws Exception {
-        Integer location = player.getLocation(board);
+    public int getLocation(Board board) throws Exception {
+        int location = player.getLocation(board);
         setDelay(board);
         delayResponse();
         return location;

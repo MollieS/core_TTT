@@ -20,7 +20,7 @@ public class RandomPlayerTest {
 
     @Test
     public void returnsARandomLocation() {
-        assertEquals(Integer.valueOf(1), computer.getLocation(board));
+        assertEquals(1, computer.getLocation(board));
     }
 
     @Test
