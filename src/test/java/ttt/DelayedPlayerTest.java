@@ -15,33 +15,33 @@ public class DelayedPlayerTest {
 
     @Test
     public void delaysRandomPlayerByASecond() throws InterruptedException {
-        DelayedPlayer player = new DelayedPlayer(new RandomPlayer(new RandomLocationGenerator(), Marks.X));
+        DelayedPlayer player = new DelayedPlayer(new RandomPlayer(new RandomLocationGenerator(), Marks.X), 1000);
         assertTrue(player.getDelay() == 1000);
     }
 
     @Test
     public void doesNotDelayPerfectPlayerOnEmptyBoard() throws Exception {
-        DelayedPlayer player = new DelayedPlayer(new PerfectPlayer(Marks.X));
+        DelayedPlayer player = new DelayedPlayer(new PerfectPlayer(Marks.X), 0);
         assertTrue(player.getDelay() == 0);
     }
 
     @Test
     public void delaysPerfectPlayerOnSmallerBoard() throws Exception {
         Board board = new Board(3);
-        DelayedPlayer player = new DelayedPlayer(new PerfectPlayer(Marks.X));
+        DelayedPlayer player = new DelayedPlayer(new PerfectPlayer(Marks.X), 0);
         player.getLocation(board);
         assertTrue(player.getDelay() == 1000);
     }
 
     @Test
     public void knowsTheMarkOfThePlayer() {
-        Player player = new DelayedPlayer(new PerfectPlayer(Marks.X));
+        Player player = new DelayedPlayer(new PerfectPlayer(Marks.X), 0);
         assertEquals(Marks.X, player.getMark());
     }
 
     @Test
     public void knowsTheTypeOfThePlayer() {
-        Player player = new DelayedPlayer(new PerfectPlayer(Marks.X));
+        Player player = new DelayedPlayer(new PerfectPlayer(Marks.X), 0);
         assertEquals(PerfectPlayer.class, player.playerType());
     }
 }

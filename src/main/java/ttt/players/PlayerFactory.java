@@ -50,10 +50,10 @@ public class PlayerFactory {
 
     private static Player createRandomPlayer(Marks mark) {
         RandomLocationGenerator randomLocationGenerator = new RandomLocationGenerator();
-        return new DelayedPlayer(new RandomPlayer(randomLocationGenerator, mark));
+        return new DelayedPlayer(new RandomPlayer(randomLocationGenerator, mark), 1000);
     }
 
     private static Player createPerfectPlayer(Marks mark) {
-        return new DelayedPlayer(new PerfectPlayer(mark));
+        return new DelayedPlayer(new PerfectPlayer(mark), 0);
     }
 }

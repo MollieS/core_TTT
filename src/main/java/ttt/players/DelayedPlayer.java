@@ -9,14 +9,9 @@ public class DelayedPlayer implements Player {
     private Player player;
     private Integer delay;
 
-    public DelayedPlayer(RandomPlayer player) {
+    public DelayedPlayer(Player player, int delay) {
         this.player = player;
-        this.delay = 1000;
-    }
-
-    public DelayedPlayer(PerfectPlayer player) {
-        this.player = player;
-        this.delay = 0;
+        this.delay = delay;
     }
 
     public Marks getMark() {
