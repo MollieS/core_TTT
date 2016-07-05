@@ -30,4 +30,9 @@ public class HumanPlayerTest {
         input.set("1");
         assertEquals(Integer.valueOf(0), player.getLocation(board));
     }
+
+    @Test
+    public void knowsItsClass() {
+        assertEquals(HumanPlayer.class, player.playerType());
+    }
 }

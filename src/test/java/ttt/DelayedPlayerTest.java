@@ -8,6 +8,7 @@ import ttt.players.PerfectPlayer;
 import ttt.players.RandomLocationGenerator;
 import ttt.players.RandomPlayer;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class DelayedPlayerTest {
@@ -30,5 +31,17 @@ public class DelayedPlayerTest {
         DelayedPlayer player = new DelayedPlayer(new PerfectPlayer(Marks.X));
         player.getLocation(board);
         assertTrue(player.getDelay() == 1000);
+    }
+
+    @Test
+    public void knowsTheMarkOfThePlayer() {
+        Player player = new DelayedPlayer(new PerfectPlayer(Marks.X));
+        assertEquals(Marks.X, player.getMark());
+    }
+
+    @Test
+    public void knowsTheTypeOfThePlayer() {
+        Player player = new DelayedPlayer(new PerfectPlayer(Marks.X));
+        assertEquals(PerfectPlayer.class, player.playerType());
     }
 }

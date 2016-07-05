@@ -1,25 +1,11 @@
-# Tic Tac Toe
+# Tic Tac Toe Core
 
-[![Coverage Status](https://coveralls.io/repos/github/MollieS/TicTacToe/badge.svg?branch=master)](https://coveralls.io/github/MollieS/TicTacToe?branch=master)
-[![Build Status](https://travis-ci.org/MollieS/cli_TicTacToe.svg?branch=master)](https://travis-ci.org/MollieS/cli_TicTacToe)
+[![Coverage Status](https://coveralls.io/repos/github/MollieS/core_TTT/badge.svg?branch=master)](https://coveralls.io/github/MollieS/core_TTT?branch=master)
+[![Build Status](https://travis-ci.org/MollieS/core_TTT.svg?branch=master)](https://travis-ci.org/MollieS/core_TTT)
 
+The core functionality of Tic Tac Toe, with three player options: Human, Random Computer and Perfect Player.
 
-### How to run
-
-To run this Tic Tac Toe game in the terminal, first clone the repository by running `git clone https://github.com/MollieS/TicTacToe.git`
-
-When the repository is cloned, `cd TicTacToe` to move into the program directory.
-
-#### How to play
-
-Once in the directory, you can run the game with `gradle -q run`
-
-#### How to test
+#### Test
 
 From the root of the project run `gradle test`
 
-#### UML
-
-Current UML is as follows: 
-
-![UML](/images/UML.png?raw=true "UML")
