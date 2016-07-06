@@ -17,7 +17,7 @@ public class PerfectPlayer implements Player {
         this.opponent = mark.equals(Marks.X) ? Marks.O : Marks.X;
     }
 
-    public Integer getLocation(Board board) {
+    public int getLocation(Board board) {
         resetMoveSelection();
         return getBestMove(board);
     }

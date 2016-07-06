@@ -11,11 +11,6 @@ jar {
     }
 }
 
-task(run, dependsOn: 'classes', type: JavaExec) {
-    main = "ttt.Main"
-    classpath = sourceSets.main.runtimeClasspath
-}
-
 repositories {
     jcenter()
     mavenCentral()
@@ -36,16 +31,9 @@ jacocoTestReport {
     afterEvaluate {
         classDirectories = files(classDirectories.files.collect {
             fileTree(dir: it,
-                    exclude: ['**/Main.*',
-                              '**/ConsoleDisplay.*',
-                              '**/Minimax.*',
-                              '**/ConsoleInput.*',
-                              '**/GameException.*'
+                    exclude: ['**/GameException.*'
                     ])
         })
     }
 }
 
-run {
-    standardInput = System.in
-}

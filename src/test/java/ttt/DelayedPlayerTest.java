@@ -1,9 +1,10 @@
 package ttt;
 
-import org.junit.Before;
 import org.junit.Test;
+import ttt.game.Board;
 import ttt.game.Marks;
 import ttt.players.DelayedPlayer;
+import ttt.players.PerfectPlayer;
 import ttt.players.RandomLocationGenerator;
 import ttt.players.RandomPlayer;
 
@@ -12,36 +13,35 @@ import static org.junit.Assert.assertTrue;
 
 public class DelayedPlayerTest {
 
-    private DelayedPlayer player;
-
-    @Before
-    public void setUp() {
-        this.player = new DelayedPlayer(new RandomPlayer(new RandomLocationGenerator(), Marks.X));
+    @Test
+    public void delaysRandomPlayerByASecond() throws InterruptedException {
+        DelayedPlayer player = new DelayedPlayer(new RandomPlayer(new RandomLocationGenerator(), Marks.X), 1000);
+        assertTrue(player.getDelay() == 1000);
     }
 
     @Test
-    public void onlyDelaysIfDurationShorterThanHalfASecond() throws InterruptedException {
-        long start = System.currentTimeMillis();
-        player.delayResponse(2, 600);
-        long end = System.currentTimeMillis();
-        assertTrue(end - start < 1000);
+    public void doesNotDelayPerfectPlayerOnEmptyBoard() throws Exception {
+        DelayedPlayer player = new DelayedPlayer(new PerfectPlayer(Marks.X), 0);
+        assertTrue(player.getDelay() == 0);
     }
 
     @Test
-    public void delaysIfLessThanHalfASecond() throws Exception {
-        long start = System.currentTimeMillis();
-        player.delayResponse(2, 400);
-        long end = System.currentTimeMillis();
-        assertTrue(end - start > 900);
+    public void delaysPerfectPlayerOnSmallerBoard() throws Exception {
+        Board board = new Board(3);
+        DelayedPlayer player = new DelayedPlayer(new PerfectPlayer(Marks.X), 0);
+        player.getLocation(board);
+        assertTrue(player.getDelay() == 1000);
     }
 
     @Test
     public void knowsTheMarkOfThePlayer() {
+        Player player = new DelayedPlayer(new PerfectPlayer(Marks.X), 0);
         assertEquals(Marks.X, player.getMark());
     }
 
     @Test
     public void knowsTheTypeOfThePlayer() {
-        assertEquals(RandomPlayer.class, player.playerType());
+        Player player = new DelayedPlayer(new PerfectPlayer(Marks.X), 0);
+        assertEquals(PerfectPlayer.class, player.playerType());
     }
 }

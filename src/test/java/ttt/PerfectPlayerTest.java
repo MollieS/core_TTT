@@ -172,7 +172,7 @@ public class PerfectPlayerTest {
     @Test
     public void placesAMarkOnABigBoard() {
         Board board = new Board(4);
-        assertEquals(Integer.valueOf(0), perfectPlayer.getLocation(board));
+        assertEquals(0, perfectPlayer.getLocation(board));
     }
 
     @Test

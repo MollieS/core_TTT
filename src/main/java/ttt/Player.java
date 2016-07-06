@@ -7,7 +7,7 @@ public interface Player {
 
     Marks getMark();
 
-    Integer getLocation(Board board) throws Exception;
+    int getLocation(Board board) throws Exception;
 
     Class playerType();
 }

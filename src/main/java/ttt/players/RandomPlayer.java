@@ -14,7 +14,7 @@ public class RandomPlayer implements Player {
         this.mark = mark;
     }
 
-    public Integer getLocation(Board board) {
+    public int getLocation(Board board) {
         return randomizer.location(board.availableMoves());
     }
 
