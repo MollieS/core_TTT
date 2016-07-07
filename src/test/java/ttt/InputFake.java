@@ -13,10 +13,6 @@ public class InputFake implements Input {
         }
     }
 
-    public boolean isAnInteger(String input) {
-        return input.matches("[0-9]+");
-    }
-
     public String getReplay() {
         return stream.remove(0);
     }
@@ -53,6 +49,10 @@ public class InputFake implements Input {
             choice = 0;
         }
         return choice;
+    }
+
+    private boolean isAnInteger(String input) {
+        return input.matches("[0-9]+");
     }
 
 }
