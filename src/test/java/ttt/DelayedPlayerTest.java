@@ -20,13 +20,14 @@ public class DelayedPlayerTest {
     }
 
     @Test
-    public void doesNotDelayPerfectPlayerOnEmptyBoard() throws Exception {
+    public void doesNotDelayPerfectPlayerOnEmptyBigBoard() throws Exception {
         DelayedPlayer player = new DelayedPlayer(new PerfectPlayer(Marks.X), 0);
+        player.getLocation(new Board(4));
         assertTrue(player.getDelay() == 0);
     }
 
     @Test
-    public void delaysPerfectPlayerOnSmallerBoard() throws Exception {
+    public void delaysPlayerOnEmptySmallBoard() throws Exception {
         Board board = new Board(3);
         DelayedPlayer player = new DelayedPlayer(new PerfectPlayer(Marks.X), 0);
         player.getLocation(board);

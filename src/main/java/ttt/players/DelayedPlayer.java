@@ -26,7 +26,7 @@ public class DelayedPlayer implements Player {
     }
 
     private void setDelay(Board board) {
-        if (board.availableMoves().size() > 8) {
+        if (board.availableMoves().size() < 10) {
             this.delay = 1000;
         }
     }
