@@ -11,8 +11,8 @@ public class GameMenu {
 
     final private Input input;
     final private Display display;
-    final private List<Integer> gameOptions = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
-    final private List<Integer> boardOptions = Arrays.asList(1, 2);
+    final private GameOption[] gameOptions = GameOption.values();
+    final private BoardOption[] boardOptions = BoardOption.values();
     private List<Integer> playerChoices;
 
     public GameMenu(Input input, Display display) {
@@ -32,11 +32,11 @@ public class GameMenu {
     }
 
     private int getBoardChoice() {
-        return loopForValidInput(input.getMenuChoice(boardOptions), boardOptions);
+        return loopForValidBoardChoice(input.getBoardChoice(boardOptions), boardOptions);
     }
 
     private int getGameChoice() {
-        return loopForValidInput(input.getMenuChoice(gameOptions), gameOptions);
+        return loopForGameChoice(input.getGameChoice(gameOptions), gameOptions);
     }
 
     private void openGameMenu() {
@@ -48,12 +48,22 @@ public class GameMenu {
         display.boardOptions();
     }
 
-    private int loopForValidInput(Integer userInput, List<Integer> options) {
+    private int loopForValidBoardChoice(Integer userInput, BoardOption[] options) {
         while (userInput == null) {
             display.clearScreen();
             showCorrectMenu();
             display.invalidInput();
-            userInput = input.getMenuChoice(options);
+            userInput = input.getBoardChoice(options);
+        }
+        return userInput;
+    }
+
+    private int loopForGameChoice(Integer userInput, GameOption[] options) {
+        while (userInput == null) {
+            display.clearScreen();
+            showCorrectMenu();
+            display.invalidInput();
+            userInput = input.getGameChoice(options);
         }
         return userInput;
     }

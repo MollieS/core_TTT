@@ -1,5 +1,9 @@
 package ttt;
 
+import ttt.game.BoardOption;
+import ttt.game.GameOption;
+import ttt.game.Options;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +21,16 @@ public class InputFake implements Input {
         return stream.remove(0);
     }
 
+    public Integer getBoardChoice(BoardOption[] options) {
+        String input = stream.remove(0);
+        for (BoardOption option : options) {
+            if (input.equals(option.key)) {
+                return Integer.valueOf(input);
+            }
+        }
+        return null;
+    }
+
     public Integer getUserLocation(List<Integer> board, int boardSize) throws GameException {
         String input = stream.remove(0);
         if (!isAnInteger(input)) { throw GameException.notANumber(); }
@@ -29,15 +43,13 @@ public class InputFake implements Input {
         }
     }
 
-    public Integer getMenuChoice(List<Integer> options) {
+    public Integer getGameChoice(GameOption[] options) {
         String input = stream.remove(0);
-        int choice;
-        if (isAnInteger(input)) {
-            choice = convertToInt(input);
-        } else {
-            choice = 0;
+        for (GameOption option : options) {
+            if (input.equals(option.key)) {
+                return Integer.valueOf(input);
+            }
         }
-        if (options.contains(choice)) return choice;
         return null;
     }
 

@@ -1,5 +1,8 @@
 package ttt;
 
+import ttt.game.BoardOption;
+import ttt.game.GameOption;
+
 import java.util.List;
 
 public interface Input {
@@ -8,6 +11,8 @@ public interface Input {
 
     String getReplay();
 
-    Integer getMenuChoice(List<Integer> boardOptions);
+    Integer getGameChoice(GameOption[] options);
+
+    Integer getBoardChoice(BoardOption[] options);
 }
 

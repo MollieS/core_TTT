@@ -20,34 +20,34 @@ public class MenuTest {
 
     @Test
     public void asksWhichGameUserWants() {
-        input.set("1", "2");
+        input.set("1", "3");
         menu.createGame();
         assertTrue(display.read().contains("Computer"));
     }
 
     @Test
     public void asksWhichSizeBoardTheUserWants() {
-        input.set("2", "2");
+        input.set("2", "3");
         menu.createGame();
         assertTrue(display.read().contains("3 x 3"));
     }
 
     @Test
     public void validatesInputForBoard() {
-        input.set("2", "43", "2");
+        input.set("2", "43", "3");
         menu.createGame();
         assertTrue(display.read().contains("Please choose a valid option"));
     }
 
     @Test
     public void createsAGame() {
-        input.set("2", "1");
+        input.set("2", "3");
         assertTrue(menu.createGame().getClass() == GameEngine.class);
     }
 
     @Test
     public void loopsForValidInputForGame() {
-        input.set("24", "2", "1");
+        input.set("24", "2", "3");
         menu.createGame();
         assertTrue(display.read().contains("Please choose a valid option"));
     }
