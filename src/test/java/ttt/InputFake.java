@@ -53,18 +53,7 @@ public class InputFake implements Input {
         return null;
     }
 
-    private int convertToInt(String input) {
-        int choice;
-        try {
-            choice = Integer.parseInt(input);
-        } catch (NumberFormatException ex) {
-            choice = 0;
-        }
-        return choice;
-    }
-
     private boolean isAnInteger(String input) {
         return input.matches("[0-9]+");
     }
-
 }

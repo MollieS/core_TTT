@@ -10,17 +10,19 @@ public class GameLoop {
     private Input input;
     private BoardDisplay consoleBoard;
     private final String[] replayOptions = {"y", "n"};
+    private Board board;
 
     public GameLoop(GameEngine gameEngine, Input input, Display output, BoardDisplay consoleBoard) {
         this.gameEngine = gameEngine;
         this.display = output;
         this.input = input;
         this.consoleBoard = consoleBoard;
+        this.board = gameEngine.showBoard();
     }
 
     public void start() {
         display.clearScreen();
-        write(consoleBoard.createBoard(gameEngine.showBoard()));
+        showBoard();
         playGame();
         getGameResult();
         replay();
@@ -49,23 +51,27 @@ public class GameLoop {
     }
 
     private void displayErrorMessage(Exception exception) {
-        display.write(consoleBoard.createBoard(gameEngine.showBoard()));
+        display.write(consoleBoard.createBoard(board));
         display.write(exception.getMessage());
     }
 
     private Integer getLocation() throws Exception {
         display.displayTurn(gameEngine.currentMark());
-        display.promptForLocation(gameEngine.showBoard().size());
-        return gameEngine.getCurrentPlayer().getLocation(gameEngine.showBoard());
+        display.promptForLocation(gameEngine.boardSize());
+        return gameEngine.getPlayerMove(board);
     }
 
     private void placeMark(Integer input) {
-        gameEngine.play(input);
+        board = gameEngine.play(input);
     }
 
     private void processInput(Integer input) {
         placeMark(input);
-        write(consoleBoard.createBoard(gameEngine.showBoard()));
+        showBoard();
+    }
+
+    private void showBoard() {
+        write(consoleBoard.createBoard(board));
     }
 
     private void replay() {

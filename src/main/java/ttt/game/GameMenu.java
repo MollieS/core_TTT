@@ -4,7 +4,6 @@ import ttt.Display;
 import ttt.Input;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class GameMenu {
@@ -51,7 +50,7 @@ public class GameMenu {
     private int loopForValidBoardChoice(Integer userInput, BoardOption[] options) {
         while (userInput == null) {
             display.clearScreen();
-            showCorrectMenu();
+            openBoardMenu();
             display.invalidInput();
             userInput = input.getBoardChoice(options);
         }
@@ -61,18 +60,11 @@ public class GameMenu {
     private int loopForGameChoice(Integer userInput, GameOption[] options) {
         while (userInput == null) {
             display.clearScreen();
-            showCorrectMenu();
+            openGameMenu();
             display.invalidInput();
             userInput = input.getGameChoice(options);
         }
         return userInput;
     }
 
-    private void showCorrectMenu() {
-        if (playerChoices.isEmpty()) {
-            display.gameOptions();
-        } else {
-            display.boardOptions();
-        }
-    }
 }

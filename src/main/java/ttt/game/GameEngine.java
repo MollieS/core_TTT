@@ -18,9 +18,10 @@ public class GameEngine {
         this.player2 = player2;
     }
 
-    public void play(int location) {
+    public Board play(int location) {
         board = board.placeMark(currentPlayer.getMark(), location);
         switchTurn();
+        return board;
     }
 
     public void switchTurn() {
@@ -60,6 +61,10 @@ public class GameEngine {
         return board;
     }
 
+    public int boardSize() {
+        return board.size();
+    }
+
     public Marks currentMark() {
         return currentPlayer.getMark();
     }
@@ -70,5 +75,9 @@ public class GameEngine {
 
     public Player getCurrentPlayer() {
         return currentPlayer;
+    }
+
+    public Integer getPlayerMove(Board board) throws Exception {
+        return currentPlayer.getLocation(board);
     }
 }
