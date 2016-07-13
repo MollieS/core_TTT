@@ -7,16 +7,14 @@ import ttt.Input;
 public class GameLoop {
     private GameEngine gameEngine;
     private Display display;
-    private Input input;
-    private BoardDisplay consoleBoard;
+    private BoardDisplay boardDisplay;
     private final String[] replayOptions = {"y", "n"};
     private Board board;
 
-    public GameLoop(GameEngine gameEngine, Input input, Display output, BoardDisplay consoleBoard) {
+    public GameLoop(GameEngine gameEngine, Display output, BoardDisplay boardDisplay) {
         this.gameEngine = gameEngine;
         this.display = output;
-        this.input = input;
-        this.consoleBoard = consoleBoard;
+        this.boardDisplay = boardDisplay;
         this.board = gameEngine.showBoard();
     }
 
@@ -25,7 +23,6 @@ public class GameLoop {
         showBoard();
         playGame();
         getGameResult();
-        replay();
     }
 
     private void playGame() {
@@ -51,7 +48,7 @@ public class GameLoop {
     }
 
     private void displayErrorMessage(Exception exception) {
-        display.write(consoleBoard.createBoard(board));
+        display.write(boardDisplay.createBoard(board));
         display.write(exception.getMessage());
     }
 
@@ -71,28 +68,7 @@ public class GameLoop {
     }
 
     private void showBoard() {
-        write(consoleBoard.createBoard(board));
-    }
-
-    private void replay() {
-        display.replay();
-        this.gameEngine = playAgain(input.getReplay());
-        if (this.gameEngine != null) {
-            start();
-        }
-    }
-
-    public GameEngine playAgain(String answer) {
-        GameEngine newGame = null;
-        if (answer == null) {
-            display.invalidInput();
-            playAgain(input.getReplay());
-        } else if (answer.equals(replayOptions[0])) {
-            newGame = new GameMenu(input, display).createGame();
-        } else if (answer.equals(replayOptions[1])) {
-            display.goodbye();
-        }
-        return newGame;
+        write(boardDisplay.createBoard(board));
     }
 
     private void write(String message) {

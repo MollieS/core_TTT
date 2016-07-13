@@ -15,7 +15,7 @@ public class MenuTest {
 
     @Before
     public void setUp() {
-        this.menu = new GameMenu(input, display);
+        this.menu = new GameMenu(input, display, new BoardDisplayFake());
     }
 
     @Test
@@ -50,5 +50,19 @@ public class MenuTest {
         input.set("24", "2", "3");
         menu.createGame();
         assertTrue(display.read().contains("Please choose a valid option"));
+    }
+
+    @Test
+    public void canReplayTheGame() {
+        input.set("y", "1", "3");
+        GameEngine game = menu.askForReplay();
+        assertTrue(game.getClass() == GameEngine.class);
+    }
+
+    @Test
+    public void canNotReplayTheGame() {
+        input.set("n");
+        GameEngine game = menu.askForReplay();
+        assertTrue(game == null);
     }
 }

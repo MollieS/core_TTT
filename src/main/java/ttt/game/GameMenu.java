@@ -1,5 +1,6 @@
 package ttt.game;
 
+import ttt.BoardDisplay;
 import ttt.Display;
 import ttt.Input;
 
@@ -12,12 +13,40 @@ public class GameMenu {
     final private Display display;
     final private GameOption[] gameOptions = GameOption.values();
     final private BoardOption[] boardOptions = BoardOption.values();
+    final private String[] replayOptions = {"y", "n"};
     private List<Integer> playerChoices;
+    private BoardDisplay boardDisplay;
 
-    public GameMenu(Input input, Display display) {
+    public GameMenu(Input input, Display display, BoardDisplay boardDisplay) {
         this.input = input;
         this.display = display;
         this.playerChoices = new ArrayList<>();
+        this.boardDisplay = boardDisplay;
+    }
+
+    public void start() {
+        playGame(createGame());
+    }
+
+    public void playGame(GameEngine game) {
+        GameLoop loop = new GameLoop(game, display, boardDisplay);
+        loop.start();
+        GameEngine newGame = askForReplay();
+        if (newGame != null) {
+            playGame(newGame);
+        }
+    }
+
+    public GameEngine askForReplay() {
+        display.replay();
+        GameEngine game = null;
+        String replayAnswer = input.getReplay();
+        if (replayAnswer == "y") {
+            game = createGame();
+        } else {
+            display.goodbye();
+        }
+        return game;
     }
 
     public GameEngine createGame() {
@@ -66,5 +95,6 @@ public class GameMenu {
         }
         return userInput;
     }
+
 
 }

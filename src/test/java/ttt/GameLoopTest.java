@@ -9,7 +9,6 @@ import ttt.game.Marks;
 import ttt.players.HumanPlayer;
 
 import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertEquals;
 
 public class GameLoopTest {
 
@@ -24,11 +23,10 @@ public class GameLoopTest {
         this.input = new InputFake();
         this.display = new DisplayFake();
         Board board = new Board(3);
-        BoardDisplay consoleBoard = new BoardDisplayFake();
         Player player1 = new HumanPlayer(Marks.X, input, 3);
         Player player2 = new HumanPlayer(Marks.O, input, 3);
         this.gameEngine = new GameEngine(player1, player2, board);
-        this.gameLoop = new GameLoop(gameEngine, input, display, consoleBoard);
+        this.gameLoop = new GameLoop(gameEngine, display, new BoardDisplayFake());
     }
 
     @Test
@@ -75,26 +73,6 @@ public class GameLoopTest {
     }
 
     @Test
-    public void canReplayTheGame() {
-        input.set("1", "3");
-        assertEquals(gameLoop.playAgain("y").getClass(), gameEngine.getClass());
-    }
-
-    @Test
-    public void doesNotAllowInvalidReplayInput() {
-        input.set("hello", "n");
-        gameLoop.playAgain(null);
-        assertTrue(displayContains("Please choose a valid option"));
-    }
-
-    @Test
-    public void canChooseToNotReplayTheGame() {
-        input.set("1", "4", "2", "5", "2", "3", no);
-        gameLoop.start();
-        assertTrue(displayContains("Thanks for playing!"));
-    }
-
-    @Test
     public void allowsLocationsForBiggerBoard() {
         input.set("1", "4", "6", "8", "11", "12", "16", no);
         Board board = new Board(4);
@@ -102,7 +80,7 @@ public class GameLoopTest {
         Player player1 = new HumanPlayer(Marks.X, input, 4);
         Player player2 = new HumanPlayer(Marks.O, input, 4);
         GameEngine gameEngine = new GameEngine(player1, player2, board);
-        this.gameLoop = new GameLoop(gameEngine, input, display, consoleBoard);
+        this.gameLoop = new GameLoop(gameEngine, display, consoleBoard);
         gameLoop.start();
         assertTrue(displayContains("X wins!"));
     }
