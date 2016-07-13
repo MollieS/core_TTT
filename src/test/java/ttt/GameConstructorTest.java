@@ -15,7 +15,7 @@ public class GameConstructorTest {
 
     @Test
     public void createsAHumanVHumanGameWith3x3Board() {
-        List<Integer> choices = Arrays.asList(1, 1);
+        List<Integer> choices = Arrays.asList(1, 3);
         GameEngine game = GameConstructor.create(choices, input);
         assertTrue(game.getClass().equals(GameEngine.class));
         assertTrue(game.showBoard().size() == 9);
@@ -23,7 +23,7 @@ public class GameConstructorTest {
 
     @Test
     public void createsAHumanVHumanGameWith4x4Board() {
-        List<Integer> choices = Arrays.asList(1, 2);
+        List<Integer> choices = Arrays.asList(1, 4);
         GameEngine game = GameConstructor.create(choices, input);
         assertTrue(game.showBoard().size() == 16);
     }
