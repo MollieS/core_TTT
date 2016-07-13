@@ -1,6 +1,5 @@
 package ttt.players;
 
-import ttt.Input;
 import ttt.Player;
 import ttt.game.Marks;
 
@@ -9,25 +8,32 @@ import java.util.List;
 
 public class PlayerFactory {
 
+    private Player humanplayer1;
+    private Player humanplayer2;
 
-    public static List<Player> create(int type, int boardSize, Input inputType) {
+    public PlayerFactory(Player player1, Player player2) {
+        humanplayer1 = player1;
+        humanplayer2 = player2;
+    }
+
+    public List<Player> create(int type) {
         Player player1;
         Player player2;
         if (type == 1) {
-            player1 = createHumanPlayer(Marks.X, inputType, boardSize);
-            player2 = createHumanPlayer(Marks.O, inputType, boardSize);
+            player1 = humanplayer1;
+            player2 = humanplayer2;
         } else if (type == 2) {
-            player1 = createHumanPlayer(Marks.X, inputType, boardSize);
+            player1 = humanplayer1;
             player2 = createRandomPlayer(Marks.O);
         } else if (type == 3) {
             player1 = createRandomPlayer(Marks.X);
-            player2 = createHumanPlayer(Marks.O, inputType, boardSize);
+            player2 = humanplayer2;
         } else if (type == 4) {
-            player1 = createHumanPlayer(Marks.X, inputType, boardSize);
+            player1 = humanplayer1;
             player2 = createPerfectPlayer(Marks.O);
         } else if (type == 5) {
             player1 = createPerfectPlayer(Marks.X);
-            player2 = createHumanPlayer(Marks.O, inputType, boardSize);
+            player2 = humanplayer2;
         } else if (type == 6) {
             player1 = createPerfectPlayer(Marks.X);
             player2 = createPerfectPlayer(Marks.O);
@@ -44,16 +50,12 @@ public class PlayerFactory {
         return Arrays.asList(player1, player2);
     }
 
-    private static HumanPlayer createHumanPlayer(Marks mark, Input input, int boardsize) {
-        return new HumanPlayer(mark, input, boardsize);
-    }
-
-    private static Player createRandomPlayer(Marks mark) {
+    private Player createRandomPlayer(Marks mark) {
         RandomLocationGenerator randomLocationGenerator = new RandomLocationGenerator();
         return new DelayedPlayer(new RandomPlayer(randomLocationGenerator, mark), 1000);
     }
 
-    private static Player createPerfectPlayer(Marks mark) {
+    private Player createPerfectPlayer(Marks mark) {
         return new DelayedPlayer(new PerfectPlayer(mark), 0);
     }
 }

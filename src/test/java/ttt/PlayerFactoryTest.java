@@ -16,7 +16,7 @@ public class PlayerFactoryTest {
     @Test
     public void createsAHumanvHumanGameWhereXGoesFirst() {
         Player player = getPlayer(1, 0);
-        assertTrue(player.getClass().equals(HumanPlayer.class));
+        assertTrue(player.getClass().equals(PlayerFake.class));
         assertTrue(player.getMark().equals(X));
     }
 
@@ -81,6 +81,7 @@ public class PlayerFactoryTest {
     }
 
     private Player getPlayer(int type, int player) {
-        return PlayerFactory.create(type, 3, new InputFake()).get(player);
+        PlayerFactory factory = new PlayerFactory(new PlayerFake(), new PlayerFake());
+        return factory.create(type).get(player);
     }
 }

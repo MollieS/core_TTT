@@ -3,6 +3,8 @@ package ttt.game;
 import ttt.BoardDisplay;
 import ttt.Display;
 import ttt.Input;
+import ttt.Player;
+import ttt.players.PlayerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +18,16 @@ public class GameMenu {
     final private String[] replayOptions = {"y", "n"};
     private List<Integer> playerChoices;
     private BoardDisplay boardDisplay;
+    private Player humanPlayer1;
+    private Player humanPlayer2;
 
-    public GameMenu(Input input, Display display, BoardDisplay boardDisplay) {
+    public GameMenu(Input input, Display display, BoardDisplay boardDisplay, Player player, Player player2) {
         this.input = input;
         this.display = display;
         this.playerChoices = new ArrayList<>();
         this.boardDisplay = boardDisplay;
+        this.humanPlayer1 = player;
+        this.humanPlayer2 = player2;
     }
 
     public void start() {
@@ -54,7 +60,7 @@ public class GameMenu {
         playerChoices.add(getGameChoice());
         openBoardMenu();
         playerChoices.add(getBoardChoice());
-        GameEngine gameEngine = GameConstructor.create(playerChoices, input);
+        GameEngine gameEngine = GameConstructor.create(playerChoices, new PlayerFactory(humanPlayer1, humanPlayer2));
         display.displayMarks(gameEngine.currentMark(), gameEngine.nextMark());
         return gameEngine;
     }

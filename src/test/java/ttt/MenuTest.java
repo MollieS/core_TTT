@@ -15,7 +15,7 @@ public class MenuTest {
 
     @Before
     public void setUp() {
-        this.menu = new GameMenu(input, display, new BoardDisplayFake());
+        this.menu = new GameMenu(input, display, new BoardDisplayFake(), new PlayerFake(), new PlayerFake());
     }
 
     @Test
