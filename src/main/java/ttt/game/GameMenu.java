@@ -41,7 +41,7 @@ public class GameMenu {
         display.replay();
         GameEngine game = null;
         String replayAnswer = input.getReplay();
-        if (replayAnswer == "y") {
+        if (replayAnswer.equals("y")) {
             game = createGame();
         } else {
             display.goodbye();
