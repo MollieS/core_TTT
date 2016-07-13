@@ -1,5 +1,7 @@
 package ttt;
 
+import ttt.game.BoardOption;
+import ttt.game.GameOption;
 import ttt.game.Marks;
 
 public interface Display {
@@ -20,7 +22,7 @@ public interface Display {
 
     String currentMark(Marks mark);
 
-    void gameOptions();
+    void gameOptions(GameOption[] option);
 
     void clearScreen();
 
@@ -30,5 +32,5 @@ public interface Display {
 
     void goodbye();
 
-    void boardOptions();
+    void boardOptions(BoardOption[] option);
 }

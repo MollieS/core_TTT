@@ -22,14 +22,14 @@ public class MenuTest {
     public void asksWhichGameUserWants() {
         input.set("1", "3");
         menu.createGame();
-        assertTrue(display.read().contains("Computer"));
+        assertTrue(display.read().contains("Random"));
     }
 
     @Test
     public void asksWhichSizeBoardTheUserWants() {
         input.set("2", "3");
         menu.createGame();
-        assertTrue(display.read().contains("3 x 3"));
+        assertTrue(display.read().contains("3x3"));
     }
 
     @Test

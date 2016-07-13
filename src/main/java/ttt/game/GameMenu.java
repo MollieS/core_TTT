@@ -69,11 +69,11 @@ public class GameMenu {
 
     private void openGameMenu() {
         display.greet();
-        display.gameOptions();
+        display.gameOptions(gameOptions);
     }
 
     private void openBoardMenu() {
-        display.boardOptions();
+        display.boardOptions(boardOptions);
     }
 
     private int loopForValidBoardChoice(Integer userInput, BoardOption[] options) {

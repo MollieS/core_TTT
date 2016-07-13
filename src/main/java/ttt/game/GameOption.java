@@ -12,12 +12,12 @@ public enum GameOption {
     PVR ("8", "Perfect Player v Random Player"),
     RVP ("9", "Random Player v Perfect Player");
 
-    private String name;
+    public String title;
     public String key;
 
-    GameOption(String key, String name) {
+    GameOption(String key, String title) {
         this.key = key;
-        this.name = name;
+        this.title = title;
     }
 
 }
