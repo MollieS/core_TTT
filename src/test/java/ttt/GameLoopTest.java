@@ -23,8 +23,8 @@ public class GameLoopTest {
         this.input = new InputFake();
         this.display = new DisplayFake();
         Board board = new Board(3);
-        Player player1 = new HumanPlayer(Marks.X, input, 3);
-        Player player2 = new HumanPlayer(Marks.O, input, 3);
+        Player player1 = new HumanPlayer(Marks.X, input);
+        Player player2 = new HumanPlayer(Marks.O, input);
         this.gameEngine = new GameEngine(player1, player2, board);
         this.gameLoop = new GameLoop(gameEngine, display, new BoardDisplayFake());
     }
@@ -77,8 +77,8 @@ public class GameLoopTest {
         input.set("1", "4", "6", "8", "11", "12", "16", no);
         Board board = new Board(4);
         BoardDisplay consoleBoard = new BoardDisplayFake();
-        Player player1 = new HumanPlayer(Marks.X, input, 4);
-        Player player2 = new HumanPlayer(Marks.O, input, 4);
+        Player player1 = new HumanPlayer(Marks.X, input);
+        Player player2 = new HumanPlayer(Marks.O, input);
         GameEngine gameEngine = new GameEngine(player1, player2, board);
         this.gameLoop = new GameLoop(gameEngine, display, consoleBoard);
         gameLoop.start();

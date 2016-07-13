@@ -22,7 +22,7 @@ public class PerfectPlayerTest {
     @Before
     public void setUp() {
         this.perfectPlayer = new PerfectPlayer(X);
-        Player opponent = new HumanPlayer(O, new InputFake(), 3);
+        Player opponent = new HumanPlayer(O, new InputFake());
         this.board = new Board(3);
         this.game = new GameEngine(perfectPlayer, opponent, board);
     }
@@ -202,7 +202,7 @@ public class PerfectPlayerTest {
 
     private void setUpGame() {
         perfectPlayer = new PerfectPlayer(X);
-        Player opponent = new HumanPlayer(O, new InputFake(), 3);
+        Player opponent = new HumanPlayer(O, new InputFake());
         board = new Board(3);
         game = new GameEngine(opponent, perfectPlayer, board);
     }

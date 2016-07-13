@@ -36,7 +36,7 @@ public class InputFake implements Input {
         if (!isAnInteger(input)) { throw GameException.notANumber(); }
         int location = (Integer.parseInt(input) - 1);
         if (board.contains(location)) { return location; }
-        if (location > (boardSize * boardSize)) {
+        if (location > (boardSize)) {
             throw GameException.outOfBounds();
         } else {
             throw GameException.takenCell();

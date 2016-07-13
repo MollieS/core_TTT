@@ -9,12 +9,10 @@ public class HumanPlayer implements Player {
 
     private Marks mark;
     private Input input;
-    private int boardSize;
 
-    public HumanPlayer(Marks mark, Input input, int boardSize) {
+    public HumanPlayer(Marks mark, Input input) {
         this.input = input;
         this.mark = mark;
-        this.boardSize = boardSize;
     }
 
     public Marks getMark() {
@@ -22,7 +20,7 @@ public class HumanPlayer implements Player {
     }
 
     public int getLocation(Board board) throws Exception {
-        return input.getUserLocation(board.availableMoves(), boardSize);
+        return input.getUserLocation(board.availableMoves(), board.size());
     }
 
     public Class playerType() {

@@ -16,7 +16,7 @@ public class HumanPlayerTest {
     @Before
     public void setUp() {
         input = new InputFake();
-        player = new HumanPlayer(Marks.X, input, 3);
+        player = new HumanPlayer(Marks.X, input);
     }
 
     @Test
