@@ -34,13 +34,20 @@ public class GameLoop {
         while (!gameEngine.isOver()) {
             Exception exception = null;
             Integer location = null;
+            askForMove();
             try {
-                location = getPlayerMove();
+                location = gameEngine.getCurrentPlayer().getLocation(board);
             } catch (Exception e) {
                 exception = e;
             }
-            showBoard(exception, location);
+            clearScreen();
+            processOutput(exception, location);
         }
+    }
+
+    private void askForMove() {
+        display.displayTurn(gameEngine.currentMark());
+        display.promptForLocation(gameEngine.boardSize());
     }
 
     public void playMoves() {
@@ -52,8 +59,6 @@ public class GameLoop {
     }
 
     private void showBoard(Exception exception, Integer location) {
-        clearScreen();
-        processOutput(exception, location);
     }
 
     private void clearScreen() {
@@ -74,8 +79,6 @@ public class GameLoop {
     }
 
     private Integer getLocation() {
-        display.displayTurn(gameEngine.currentMark());
-        display.promptForLocation(gameEngine.boardSize());
         return getPlayerMove();
     }
 
