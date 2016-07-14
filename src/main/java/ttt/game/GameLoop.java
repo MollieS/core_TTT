@@ -2,14 +2,13 @@ package ttt.game;
 
 import ttt.BoardDisplay;
 import ttt.Display;
-import ttt.Input;
 
 public class GameLoop {
     private GameEngine gameEngine;
     private Display display;
     private BoardDisplay boardDisplay;
-    private final String[] replayOptions = {"y", "n"};
     private Board board;
+    private Integer nextMove;
 
     public GameLoop(GameEngine gameEngine, Display output, BoardDisplay boardDisplay) {
         this.gameEngine = gameEngine;
@@ -18,25 +17,47 @@ public class GameLoop {
         this.board = gameEngine.showBoard();
     }
 
+    public GameLoop(GameEngine gameEngine) {
+        this.nextMove = getLocation();
+        this.gameEngine = gameEngine;
+        this.board = gameEngine.showBoard();
+    }
+
     public void start() {
-        display.clearScreen();
+        clearScreen();
         showBoard();
         playGame();
         getGameResult();
     }
 
-    private void playGame() {
+    public void playGame() {
         while (!gameEngine.isOver()) {
             Exception exception = null;
             Integer location = null;
             try {
-                location = getLocation();
+                location = getPlayerMove();
             } catch (Exception e) {
                 exception = e;
             }
-            display.clearScreen();
-            processOutput(exception, location);
+            showBoard(exception, location);
         }
+    }
+
+    public void playMoves() {
+        if (nextMove != null && !gameEngine.isOver()) {
+            gameEngine.play(nextMove);
+            nextMove = getPlayerMove();
+            gameEngine.play(nextMove);
+        }
+    }
+
+    private void showBoard(Exception exception, Integer location) {
+        clearScreen();
+        processOutput(exception, location);
+    }
+
+    private void clearScreen() {
+        display.clearScreen();
     }
 
     private void processOutput(Exception exception, Integer location) {
@@ -52,10 +73,19 @@ public class GameLoop {
         display.write(exception.getMessage());
     }
 
-    private Integer getLocation() throws Exception {
+    private Integer getLocation() {
         display.displayTurn(gameEngine.currentMark());
         display.promptForLocation(gameEngine.boardSize());
-        return gameEngine.getPlayerMove(board);
+        return getPlayerMove();
+    }
+
+    private Integer getPlayerMove() {
+        try {
+            return gameEngine.getPlayerMove(board);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private void placeMark(Integer input) {
