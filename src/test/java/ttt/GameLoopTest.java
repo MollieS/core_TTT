@@ -85,6 +85,14 @@ public class GameLoopTest {
         assertTrue(displayContains("X wins!"));
     }
 
+    @Test
+    public void canSetTheNextPlayersMove() {
+        GameLoop loop = new GameLoop(gameEngine);
+        loop.setNextMove(0);
+        loop.playMoves();
+        assertTrue(gameEngine.board(0).equals(Marks.X));
+    }
+
     private boolean displayContains(String message) {
         return display.read().contains(message);
     }

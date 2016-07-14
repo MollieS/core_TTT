@@ -30,10 +30,6 @@ public class GameLoop {
         getGameResult();
     }
 
-    public void setNextMove(int move) {
-        this.nextMove = move;
-    }
-
     public void playGame() {
         while (!gameEngine.isOver()) {
             Exception exception = null;
@@ -54,15 +50,18 @@ public class GameLoop {
         display.promptForLocation(gameEngine.boardSize());
     }
 
+    public void setNextMove(int move) {
+        this.nextMove = move;
+    }
+
     public void playMoves() {
         if (nextMove != null && !gameEngine.isOver()) {
             gameEngine.play(nextMove);
-            nextMove = getPlayerMove();
+            nextMove = getLocation();
+        }
+        if (nextMove != null) {
             gameEngine.play(nextMove);
         }
-    }
-
-    private void showBoard(Exception exception, Integer location) {
     }
 
     private void clearScreen() {
@@ -90,7 +89,7 @@ public class GameLoop {
         try {
             return gameEngine.getPlayerMove(board);
         } catch (Exception e) {
-            e.printStackTrace();
+            e.getMessage();
         }
         return null;
     }
