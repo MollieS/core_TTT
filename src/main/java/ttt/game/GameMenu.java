@@ -48,6 +48,7 @@ public class GameMenu {
         GameEngine game = null;
         String replayAnswer = input.getReplay();
         if (replayAnswer.equals("y")) {
+            playerChoices = new ArrayList<>();
             game = createGame();
         } else {
             display.goodbye();

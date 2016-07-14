@@ -30,6 +30,10 @@ public class GameLoop {
         getGameResult();
     }
 
+    public void setNextMove(int move) {
+        this.nextMove = move;
+    }
+
     public void playGame() {
         while (!gameEngine.isOver()) {
             Exception exception = null;
