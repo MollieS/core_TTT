@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import ttt.game.GameEngine;
 import ttt.game.GameMenu;
+import ttt.game.Marks;
 
 import static junit.framework.TestCase.assertTrue;
 
@@ -15,7 +16,7 @@ public class MenuTest {
 
     @Before
     public void setUp() {
-        this.menu = new GameMenu(input, display, new BoardDisplayFake(), new PlayerFake(), new PlayerFake());
+        this.menu = new GameMenu(input, display, new BoardDisplayFake(), new PlayerFake(Marks.X), new PlayerFake(Marks.O));
     }
 
     @Test

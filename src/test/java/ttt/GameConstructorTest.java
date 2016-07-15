@@ -3,6 +3,7 @@ package ttt;
 import org.junit.Test;
 import ttt.game.GameConstructor;
 import ttt.game.GameEngine;
+import ttt.game.Marks;
 import ttt.players.PerfectPlayer;
 import ttt.players.PlayerFactory;
 
@@ -13,7 +14,7 @@ import static junit.framework.TestCase.assertTrue;
 
 public class GameConstructorTest {
 
-    private PlayerFactory factory = new PlayerFactory(new PlayerFake(), new PlayerFake());
+    private PlayerFactory factory = new PlayerFactory(new PlayerFake(Marks.X), new PlayerFake(Marks.O));
 
     @Test
     public void createsAHumanVHumanGameWith3x3Board() {

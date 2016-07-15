@@ -153,7 +153,6 @@ public class GameLoopTest {
         GameLoop loop = new GameLoop(game);
         loop.setNextMove(4);
         loop.playMoves();
-        loop.setNextMove();
     }
 
     private boolean displayContains(String message) {
