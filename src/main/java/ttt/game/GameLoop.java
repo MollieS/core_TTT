@@ -57,15 +57,12 @@ public class GameLoop {
     public void playMoves() {
         if (nextMove != null && !gameEngine.isOver()) {
             gameEngine.play(nextMove);
-            try {
-                nextMove = getPlayerMove();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            nextMove = getPlayerMove();
         }
         if (nextMove != null && !gameEngine.isOver()) {
             gameEngine.play(nextMove);
         }
+        nextMove = getPlayerMove();
     }
 
     private void clearScreen() {

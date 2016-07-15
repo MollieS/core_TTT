@@ -2,7 +2,6 @@ package ttt;
 
 import ttt.game.BoardOption;
 import ttt.game.GameOption;
-import ttt.game.Options;
 
 import java.util.ArrayList;
 import java.util.List;

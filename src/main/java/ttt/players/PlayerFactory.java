@@ -29,23 +29,23 @@ public class PlayerFactory {
             player1 = createRandomPlayer(Marks.X);
             player2 = humanplayer2;
         } else if (type == 4) {
+            player1 = createRandomPlayer(Marks.X);
+            player2 = createRandomPlayer(Marks.O);
+        } else if (type == 5) {
             player1 = humanplayer1;
             player2 = createPerfectPlayer(Marks.O);
-        } else if (type == 5) {
-            player1 = createPerfectPlayer(Marks.X);
-            player2 = humanplayer2;
         } else if (type == 6) {
             player1 = createPerfectPlayer(Marks.X);
-            player2 = createPerfectPlayer(Marks.O);
+            player2 = humanplayer2;
         } else if (type == 7) {
             player1 = createPerfectPlayer(Marks.X);
-            player2 = createRandomPlayer(Marks.O);
-        } else if (type == 8) {
-            player1 = createRandomPlayer(Marks.X);
             player2 = createPerfectPlayer(Marks.O);
+        } else if (type == 8) {
+            player1 = createPerfectPlayer(Marks.X);
+            player2 = createRandomPlayer(Marks.O);
         } else {
             player1 = createRandomPlayer(Marks.X);
-            player2 = createRandomPlayer(Marks.O);
+            player2 = createPerfectPlayer(Marks.O);
         }
         return Arrays.asList(player1, player2);
     }

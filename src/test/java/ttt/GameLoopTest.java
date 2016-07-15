@@ -144,6 +144,18 @@ public class GameLoopTest {
         assertTrue(game.board(6) == Marks.NULL);
     }
 
+    @Test
+    public void canPlayAGameAgainstComputerPlayer() {
+        Player player = new WebPlayer(Marks.X);
+        Player player1 = new PerfectPlayer(Marks.O);
+        Board board = new Board(3);
+        GameEngine game = new GameEngine(player, player, board);
+        GameLoop loop = new GameLoop(game);
+        loop.setNextMove(4);
+        loop.playMoves();
+        loop.setNextMove();
+    }
+
     private boolean displayContains(String message) {
         return display.read().contains(message);
     }

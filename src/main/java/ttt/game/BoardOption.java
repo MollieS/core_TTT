@@ -1,6 +1,6 @@
 package ttt.game;
 
-public enum BoardOption implements Options {
+public enum BoardOption {
 
     SMALL ("3", "3x3"),
     BIG ("4", "4x4");
