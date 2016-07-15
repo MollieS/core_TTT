@@ -55,14 +55,13 @@ public class GameLoop {
     }
 
     public void playMoves() {
-        if (nextMove != null && !gameEngine.isOver()) {
-            gameEngine.play(nextMove);
-            nextMove = getPlayerMove();
-        }
-        if (nextMove != null && !gameEngine.isOver()) {
+        if (!gameEngine.isOver()) {
             gameEngine.play(nextMove);
         }
         nextMove = getPlayerMove();
+        if (nextMove != null && !gameEngine.isOver()) {
+            gameEngine.play(nextMove);
+        }
     }
 
     private void clearScreen() {
@@ -84,7 +83,7 @@ public class GameLoop {
 
     private Integer getPlayerMove() {
         try {
-            return gameEngine.getPlayerMove(board);
+            return gameEngine.getPlayerMove(gameEngine.showBoard());
         } catch (Exception e) {
             e.getMessage();
         }

@@ -149,10 +149,19 @@ public class GameLoopTest {
         Player player = new WebPlayer(Marks.X);
         Player player1 = new PerfectPlayer(Marks.O);
         Board board = new Board(3);
-        GameEngine game = new GameEngine(player, player, board);
+        GameEngine game = new GameEngine(player, player1, board);
         GameLoop loop = new GameLoop(game);
         loop.setNextMove(4);
         loop.playMoves();
+        loop.setNextMove(2);
+        loop.playMoves();
+        loop.setNextMove(3);
+        loop.playMoves();
+        loop.setNextMove(1);
+        loop.playMoves();
+        loop.setNextMove(8);
+        loop.playMoves();
+        assertTrue(game.isDraw());
     }
 
     private boolean displayContains(String message) {
