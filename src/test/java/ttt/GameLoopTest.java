@@ -7,8 +7,12 @@ import ttt.game.GameEngine;
 import ttt.game.GameLoop;
 import ttt.game.Marks;
 import ttt.players.HumanPlayer;
+import ttt.players.PerfectPlayer;
+import ttt.players.RandomPlayer;
+import ttt.players.WebPlayer;
 
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class GameLoopTest {
 
@@ -87,10 +91,38 @@ public class GameLoopTest {
 
     @Test
     public void canSetTheNextPlayersMove() {
-        GameLoop loop = new GameLoop(gameEngine);
+        GameEngine game = new GameEngine(new WebPlayer(Marks.X), new WebPlayer(Marks.O), new Board(3));
+        GameLoop loop = new GameLoop(game);
         loop.setNextMove(0);
         loop.playMoves();
-        assertTrue(gameEngine.board(0).equals(Marks.X));
+        assertEquals(Marks.X, game.board(0));
+    }
+
+    @Test
+    public void playsTheNextMoveIfPerfectPlayer() {
+        Player player = new WebPlayer(Marks.X);
+        Player player1 = new PerfectPlayer(Marks.O);
+        Board board = new Board(3);
+        GameEngine game = new GameEngine(player, player1, board);
+        GameLoop loop = new GameLoop(game);
+        loop.setNextMove(1);
+        loop.playMoves();
+        assertEquals(game.currentMark(), Marks.X);
+    }
+
+    @Test
+    public void playsTheNextMoveIfRandomPlayer() {
+        Player player = new WebPlayer(Marks.X);
+        Player player1 = new RandomPlayer(new FakeRandomizer(), Marks.O);
+        Board board = new Board(3);
+        GameEngine game = new GameEngine(player, player1, board);
+        GameLoop loop = new GameLoop(game);
+        loop.setNextMove(4);
+        loop.playMoves();
+        for (int i = 0; i < 9; i++) {
+            System.out.println(game.board(i));
+        }
+        assertTrue(game.currentMark() == Marks.X);
     }
 
     private boolean displayContains(String message) {

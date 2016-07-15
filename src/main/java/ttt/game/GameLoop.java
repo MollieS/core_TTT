@@ -18,7 +18,7 @@ public class GameLoop {
     }
 
     public GameLoop(GameEngine gameEngine) {
-        this.nextMove = getLocation();
+        this.nextMove = getPlayerMove();
         this.gameEngine = gameEngine;
         this.board = gameEngine.showBoard();
     }
@@ -57,7 +57,11 @@ public class GameLoop {
     public void playMoves() {
         if (nextMove != null && !gameEngine.isOver()) {
             gameEngine.play(nextMove);
-            nextMove = getLocation();
+            try {
+                nextMove = getPlayerMove();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         if (nextMove != null) {
             gameEngine.play(nextMove);
@@ -79,10 +83,6 @@ public class GameLoop {
     private void displayErrorMessage(Exception exception) {
         display.write(boardDisplay.createBoard(board));
         display.write(exception.getMessage());
-    }
-
-    private Integer getLocation() {
-        return getPlayerMove();
     }
 
     private Integer getPlayerMove() {
