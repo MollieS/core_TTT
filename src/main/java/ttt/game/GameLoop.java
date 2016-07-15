@@ -63,7 +63,7 @@ public class GameLoop {
                 e.printStackTrace();
             }
         }
-        if (nextMove != null) {
+        if (nextMove != null && !gameEngine.isOver()) {
             gameEngine.play(nextMove);
         }
     }

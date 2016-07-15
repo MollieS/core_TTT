@@ -119,10 +119,29 @@ public class GameLoopTest {
         GameLoop loop = new GameLoop(game);
         loop.setNextMove(4);
         loop.playMoves();
-        for (int i = 0; i < 9; i++) {
-            System.out.println(game.board(i));
-        }
         assertTrue(game.currentMark() == Marks.X);
+    }
+
+    @Test
+    public void doesNotPlayTheNextMoveIfGameIsOver() {
+        Player player = new WebPlayer(Marks.X);
+        Player player1 = new WebPlayer(Marks.O);
+        Board board = new Board(3);
+        GameEngine game = new GameEngine(player, player1, board);
+        GameLoop loop = new GameLoop(game);
+        loop.setNextMove(0);
+        loop.playMoves();
+        loop.setNextMove(3);
+        loop.playMoves();
+        loop.setNextMove(1);
+        loop.playMoves();
+        loop.setNextMove(4);
+        loop.playMoves();
+        loop.setNextMove(2);
+        loop.playMoves();
+        loop.setNextMove(6);
+        loop.playMoves();
+        assertTrue(game.board(6) == Marks.NULL);
     }
 
     private boolean displayContains(String message) {
