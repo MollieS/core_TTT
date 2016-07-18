@@ -9,7 +9,6 @@ import ttt.game.Marks;
 import ttt.players.HumanPlayer;
 import ttt.players.PerfectPlayer;
 import ttt.players.RandomPlayer;
-import ttt.players.WebPlayer;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -91,7 +90,7 @@ public class GameLoopTest {
 
     @Test
     public void canSetTheNextPlayersMove() {
-        GameEngine game = new GameEngine(new WebPlayer(Marks.X), new WebPlayer(Marks.O), new Board(3));
+        GameEngine game = new GameEngine(new HumanPlayer(Marks.X, input), new HumanPlayer(Marks.O, input), new Board(3));
         GameLoop loop = new GameLoop(game);
         loop.setNextMove(0);
         loop.playMoves();
@@ -100,7 +99,7 @@ public class GameLoopTest {
 
     @Test
     public void playsTheNextMoveIfPerfectPlayer() {
-        Player player = new WebPlayer(Marks.X);
+        Player player = new HumanPlayer(Marks.X, input);
         Player player1 = new PerfectPlayer(Marks.O);
         Board board = new Board(3);
         GameEngine game = new GameEngine(player, player1, board);
@@ -112,7 +111,7 @@ public class GameLoopTest {
 
     @Test
     public void playsTheNextMoveIfRandomPlayer() {
-        Player player = new WebPlayer(Marks.X);
+        Player player = new HumanPlayer(Marks.X, input);
         Player player1 = new RandomPlayer(new FakeRandomizer(), Marks.O);
         Board board = new Board(3);
         GameEngine game = new GameEngine(player, player1, board);
@@ -124,8 +123,8 @@ public class GameLoopTest {
 
     @Test
     public void doesNotPlayTheNextMoveIfGameIsOver() {
-        Player player = new WebPlayer(Marks.X);
-        Player player1 = new WebPlayer(Marks.O);
+        Player player = new HumanPlayer(Marks.X, input);
+        Player player1 = new HumanPlayer(Marks.O, input);
         Board board = new Board(3);
         GameEngine game = new GameEngine(player, player1, board);
         GameLoop loop = new GameLoop(game);
@@ -146,7 +145,7 @@ public class GameLoopTest {
 
     @Test
     public void canPlayAGameAgainstComputerPlayer() {
-        Player player = new WebPlayer(Marks.X);
+        Player player = new HumanPlayer(Marks.X, input);
         Player player1 = new PerfectPlayer(Marks.O);
         Board board = new Board(3);
         GameEngine game = new GameEngine(player, player1, board);
