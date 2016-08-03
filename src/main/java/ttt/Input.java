@@ -1,15 +1,18 @@
 package ttt;
 
+import ttt.game.BoardOption;
+import ttt.game.GameOption;
+
 import java.util.List;
 
 public interface Input {
 
-    boolean isAnInteger(String input);
+    Integer getUserLocation(List<Integer> availableMoves, int boardSize) throws Exception;
 
     String getReplay();
 
-    Integer getMenuChoice(List<Integer> options);
+    Integer getGameChoice(GameOption[] options);
 
-    Integer getUserLocation(List<Integer> availableMoves, int boardSize) throws Exception;
+    Integer getBoardChoice(BoardOption[] options);
 }
 

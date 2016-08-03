@@ -1,17 +1,13 @@
-package ttt.players;
+package ttt;
 
-import ttt.Input;
 import ttt.game.Board;
 import ttt.game.Marks;
-import ttt.Player;
 
-public class HumanPlayer implements Player {
+public class PlayerFake implements Player {
 
     private Marks mark;
-    private Input input;
 
-    public HumanPlayer(Marks mark, Input input) {
-        this.input = input;
+    public PlayerFake(Marks mark) {
         this.mark = mark;
     }
 
@@ -20,11 +16,10 @@ public class HumanPlayer implements Player {
     }
 
     public int getLocation(Board board) throws Exception {
-        return input.getUserLocation(board.availableMoves(), board.size());
+        return 0;
     }
 
     public Class playerType() {
         return getClass();
     }
-
 }

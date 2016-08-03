@@ -1,23 +1,28 @@
 package ttt.game;
 
-import ttt.Input;
 import ttt.Player;
 import ttt.players.PlayerFactory;
 
 import java.util.List;
 
 public class GameConstructor {
-    final private static int[] boardOptions = {1, 2};
+
     final private static int[] boardSizes = {3, 4};
 
-    public static GameEngine create(List<Integer> types, Input inputType) {
+    public static GameEngine create(List<Integer> types, PlayerFactory playerFactory) {
+        Board board = createBoard(types);
+        List<Player> playerList = playerFactory.create(types.get(0));
+        return new GameEngine(playerList.get(0), playerList.get(1), board);
+    }
+
+    private static Board createBoard(List<Integer> types) {
         Board board;
-        if (types.get(1) == boardOptions[0]) {
+        if (types.get(1) == boardSizes[0]) {
             board = new Board(boardSizes[0]);
         } else {
             board = new Board(boardSizes[1]);
         }
-        List<Player> playerList = PlayerFactory.create(types.get(0), board.size(), inputType);
-        return new GameEngine(playerList.get(0), playerList.get(1), board);
+        return board;
     }
+
 }

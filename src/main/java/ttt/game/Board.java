@@ -1,6 +1,5 @@
 package ttt.game;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -88,7 +87,6 @@ public class Board {
     public List<List<Marks>> getRows() {
         return rows();
     }
-
 
     private List<List<Marks>> rows() {
         int rowStart = 0;

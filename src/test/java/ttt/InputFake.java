@@ -1,5 +1,8 @@
 package ttt;
 
+import ttt.game.BoardOption;
+import ttt.game.GameOption;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,12 +16,18 @@ public class InputFake implements Input {
         }
     }
 
-    public boolean isAnInteger(String input) {
-        return input.matches("[0-9]+");
-    }
-
     public String getReplay() {
         return stream.remove(0);
+    }
+
+    public Integer getBoardChoice(BoardOption[] options) {
+        String input = stream.remove(0);
+        for (BoardOption option : options) {
+            if (input.equals(option.key)) {
+                return Integer.valueOf(input);
+            }
+        }
+        return null;
     }
 
     public Integer getUserLocation(List<Integer> board, int boardSize) throws GameException {
@@ -26,33 +35,24 @@ public class InputFake implements Input {
         if (!isAnInteger(input)) { throw GameException.notANumber(); }
         int location = (Integer.parseInt(input) - 1);
         if (board.contains(location)) { return location; }
-        if (location > (boardSize * boardSize)) {
+        if (location > (boardSize)) {
             throw GameException.outOfBounds();
         } else {
             throw GameException.takenCell();
         }
     }
 
-    public Integer getMenuChoice(List<Integer> options) {
+    public Integer getGameChoice(GameOption[] options) {
         String input = stream.remove(0);
-        int choice;
-        if (isAnInteger(input)) {
-            choice = convertToInt(input);
-        } else {
-            choice = 0;
+        for (GameOption option : options) {
+            if (input.equals(option.key)) {
+                return Integer.valueOf(input);
+            }
         }
-        if (options.contains(choice)) return choice;
         return null;
     }
 
-    private int convertToInt(String input) {
-        int choice;
-        try {
-            choice = Integer.parseInt(input);
-        } catch (NumberFormatException ex) {
-            choice = 0;
-        }
-        return choice;
+    private boolean isAnInteger(String input) {
+        return input.matches("[0-9]+");
     }
-
 }
