@@ -6,6 +6,7 @@ import ttt.game.Board;
 import ttt.game.GameEngine;
 import ttt.game.GameLoop;
 import ttt.game.Marks;
+import ttt.players.FakeRandomizer;
 import ttt.players.HumanPlayer;
 import ttt.players.PerfectPlayer;
 import ttt.players.RandomPlayer;

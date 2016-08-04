@@ -1,61 +1,30 @@
 package ttt.players;
 
 import ttt.Player;
+import ttt.PlayerType;
 import ttt.game.Marks;
 
-import java.util.Arrays;
-import java.util.List;
+public abstract class PlayerFactory {
 
-public class PlayerFactory {
+    private static int delay = 1000;
+    private static int noDelay = 0;
 
-    private Player humanplayer1;
-    private Player humanplayer2;
-
-    public PlayerFactory(Player player1, Player player2) {
-        humanplayer1 = player1;
-        humanplayer2 = player2;
-    }
-
-    public List<Player> create(int type) {
-        Player player1;
-        Player player2;
-        if (type == 1) {
-            player1 = humanplayer1;
-            player2 = humanplayer2;
-        } else if (type == 2) {
-            player1 = humanplayer1;
-            player2 = createRandomPlayer(Marks.O);
-        } else if (type == 3) {
-            player1 = createRandomPlayer(Marks.X);
-            player2 = humanplayer2;
-        } else if (type == 4) {
-            player1 = createRandomPlayer(Marks.X);
-            player2 = createRandomPlayer(Marks.O);
-        } else if (type == 5) {
-            player1 = humanplayer1;
-            player2 = createPerfectPlayer(Marks.O);
-        } else if (type == 6) {
-            player1 = createPerfectPlayer(Marks.X);
-            player2 = humanplayer2;
-        } else if (type == 7) {
-            player1 = createPerfectPlayer(Marks.X);
-            player2 = createPerfectPlayer(Marks.O);
-        } else if (type == 8) {
-            player1 = createPerfectPlayer(Marks.X);
-            player2 = createRandomPlayer(Marks.O);
-        } else {
-            player1 = createRandomPlayer(Marks.X);
-            player2 = createPerfectPlayer(Marks.O);
+    public static Player create(String playerType, Marks mark) {
+        switch (playerType) {
+            case PlayerType.RANDOM:
+                return createRandomPlayer(mark, delay);
+            case PlayerType.PERFECT:
+                return createPerfectPlayer(mark, noDelay);
         }
-        return Arrays.asList(player1, player2);
+        return null;
     }
 
-    private Player createRandomPlayer(Marks mark) {
+    private static Player createRandomPlayer(Marks mark, int delay) {
         RandomLocationGenerator randomLocationGenerator = new RandomLocationGenerator();
-        return new DelayedPlayer(new RandomPlayer(randomLocationGenerator, mark), 1000);
+        return new DelayedPlayer(new RandomPlayer(randomLocationGenerator, mark), delay);
     }
 
-    private Player createPerfectPlayer(Marks mark) {
-        return new DelayedPlayer(new PerfectPlayer(mark), 0);
+    private static Player createPerfectPlayer(Marks mark, int delay) {
+        return new DelayedPlayer(new PerfectPlayer(mark), delay);
     }
 }

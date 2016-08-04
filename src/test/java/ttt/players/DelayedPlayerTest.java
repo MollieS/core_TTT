@@ -1,12 +1,9 @@
-package ttt;
+package ttt.players;
 
 import org.junit.Test;
+import ttt.Player;
 import ttt.game.Board;
 import ttt.game.Marks;
-import ttt.players.DelayedPlayer;
-import ttt.players.PerfectPlayer;
-import ttt.players.RandomLocationGenerator;
-import ttt.players.RandomPlayer;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

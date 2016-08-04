@@ -1,8 +1,6 @@
-package ttt;
+package ttt.players;
 
 import org.junit.Test;
-import ttt.players.RandomLocationGenerator;
-import ttt.players.Randomizer;
 
 import java.util.Arrays;
 import java.util.List;

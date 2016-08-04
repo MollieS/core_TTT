@@ -3,6 +3,8 @@ plugins {
     id "jacoco"
 }
 
+version '2.0.0'
+
 apply plugin: 'java'
 
 jar {

@@ -1,13 +1,12 @@
-package ttt;
+package ttt.players;
 
 import org.junit.Before;
-
 import org.junit.Test;
+import ttt.InputFake;
+import ttt.Player;
 import ttt.game.Board;
 import ttt.game.GameEngine;
 import ttt.game.Marks;
-import ttt.players.HumanPlayer;
-import ttt.players.PerfectPlayer;
 
 import static org.junit.Assert.assertEquals;
 

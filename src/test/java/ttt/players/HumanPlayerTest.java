@@ -1,10 +1,10 @@
-package ttt;
+package ttt.players;
 
 import org.junit.Before;
 import org.junit.Test;
+import ttt.InputFake;
 import ttt.game.Board;
 import ttt.game.Marks;
-import ttt.players.HumanPlayer;
 
 import static org.junit.Assert.assertEquals;
 

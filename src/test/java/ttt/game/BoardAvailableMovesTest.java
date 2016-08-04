@@ -1,11 +1,9 @@
-package ttt;
+package ttt.game;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import ttt.game.Board;
-import ttt.game.Marks;
 
 import java.util.ArrayList;
 import java.util.List;
