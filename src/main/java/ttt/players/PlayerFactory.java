@@ -11,20 +11,19 @@ public abstract class PlayerFactory {
 
     public static Player create(String playerType, Marks mark) {
         switch (playerType) {
-            case PlayerType.RANDOM:
-                return createRandomPlayer(mark, delay);
             case PlayerType.PERFECT:
-                return createPerfectPlayer(mark, noDelay);
+                return createPerfectPlayer(mark);
+            default:
+                return createRandomPlayer(mark);
         }
-        return null;
     }
 
-    private static Player createRandomPlayer(Marks mark, int delay) {
+    private static Player createRandomPlayer(Marks mark) {
         RandomLocationGenerator randomLocationGenerator = new RandomLocationGenerator();
         return new DelayedPlayer(new RandomPlayer(randomLocationGenerator, mark), delay);
     }
 
-    private static Player createPerfectPlayer(Marks mark, int delay) {
-        return new DelayedPlayer(new PerfectPlayer(mark), delay);
+    private static Player createPerfectPlayer(Marks mark) {
+        return new DelayedPlayer(new PerfectPlayer(mark), noDelay);
     }
 }
