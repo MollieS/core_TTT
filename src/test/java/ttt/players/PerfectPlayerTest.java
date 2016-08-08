@@ -190,11 +190,6 @@ public class PerfectPlayerTest {
         assertEquals(5, computerLocation);
     }
 
-    @Test
-    public void knowsItsClass() {
-        assertEquals(PerfectPlayer.class, perfectPlayer.playerType());
-    }
-
     private int computerLocation(Board board) {
         return perfectPlayer.getLocation(board);
     }

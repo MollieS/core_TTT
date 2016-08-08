@@ -29,8 +29,4 @@ public class RandomPlayerTest {
         assertEquals(computer.getMark(), Marks.X);
     }
 
-    @Test
-    public void knowsItsClass() {
-        assertEquals(RandomPlayer.class, computer.playerType());
-    }
 }

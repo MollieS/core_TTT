@@ -6,8 +6,8 @@ import ttt.Player;
 
 public class RandomPlayer implements Player {
 
-    final private Randomizer randomizer;
-    final private Marks mark;
+    private final Randomizer randomizer;
+    private final Marks mark;
 
     public RandomPlayer(Randomizer randomizer, Marks mark) {
         this.randomizer = randomizer;
