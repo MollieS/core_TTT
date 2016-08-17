@@ -36,19 +36,23 @@ public class Board {
     }
 
     public List<Integer> availableMoves() {
-        List<Integer> moves = IntStream.range(0, board.size())
-                .filter(index -> board.get(index) == Marks.NULL)
-                .mapToObj(index -> index)
-                .collect(Collectors.toList());
+        List<Integer> moves = new ArrayList<>();
+        for (int cell = 0; cell < board.size(); cell++) {
+            if (board.get(cell) == Marks.NULL) {
+                moves.add(cell);
+            }
+        }
         return moves;
     }
 
     public boolean isFull() {
-        return board.stream().allMatch(cell -> cell != Marks.NULL);
+        for (Marks cell : board) { if (cell == Marks.NULL) return false; }
+        return true;
     }
 
     public boolean isEmpty() {
-        return board.stream().allMatch(cell -> cell == Marks.NULL);
+        for (Marks cell : board) { if (cell != Marks.NULL) return false; }
+        return true;
     }
 
     public boolean isDraw() {

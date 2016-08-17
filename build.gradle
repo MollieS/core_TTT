@@ -3,7 +3,11 @@ plugins {
     id "jacoco"
 }
 
+version '2.1.0'
 apply plugin: 'java'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 jar {
     manifest {
